@@ -19,7 +19,7 @@ function App() {
   
   const restList = restInfo.map((rest) => 
     <li style={{listStyle:'none'}}>
-      <a><RestaurantCard restInfo={rest}></RestaurantCard></a>
+      <a href="#"><RestaurantCard restInfo={rest}></RestaurantCard></a>
     </li>)
 
   return (

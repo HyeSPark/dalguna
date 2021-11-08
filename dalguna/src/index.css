@@ -27,3 +27,8 @@ li {
 .mainPage__rest-card-list {
   padding: 19px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}

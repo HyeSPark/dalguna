@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../restaurant_card.css';
 import { AiOutlineUser } from "react-icons/ai"
+import { FaMotorcycle } from "react-icons/fa"
 
 function RestaurantCard(props) {
 
@@ -18,8 +19,10 @@ function RestaurantCard(props) {
             <div className= "restCard__container">
                 <div className="restCard__name-deli-time">
                     <div className="restCard__name">{props.restInfo.name}</div>
-                    <div className="restCard__deli-time">{props.restInfo.deliTime} 
-                    <span className="restCard__secondary"> min</span></div>
+                    <div className="restCard__deli-time">
+                        <FaMotorcycle className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {props.restInfo.deliTime} 
+                        <span className="restCard__secondary"> min</span>
+                    </div>
                 </div>
                 <div className="restCard__min-order-deli-fee">
                     <span className="restCard__secondary">Min. order</span> {props.restInfo.minOrder} 
