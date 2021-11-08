@@ -6,6 +6,7 @@ import RestaurantCard from './components/RestaurantCard.js'
 import NavBar from './components/NavBar.js'
 import TabBar from './components/TabBar.js'
 
+
 function App() {
   // restInfo contains all information about the all restaurant with JSON Type
   // restRoom array will be changing actively

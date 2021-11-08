@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import '../restaurant_card.css';
+import { AiOutlineUser } from "react-icons/ai"
 
 function RestaurantCard(props) {
 
     const roomTagList = props.restInfo.rooms.map(({part, order})=>
             <li className="restCard__room-tag">
-                {part} 
+                <AiOutlineUser className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {part} 
                 <span className="restCard__secondary"> until</span> {order}
             </li>
         )
