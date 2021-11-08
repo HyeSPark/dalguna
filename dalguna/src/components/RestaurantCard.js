@@ -1,11 +1,15 @@
 import { React, useState } from 'react'
 import '../restaurant_card.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 function RestaurantCard(props) {
 
     const roomTagList = props.restInfo.rooms.map(({part, order})=>
-            <li className="restCard__room-tag">{part} 
-            <span className="restCard__secondary"> until</span> {order}</li>
+            <li className="restCard__room-tag">
+                <FontAwesomeIcon className="restCard__secondary" icon={faCoffee} />{part} 
+                <span className="restCard__secondary"> until</span> {order}
+            </li>
         )
     // 일단은 restaurant list 가 너무 길어지면 뚝 끊기게 만듦
     // .. 으로 표시하는게 나을까? 
