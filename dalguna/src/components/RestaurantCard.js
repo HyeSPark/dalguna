@@ -1,13 +1,11 @@
-import { React, useState } from 'react'
+import React, { useState } from 'react'
 import '../restaurant_card.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 function RestaurantCard(props) {
 
     const roomTagList = props.restInfo.rooms.map(({part, order})=>
             <li className="restCard__room-tag">
-                <FontAwesomeIcon className="restCard__secondary" icon={faCoffee} />{part} 
+                {part} 
                 <span className="restCard__secondary"> until</span> {order}
             </li>
         )
