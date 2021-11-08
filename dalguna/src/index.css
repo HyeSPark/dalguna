@@ -11,19 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-body {
-  background-color: grey;
-}
-.App {
-  margin: auto;
-  max-width: 428px;
-  background-color: white;
-}
-
-li {
-  list-style: none;
-}
-.mainPage__rest-card-list {
-  padding: 19px;
-}
