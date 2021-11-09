@@ -6,6 +6,7 @@ import RestaurantCard from './components/RestaurantCard.js'
 import NavBar from './components/NavBar.js'
 import TabBar from './components/TabBar.js'
 import CartButton from './components/CartButton.js'
+import RestTitleBox from './components/RestTitleBox.js'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   return (
     <div className="App">
       <NavBar></NavBar>
+      <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
       <ul style={{margin:0}} className = "mainPage__rest-card-list">
         {restList}
       </ul>
