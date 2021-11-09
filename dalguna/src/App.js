@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import dhspic from './img/DHS_photo.jpeg';
 import React, { useState } from 'react';
 import './App.css';
