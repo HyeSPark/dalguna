@@ -4,14 +4,16 @@ import { AiOutlineUser } from "react-icons/ai"
 import { FaMotorcycle } from "react-icons/fa"
 
 function RestaurantCard(props) {
-
-    const roomTagList = props.restInfo.rooms.map(({part, order})=>
-            <li className="restCard__room-tag">
+    var roomKey = 0
+    const roomTagList = props.restInfo.rooms.map(function({part, order}) {
+            roomKey += 1;
+            return (<li key={roomKey} className="restCard__room-tag">
                 <AiOutlineUser className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {part} 
                 <span className="restCard__secondary"> until</span> {order}
-            </li>
+            </li>)
+            }
         )
-    // 일단은 restaurant list 가 너무 길어지면 뚝 끊기게 만듦
+    // 일단은 restaurant list 가 너무 길어지면 담줄로 넘어가게 만듦
     // .. 으로 표시하는게 나을까? 
     return (
         <div className="restCard__">

@@ -14,11 +14,16 @@ code {
 
 body {
   background-color: grey;
+  text-align: center;
 }
 .App {
-  margin: auto;
   max-width: 428px;
   background-color: white;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  transform: translateX( -50% );
 }
 
 li {
@@ -31,4 +36,8 @@ li {
 a {
   text-decoration: none;
   color: black;
+}
+
+.hide {
+  display: none;
 }
