@@ -42,7 +42,16 @@
     border-radius: 7px 0px 0px 7px;
 }
 
-.navBar__search-input {
+.navBar__search-bar {
     width: 100%;
+    background-color: white;
+    border-radius: 0px 7px 7px 0px;
+}
+
+.navBar__search-input {
+    width: 353px;
+    padding: 9px 0px 9px 5px;
+    border: none;
+    font-size: 1rem;
     border-radius: 0px 7px 7px 0px;
 }
