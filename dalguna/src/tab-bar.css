@@ -5,7 +5,7 @@
     width: 100%;
     max-width: 428px;
     background-color: white; 
-    border-top: 1px rgb(158, 158, 158) solid;
+    border-top: 1px #E1DEDE solid;
 }
 
 .tabBar__menu-list {

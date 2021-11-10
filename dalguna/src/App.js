@@ -14,6 +14,8 @@ function App() {
   // restInfo contains all information about the all restaurant with JSON Type
   // restRoom array will be changing actively
   // [NOT DECIDED] 통으로 전달 or 따로따로 전달?
+
+  // [NOT SOLVED] scroll!!!
   const [restInfo, setRestInfo] 
     = useState([{name:"대학생 치킨", minOrder:"₩15,000", 
         deliFee: "₩3,000", deliTime: "27~31", img: dhspic,
