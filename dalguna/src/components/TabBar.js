@@ -11,7 +11,7 @@ function TabBar() {
         setMenuFocused(newArr)
     }
 
-    const focusClassName = {true: "tabBar__menu focus", false: "tabBar__menu"}
+    const focusClassName = {true: "tabBar__menu tabBar__focus", false: "tabBar__menu"}
     return (
         <div className="tabBar__">
             <ul className="tabBar__menu-list" >

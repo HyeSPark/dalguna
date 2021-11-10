@@ -2,11 +2,12 @@
 import dhspic from './img/DHS_photo.jpeg';
 import React, { useState } from 'react';
 import './App.css';
-import RestaurantCard from './components/RestaurantCard.js'
+import RestCard from './components/RestCard.js'
 import NavBar from './components/NavBar.js'
 import TabBar from './components/TabBar.js'
 import CartButton from './components/CartButton.js'
 import RestTitleBox from './components/RestTitleBox.js'
+import RestTab from './components/RestTab.js'
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
   // mapping the list
   const restList = restInfo.map((rest) => 
     <li key={rest.name} style={{listStyle:'none'}}>
-      <a href="#"><RestaurantCard restInfo={rest}></RestaurantCard></a>
+      <a href="#"><RestCard restInfo={rest}></RestCard></a>
     </li>)
   
   // cart visible
@@ -44,6 +45,7 @@ function App() {
         <CartButton cartItem={cartItem}></CartButton>
       </div>
       <TabBar></TabBar>
+      <RestTab></RestTab>
     </div>
   );
 }

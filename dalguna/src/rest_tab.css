@@ -1,0 +1,52 @@
+.restTab__ {
+    height: 50px;
+    width: 100%;
+    max-width: 428px;
+    background-color: white; 
+    font-size: 1rem;
+}
+
+.restTab__list {
+    padding-left: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.restTab__item {
+    padding: 8px 30px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: space-between;
+    color: grey;
+    border-bottom: 1px grey solid;
+}
+
+.restTab__focus {
+    color: black;
+    border-top: 1px black solid;
+    border-bottom: none;
+    border-left: 1px grey solid;
+    border-right: 1px grey solid;
+}
+
+.restTab__item-name {
+    width: 42px;
+}
+
+
+.restTab__menu {
+    width:33.3%;
+}
+
+.restTab__info {
+    width:33.3%;
+}
+.restTab__room {
+    width:33.3%;
+}
