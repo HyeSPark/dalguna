@@ -30,6 +30,7 @@
 
 .restTab__focus {
     color: black;
+    font-weight: bold;
     border-top: 1px black solid;
     border-bottom: none;
     border-left: 1px rgb(158, 158, 158) solid;
