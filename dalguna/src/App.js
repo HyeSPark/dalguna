@@ -5,7 +5,8 @@ import './App.css';
 import RestCard from './components/RestCard.js'
 import NavBar from './components/NavBar.js'
 import TabBar from './components/TabBar.js'
-import {ShortButtonActive, ShortButtonInactive} from './components/ShortButton';
+import { ShortButtonActive, ShortButtonInactive } from './components/ShortButton';
+import { LongButtonActive, LongButtonInactive } from './components/LongButton';
 import CartButton from './components/CartButton.js'
 import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
@@ -66,6 +67,7 @@ function App() {
       <ul style={{margin:0}} className = "mainPage__menu-item-list">
         {menuList}
       </ul>
+      <LongButtonInactive></LongButtonInactive>
       <ShortButtonActive></ShortButtonActive>
       <ShortButtonInactive></ShortButtonInactive>
 
