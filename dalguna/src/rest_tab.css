@@ -24,16 +24,16 @@
 
     align-items: center;
     justify-content: space-between;
-    color: grey;
-    border-bottom: 1px grey solid;
+    color: rgb(158, 158, 158);
+    border-bottom: 1px rgb(158, 158, 158) solid;
 }
 
 .restTab__focus {
     color: black;
     border-top: 1px black solid;
     border-bottom: none;
-    border-left: 1px grey solid;
-    border-right: 1px grey solid;
+    border-left: 1px rgb(158, 158, 158) solid;
+    border-right: 1px rgb(158, 158, 158) solid;
 }
 
 .restTab__item-name {
