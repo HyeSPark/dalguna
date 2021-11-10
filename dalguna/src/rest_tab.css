@@ -1,5 +1,5 @@
 .restTab__ {
-    height: 50px;
+    height: 51px;
     width: 100%;
     max-width: 428px;
     background-color: white; 
@@ -15,9 +15,10 @@
 }
 
 .restTab__item {
-    padding: 8px 30px;
+    padding: 17px 30px;
     box-sizing: border-box;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 
