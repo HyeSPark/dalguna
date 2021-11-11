@@ -11,7 +11,7 @@ function NavBar() {
                     <CgMenu></CgMenu>
                 </a>
                 <a href="#" className="navBar__nav-loc">
-                    291 Daehak-ro, Yuseong-gu <BsChevronDown style={{verticalAlign:"-20%"}}></BsChevronDown>
+                    <div className="navBar__nav-loc-add">291 Daehak-ro, Yuseong-gu</div> <BsChevronDown style={{verticalAlign:"-20%"}}></BsChevronDown>
                 </a>
                 <a href="#" className="navBar__nav-profile">
                     <CgProfile></CgProfile>
@@ -21,9 +21,7 @@ function NavBar() {
                 <div className="navBar__search-icon">
                     <CgSearch></CgSearch>
                 </div>
-                <div className="navBar__search-bar">
-                    <input className="navBar__search-input" placeholder="Search for the food and restaurant"></input>
-                </div>
+                <input className="navBar__search-input" placeholder="Search for the food and restaurant"></input>
             </div>
         </div>
     )
