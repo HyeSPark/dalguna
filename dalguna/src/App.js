@@ -11,6 +11,7 @@ import CartButton from './components/CartButton.js'
 import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
 import MenuListItem from './components/MenuListItem';
+import RoomCard from './components/RoomCard';
 
 
 function App() {
@@ -64,6 +65,8 @@ function App() {
       <ul style={{margin:0}} className = "mainPage__rest-card-list">
         {restList}
       </ul>
+      
+      <RoomCard/>
       <ul style={{margin:0}} className = "mainPage__menu-item-list">
         {menuList}
       </ul>

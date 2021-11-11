@@ -1,11 +1,14 @@
 .roomCard {
   background-color: white;
-
   text-align: left;
   border-radius: 12px;
   box-shadow: 1px 3px 4px 2px rgba(0, 0, 0, 0.15);
-  height: 115px;
-  width: 390px;
+  height: fit-content;
+  width: 360px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: auto;
 }
 
@@ -14,20 +17,21 @@
   display: flex;
 }
 
-.roomCardPicture {
-  width: 25%;
-  float: left;
-  margin: auto;
-}
-
 .roomCardInfo {
-  width: 75%;
-  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  overflow: hidden;
 }
 
-.titleRow,
+.titleRow {
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
 .infoRow {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  display: inline-block;
 }
 
 .title {
@@ -40,7 +44,46 @@
 }
 
 .roomCardImg {
-  max-width: 100%;
-  border-radius: 15%;
-  margin: auto;
+  width: 92px;
+  height: 92px;
+  border-radius: 6px;
+  border: 1px #d7d7d7 solid;
+  object-fit: cover;
+  margin-left: 14px;
+}
+
+/* timer */
+
+.timer-container {
+  width: fit-content;
+  background-color: #4e4e4e;
+  text-align: center;
+  font-size: 0.815rem;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 7px;
+  font-weight: bold;
+  display: inline;
+}
+
+.price-gathered-container {
+  width: fit-content;
+  background-color: #c4c4c4;
+  text-align: center;
+  font-size: 0.815rem;
+  border-radius: 12px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.gathered-text {
+  font-weight: bold;
+  color: #000000;
+}
+
+.min-order-text,
+.divider-text {
+  font-weight: lighter;
+  color: #424242;
 }

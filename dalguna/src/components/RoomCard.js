@@ -2,16 +2,17 @@ import React from 'react'
 import '../room_card.css';
 import {FaMapMarkerAlt,FaMotorcycle} from "react-icons/fa";
 import dhspic from '../img/DHS_photo.jpeg';
+import Timer from './Timer';
+import PriceGathered from './PriceGathered';
 
+//not yet passed any props
 function RoomCard(props) {
     return (
         <div className ="roomCard">
-            <div className="roomCardContainer">
                 <div ClassName ="roomCardInfo">
                     <div className ="titleRow">
                         <span className="title"> 대학생 치킨 </span>
-                         &nbsp;
-                        <span className="timer"> TIMER HERE</span>
+                         <Timer/>
                     </div>
                     <div className ="infoRow">
                         {/* <span className="location"> TITLE HERE </span> */}
@@ -21,12 +22,12 @@ function RoomCard(props) {
                         {/* <span className="deliveryTime"> TIMER HERE</span> */}
                     </div>
                     <div className ="priceGathered">
-                        <span> PRICE GATHERED </span>
+                        <span><PriceGathered/></span>
                     </div>
                 </div>
-                <div className ="roomCardPicture"><img className="roomCardImg" src={dhspic}/></div>
+                
+                <img className="roomCardImg" src={dhspic}/>
             </div>
-        </div>
     )
 }
 
