@@ -1,0 +1,35 @@
+.longButtonActive {
+    display: inline-block;
+    line-height: 45px;
+    width: 350px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #69ACFC;
+    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 12px;
+    bottom: 128px;
+}
+
+.longButtonInactive {
+    display: inline-block;
+    line-height: 45px;
+    width: 350px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 12px;
+    bottom: 128px;
+}
+
+.longButtonActive__text {
+    color: white;
+    font-weight: bold;
+}
+
+.longButtonInactive__text {
+    color: #69ACFC;
+    font-weight: bold;
+}

@@ -1,0 +1,42 @@
+.menuListItem__ {
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menuListItem__desc {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    overflow: hidden;
+}
+
+.menuListItem__img {
+    width: 104px;
+    height: 104px;
+    border-radius: 6px;
+    border: 1px #d7d7d7 solid;
+    object-fit: cover;
+    margin-left: 14px;
+}
+
+.menuListItem__desc-name {
+    white-space: nowrap;
+    margin-bottom: 6px;
+    width: 100%;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menuListItem__desc-detail {
+    margin-bottom: 9px;
+    font-size: 0.875rem;
+    color: grey;
+    text-align: left;
+}
+
+.menuListItem__desc-price {
+    margin-bottom: 6px;
+}

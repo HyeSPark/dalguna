@@ -4,8 +4,8 @@
     height: 49px;
     width: 100%;
     max-width: 428px;
-    background-color: white; /* to be changed */
-    border-top: 1px grey solid;
+    background-color: white; 
+    border-top: 1px #E1DEDE solid;
 }
 
 .tabBar__menu-list {
@@ -25,6 +25,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    color: rgb(158, 158, 158);
+}
+
+.tabBar__focus {
+    color: black;
 }
 
 .tabBar__menu-name {

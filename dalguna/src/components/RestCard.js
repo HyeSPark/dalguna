@@ -3,7 +3,7 @@ import '../restaurant_card.css';
 import { AiOutlineUser } from "react-icons/ai"
 import { FaMotorcycle } from "react-icons/fa"
 
-function RestaurantCard(props) {
+function RestCard(props) {
     var roomKey = 0
     const roomTagList = props.restInfo.rooms.map(function({part, order}) {
             roomKey += 1;
@@ -37,4 +37,4 @@ function RestaurantCard(props) {
         </div>
     )
 }
-export default RestaurantCard
+export default RestCard
