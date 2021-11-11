@@ -1,0 +1,30 @@
+.shortButtonActive {
+    display: inline-block;
+    line-height: 45px;
+    width: 155px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #69ACFC;
+    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 12px;
+    bottom: 70px;
+}
+
+.shortButtonInactive {
+    display: inline-block;
+    line-height: 45px;
+    width: 155px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #C4C4C4;
+    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 180px;
+    bottom: 70px;
+}
+
+.shortButton__text {
+    color: white;
+    font-weight: bold;
+}
