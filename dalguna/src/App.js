@@ -7,6 +7,7 @@ import NavBar from './components/NavBar.js'
 import TabBar from './components/TabBar.js'
 import CartButton from './components/CartButton.js'
 import RestTitleBox from './components/RestTitleBox.js'
+import RoomCard from './components/RoomCard';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <ul style={{margin:0}} className = "mainPage__rest-card-list">
         {restList}
       </ul>
+      <RoomCard></RoomCard>
       <div className={objVisible[isVisible]}>
         <CartButton cartItem={cartItem}></CartButton>
       </div>
