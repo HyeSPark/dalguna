@@ -26,7 +26,7 @@ function App() {
     = useState({restName:"대학생 치킨", items:["몬스터 오븐 구이"]})
 
   const [menuItemInfo, setMenuItemInfo]
-    = useState([{name: "냉모밀+돈까스만 (+보통소스,매운 ...", 
+    = useState([{name: "냉모밀+돈까스만 (+보통소스,매운소스 선택)", 
                 detail: "면요리(선택)+돈까스단품(선택)",
                 price: "₩13,500",
                 img: dhspic

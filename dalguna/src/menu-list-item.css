@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: baseline;
+    overflow: hidden;
 }
 
 .menuListItem__img {
@@ -21,8 +22,12 @@
 }
 
 .menuListItem__desc-name {
+    white-space: nowrap;
     margin-bottom: 6px;
+    width: 100%;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .menuListItem__desc-detail {
