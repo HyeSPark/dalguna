@@ -35,6 +35,9 @@ li {
 .mainPage__menu-item-list {
   padding: 0px;
 }
+.mainPage__room-list {
+  padding: 19px;
+}
 .mainPage__menu-item {
   border-bottom: 1px #f6f6f6 solid;
 }

@@ -2,31 +2,33 @@ import React from 'react'
 import '../room_card.css';
 import {FaMapMarkerAlt,FaMotorcycle} from "react-icons/fa";
 import dhspic from '../img/DHS_photo.jpeg';
-import Timer from './Timer';
-import PriceGathered from './PriceGathered';
+import RoomTimer from './RoomTimer.js';
+import RoomPriceRaised from './RoomPriceRaised.js';
 
-//not yet passed any props
+// [NOT DECIDED] price raised?
+// [SOLVED] not yet passed any props
 function RoomCard(props) {
     return (
-        <div className ="roomCard">
-                <div ClassName ="roomCardInfo">
-                    <div className ="titleRow">
-                        <span className="title"> 대학생 치킨 </span>
-                         <Timer/>
+        <div className ="roomCard__">
+                <div className ="roomCard__info">
+                    <div className ="roomCard__info-title">
+                        <span className="roomCard__info-title-name"> {props.roomInfo.name} </span>
+                         <RoomTimer timeLeft={props.roomInfo.timeLeft}/>
                     </div>
-                    <div className ="infoRow">
-                        {/* <span className="location"> TITLE HERE </span> */}
-                        <FaMapMarkerAlt className="roomCardSecondary" style={{verticalAlign:"-5%"}}/> 아름관
-                        &nbsp;
-                        <FaMotorcycle className="roomCardSecondary" style={{verticalAlign:"-5%"}}/> 21~30 mins
-                        {/* <span className="deliveryTime"> TIMER HERE</span> */}
+                    <div className ="roomCard__info-deli">
+                        <span className ="roomCard__info-deli-loc">
+                            <FaMapMarkerAlt className="roomCard__info-deli-icon" style={{verticalAlign:"-5%"}}/> {props.roomInfo.loc}
+                        </span>
+                        <span className ="roomCard__info-deli-deliTime">
+                            <FaMotorcycle className="roomCard__info-deli-icon" style={{verticalAlign:"-5%"}}/> {props.roomInfo.deliTime} mins
+                        </span>
                     </div>
-                    <div className ="priceGathered">
-                        <span><PriceGathered/></span>
+                    <div className ="roomCard__info-price">
+                        <span><RoomPriceRaised raised={props.roomInfo.raised} minOrd={props.roomInfo.minOrd}/></span>
                     </div>
                 </div>
                 
-                <img className="roomCardImg" src={dhspic}/>
+                <img className="roomCard__img" src={dhspic}/>
             </div>
     )
 }

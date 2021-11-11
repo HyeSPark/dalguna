@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import '../menu-list-item.css';
 
 function MenuListItem(props) {
-    // [NOT SOLVED] name responsive하게 줄어들도록 js 처리
+    // [SOLVED] name responsive하게 줄어들도록 js 처리
+    const price = 
+        new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                .format(props.menuItemInfo.price)
     return (
         <div className="menuListItem__">
             <div className="menuListItem__desc">
@@ -13,7 +16,7 @@ function MenuListItem(props) {
                     {props.menuItemInfo.detail}
                 </div>
                 <div className="menuListItem__desc-price">
-                    {props.menuItemInfo.price}
+                    {price}
                 </div>
             </div>
             

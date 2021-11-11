@@ -13,7 +13,14 @@ function RestCard(props) {
             </li>)
             }
         )
-    // 일단은 restaurant list 가 너무 길어지면 담줄로 넘어가게 만듦
+    const minOrd = 
+        new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                .format(props.restInfo.minOrder)
+    
+    const deliFee = 
+        new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                .format(props.restInfo.deliFee)
+    // 일단은 room list 가 너무 길어지면 담줄로 넘어가게 만듦
     // .. 으로 표시하는게 나을까? 
     return (
         <div className="restCard__">
@@ -27,8 +34,8 @@ function RestCard(props) {
                     </div>
                 </div>
                 <div className="restCard__min-order-deli-fee">
-                    <span className="restCard__secondary">Min. order</span> {props.restInfo.minOrder} 
-                    <span className="restCard__secondary"> Delivery fee</span> {props.restInfo.deliFee}
+                    <span className="restCard__secondary">Min. order</span> {minOrd} 
+                    <span className="restCard__secondary"> Delivery fee</span> {deliFee}
                 </div>
                 <ul className="restCard__room-tag-list">
                     {roomTagList}

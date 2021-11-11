@@ -1,49 +1,47 @@
-.roomCard {
+.roomCard__ {
   background-color: white;
   text-align: left;
   border-radius: 12px;
   box-shadow: 1px 3px 4px 2px rgba(0, 0, 0, 0.15);
   height: fit-content;
-  width: 360px;
   padding: 16px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: auto;
 }
 
-.roomCardContainer {
-  padding: 14px 14px 17px 14px;
-  display: flex;
-}
 
-.roomCardInfo {
+.roomCard__info {
   display: flex;
   flex-direction: column;
   align-items: baseline;
   overflow: hidden;
 }
 
-.titleRow {
+.roomCard__info-title {
   margin-bottom: 12px;
   display: inline-block;
 }
 
-.infoRow {
-  margin-bottom: 8px;
-  display: inline-block;
-}
-
-.title {
+.roomCard__info-title-name {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.roomCardSecondary {
+.roomCard__info-deli {
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.roomCard__info-deli-deliTime {
+  margin-left: 8px;
+}
+
+.roomCard__info-deli-icon {
   color: grey;
 }
 
-.roomCardImg {
+.roomCard__img {
   width: 92px;
   height: 92px;
   border-radius: 6px;
@@ -54,36 +52,57 @@
 
 /* timer */
 
-.timer-container {
+.roomTimer__ {
   width: fit-content;
-  background-color: #4e4e4e;
   text-align: center;
   font-size: 0.815rem;
   color: #ffffff;
   border-radius: 6px;
-  padding: 7px;
+  padding: 4px 8px;
   font-weight: bold;
   display: inline;
+  margin-left: 5px;
 }
 
-.price-gathered-container {
+.roomTimer__secondary {
+  background-color: #4e4e4e;
+}
+
+.roomTimer__danger {
+  background-color: rgb(224, 83, 83);
+}
+
+/* price raised */
+
+.roomPriceRaised__ {
   width: fit-content;
   background-color: #c4c4c4;
   text-align: center;
-  font-size: 0.815rem;
-  border-radius: 12px;
-  padding: 8px;
+  border-radius: 20px;
+  padding: 8px 12px;
   font-weight: bold;
   font-size: 13px;
 }
 
-.gathered-text {
+.roomPriceRaised__secondary {
+  background-color: #c4c4c4;
+}
+
+.roomPriceRaised__primary {
+  background-color: #69ACFC;
+}
+
+.roomPriceRaised__raised {
+
+  font-size: 0.9rem;
   font-weight: bold;
   color: #000000;
 }
 
-.min-order-text,
-.divider-text {
+.roomPriceRaised__divider,
+.roomPriceRaised__minOrd {
+
+  font-size: 0.9rem;
   font-weight: lighter;
   color: #424242;
 }
