@@ -13,7 +13,7 @@ function RoomCard(props) {
                 <div className ="roomCard__info">
                     <div className ="roomCard__info-title">
                         <span className="roomCard__info-title-name"> {props.roomInfo.name} </span>
-                         <RoomTimer timeLeft={props.roomInfo.timeLeft}/>
+                        <RoomTimer timeLeft={props.roomInfo.timeLeft}/>
                     </div>
                     <div className ="roomCard__info-deli">
                         <span className ="roomCard__info-deli-loc">

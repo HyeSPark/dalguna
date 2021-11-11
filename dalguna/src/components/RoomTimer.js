@@ -9,7 +9,7 @@ function RoomTimer(props) {
     }
     return (
         <div className={classNameObj[isEmergency]}>
-            <span className ="timer-text">{props.timeLeft} min left</span>
+            <span className ="roomTimer__text">{props.timeLeft} min left</span>
         </div>
     )
 }

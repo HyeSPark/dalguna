@@ -11,7 +11,7 @@ function NavBar() {
                     <CgMenu></CgMenu>
                 </a>
                 <a href="#" className="navBar__nav-loc">
-                    <div className="navBar__nav-loc-add">291 Daehak-ro, Yuseong-gu</div> <BsChevronDown style={{verticalAlign:"-20%"}}></BsChevronDown>
+                    <div className="navBar__nav-loc-adrs">291 Daehak-ro, Yuseong-gu</div> <BsChevronDown style={{verticalAlign:"-20%"}}></BsChevronDown>
                 </a>
                 <a href="#" className="navBar__nav-profile">
                     <CgProfile></CgProfile>

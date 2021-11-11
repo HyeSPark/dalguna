@@ -20,21 +20,30 @@
 
 .roomCard__info-title {
   margin-bottom: 12px;
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
 }
 
 .roomCard__info-title-name {
   font-size: 1.1rem;
   font-weight: bold;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .roomCard__info-deli {
   margin-bottom: 8px;
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.roomCard__info-deli-deliTime {
-  margin-left: 8px;
+.roomCard__info-deli-loc {
+  margin-right: 8px;
 }
 
 .roomCard__info-deli-icon {
@@ -62,6 +71,8 @@
   font-weight: bold;
   display: inline;
   margin-left: 5px;
+
+  /* white-space: nowrap; */
 }
 
 .roomTimer__secondary {
@@ -70,6 +81,11 @@
 
 .roomTimer__danger {
   background-color: rgb(224, 83, 83);
+}
+
+.roomTimer__text {
+  
+  /* white-space: nowrap; */
 }
 
 /* price raised */

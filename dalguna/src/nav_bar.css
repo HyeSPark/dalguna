@@ -15,18 +15,18 @@
 }
 
 .navBar__nav-loc {
-    width: 100%;
+    width: fit-content;
     padding: 20px 15px 5px 15px;
     color: white;
     font-weight: bold;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     overflow:hidden;
 }
 
-.navBar__nav-loc-add {
-    width: 100%;
-    /* display: inline-block; */
+.navBar__nav-loc-adrs {
+    width: fit-content;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
