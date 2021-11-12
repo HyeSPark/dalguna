@@ -1,3 +1,42 @@
+
+.longButton__ {
+    display: block;
+    margin: 6px 19px;
+    line-height: 45px;
+    /* width: 100%; */
+    height: 45px;
+    border-radius: 10px;
+    padding: 4px;
+    background-color: white;
+    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+}
+
+.longButton__primary {
+    color: white;
+    background-color: #69ACFC;
+}
+
+.longButton__secondary {
+    color: #69ACFC;
+    background-color: white;
+}
+
+
+
+
+
+
+.longButtonActive__text {
+    color: white;
+    font-weight: bold;
+}
+
+.longButtonInactive__text {
+    color: #69ACFC;
+    font-weight: bold;
+}
+
 .longButtonActive {
     display: block;
     margin: 6px 19px;
@@ -28,14 +67,4 @@
     left: 19px;
     right: 19px;
     bottom: 128px; */
-}
-
-.longButtonActive__text {
-    color: white;
-    font-weight: bold;
-}
-
-.longButtonInactive__text {
-    color: #69ACFC;
-    font-weight: bold;
 }
