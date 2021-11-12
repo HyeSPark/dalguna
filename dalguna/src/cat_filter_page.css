@@ -1,0 +1,51 @@
+.catFilterBar__title {
+    display: flex;
+    padding: 19px 19px 0px 19px;
+}
+.catFilterBar__title-back {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.catFilterBar__title-catName {
+    width: 100%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.catFilterBar__catList {
+    padding-left: 0px;
+    padding: 0px 19px;
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    border-bottom: 1px rgb(216, 216, 216) solid;
+}
+
+.catFilterBar__container {
+    overflow: auto;
+}
+
+.catFilterBar__container::-webkit-scrollbar {
+    display: none;
+}
+
+.catFilterBar__catList-item {
+    display: block;
+    margin-right: 15px;
+    padding: 6px;
+    font-size: 1.1rem;
+    color: grey;
+}
+
+.catFilterBar__catList-item-active {
+    display: block;
+    margin-right: 15px;
+    padding: 6px;
+    border-bottom: 3px black solid;
+    font-size: 1.1rem;
+    color: black;
+    font-weight: bold;
+}

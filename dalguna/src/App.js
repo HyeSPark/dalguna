@@ -85,6 +85,7 @@ function App() {
   
   return (
     <div className="App">
+      {/* I made mainpage invisible in the css */}
       <div className="mainPage__">
         <NavBar></NavBar>
         <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
