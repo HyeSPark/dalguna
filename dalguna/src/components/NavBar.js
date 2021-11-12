@@ -21,7 +21,7 @@ function NavBar() {
                 <div className="navBar__search-icon">
                     <CgSearch></CgSearch>
                 </div>
-                <input className="navBar__search-input" placeholder="Search for the food and restaurant"></input>
+                <input className="navBar__search-input" placeholder="Search for the food and restaurant!"></input>
             </div>
         </div>
     )

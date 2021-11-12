@@ -29,6 +29,11 @@ body {
 li {
   list-style: none;
 }
+
+.mainPage__ {
+  height: calc(100% - 49px);
+  overflow: scroll;
+}
 .mainPage__rest-card-list {
   padding: 19px;
 }
@@ -36,10 +41,18 @@ li {
   padding: 0px;
 }
 .mainPage__room-list {
-  padding: 19px;
+  /* padding: 19px; */
+  padding: 0px;
 }
 .mainPage__menu-item {
   border-bottom: 1px #f6f6f6 solid;
+}
+
+.mainPage__buttons {
+  padding: 10px 19px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 a {

@@ -19,7 +19,7 @@ function App() {
   // restRoom array will be changing actively
   // [NOT DECIDED] 통으로 전달 or 따로따로 전달?
 
-  // [NOT SOLVED] scroll!!!
+  // [SOLVED] scroll!!!
   const [restInfo, setRestInfo] 
     = useState([{name:"대학생 치킨", minOrder:15000, 
         deliFee: 3000, deliTime: "27~31", img: dhspic,
@@ -77,28 +77,29 @@ function App() {
   
   return (
     <div className="App">
-      <NavBar></NavBar>
-      <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
-      <ul style={{margin:0}} className = "mainPage__rest-card-list">
-        {restList}
-      </ul>
-
-      <ul style={{margin:0}} className = "mainPage__room-list">
-        {roomList}
-      </ul>
-
-      <ul style={{margin:0}} className = "mainPage__menu-item-list">
-        {menuList}
-      </ul>
-      <LongButtonInactive></LongButtonInactive>
-      <ShortButtonActive></ShortButtonActive>
-      <ShortButtonInactive></ShortButtonInactive>
-
+      <div className="mainPage__">
+        <NavBar></NavBar>
+        <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
+        <ul style={{margin:0}} className = "mainPage__rest-card-list">
+          {restList}
+        </ul>
+        <ul style={{margin:0}} className = "mainPage__room-list">
+          {roomList}
+        </ul>
+        <RestTab></RestTab>
+        <ul style={{margin:0}} className = "mainPage__menu-item-list">
+          {menuList}
+        </ul>
+        <LongButtonInactive ></LongButtonInactive>
+        <div className = "mainPage__buttons">
+          <ShortButtonActive></ShortButtonActive>
+          <ShortButtonInactive></ShortButtonInactive>
+        </div>
+      </div>
       <div className={objVisible[isVisible]}>
         <CartButton cartItem={cartItem}></CartButton>
       </div>
       <TabBar></TabBar>
-      <RestTab></RestTab>
     </div>
   );
 }

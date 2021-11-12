@@ -1,29 +1,33 @@
 .longButtonActive {
-    display: inline-block;
+    display: block;
+    margin: 6px 19px;
     line-height: 45px;
-    width: auto;
+    /* width: 100%; */
     height: 45px;
     border-radius: 10px;
+    padding: 4px;
     background-color: #69ACFC;
     box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
-    position: fixed;
+    /* position: fixed;
     left: 19px;
     right: 19px;
-    bottom: 128px;
+    bottom: 128px; */
 }
 
 .longButtonInactive {
-    display: inline-block;
+    display: block;
+    margin: 6px 19px;
     line-height: 45px;
-    width: auto;
+    /* width: 100%; */
     height: 45px;
     border-radius: 10px;
+    padding: 4px;
     background-color: white;
     box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
-    position: fixed;
+    /* position: fixed;
     left: 19px;
     right: 19px;
-    bottom: 128px;
+    bottom: 128px; */
 }
 
 .longButtonActive__text {
