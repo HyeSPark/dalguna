@@ -1,26 +1,28 @@
 .longButtonActive {
     display: inline-block;
     line-height: 45px;
-    width: 350px;
+    width: auto;
     height: 45px;
     border-radius: 10px;
     background-color: #69ACFC;
     box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
     position: fixed;
-    left: 12px;
+    left: 19px;
+    right: 19px;
     bottom: 128px;
 }
 
 .longButtonInactive {
     display: inline-block;
     line-height: 45px;
-    width: 350px;
+    width: auto;
     height: 45px;
     border-radius: 10px;
     background-color: white;
     box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
     position: fixed;
-    left: 12px;
+    left: 19px;
+    right: 19px;
     bottom: 128px;
 }
 
