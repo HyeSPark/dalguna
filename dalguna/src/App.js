@@ -12,6 +12,7 @@ import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
 import MenuListItem from './components/MenuListItem';
 import RoomCard from './components/RoomCard';
+import CatFilterPage from './pages/CatFilterPage'
 
 
 function App() {
@@ -21,9 +22,16 @@ function App() {
 
   // [SOLVED] scroll!!!
   const [restInfo, setRestInfo] 
-    = useState([{name:"대학생 치킨", minOrder:15000, 
+    = useState([{
+        name:"대학생 치킨", minOrder:15000, 
         deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}]
+        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+        category: "Chicken"
+      },{
+        name:"우동", minOrder:15000, 
+        deliFee: 3000, deliTime: "27~31", img: dhspic,
+        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+        category: "Japanese"
       }])
   const [cartItem, setCartItem] 
     = useState({restName:"대학생 치킨", items:["몬스터 오븐 구이"]})
@@ -70,7 +78,7 @@ function App() {
 
   
   // cart visible
-  const isVisible = true;
+  const isVisible = false;
   const objVisible 
   = {true: "",
       false: "hide"}
@@ -99,7 +107,8 @@ function App() {
       <div className={objVisible[isVisible]}>
         <CartButton cartItem={cartItem}></CartButton>
       </div>
-      <TabBar></TabBar>
+      <CatFilterPage/>
+      {/* <TabBar></TabBar> */}
     </div>
   );
 }

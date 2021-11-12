@@ -33,6 +33,7 @@ li {
 .mainPage__ {
   height: calc(100% - 49px);
   overflow: scroll;
+  display: none;
 }
 .mainPage__rest-card-list {
   padding: 19px;

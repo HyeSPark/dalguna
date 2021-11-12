@@ -4,6 +4,7 @@
     text-align: left;
     border-radius: 12px;
     box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.15);
+    margin-bottom: 16px;
 }
 
 .restCard__img {
