@@ -1,11 +1,15 @@
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Pretendard, -apple-system, 
+  BlinkMacSystemFont, system-ui, Roboto, 
+  'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 
+  'Noto Sans KR', 'Malgun Gothic', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -30,31 +34,6 @@ li {
   list-style: none;
 }
 
-.mainPage__ {
-  height: calc(100% - 49px);
-  overflow: scroll;
-  display: none;
-}
-.mainPage__rest-card-list {
-  padding: 19px;
-}
-.mainPage__menu-item-list {
-  padding: 0px;
-}
-.mainPage__room-list {
-  /* padding: 19px; */
-  padding: 0px;
-}
-.mainPage__menu-item {
-  border-bottom: 1px #f6f6f6 solid;
-}
-
-.mainPage__buttons {
-  padding: 10px 19px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
 a {
   text-decoration: none;
@@ -63,4 +42,17 @@ a {
 
 .hide {
   display: none;
+}
+
+
+.mainPage__buttons {
+  padding: 10px 19px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.mainPage__menu-item {
+  border-bottom: 1px #f6f6f6 solid;
 }

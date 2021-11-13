@@ -1,0 +1,27 @@
+.catItem__ {
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(218, 218, 218);
+    border-radius: 5px;
+}
+
+
+.catItem__img {
+    max-width: 80%; 
+    height: auto;
+    
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.catItem__name {
+    font-weight:600;
+    width: 90%;
+    font-size: 0.75rem;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

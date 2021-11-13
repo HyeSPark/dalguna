@@ -1,0 +1,37 @@
+
+.mainPage__ {
+    height: calc(100% - 49px);
+    overflow: scroll;
+    /* display: none; */
+}
+
+.mainPage__rest-card-list {
+    padding: 19px;
+}
+.mainPage__menu-item-list {
+    padding: 0px;
+}
+.mainPage__room-list {
+/* padding: 19px; */
+    padding: 0px;
+}
+
+.mainPage__cat-list {
+
+    margin-top: 15px;
+    padding: 0px 19px;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    /* grid-template-areas: "li li li li"; */
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+@media screen and (max-width: 340px) { 
+    .mainPage__cat-list { 
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    } 
+}
