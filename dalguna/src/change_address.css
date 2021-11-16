@@ -1,6 +1,18 @@
-.chngAddr__separation {
-    width: 100%;
-    height: 5px;
-    background-color: #F3F3F3;
-    border-top: 1px solid #E9E9E9;
+.chngAddr__locBtn {
+    margin: 15px 20px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.chngAddr_locBtn-icon {
+    margin: 5px 5px 0px 0px;
+    font-size: 1.2rem;
+}
+
+.chngAddr_locBtn-text {
 }
