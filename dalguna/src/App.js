@@ -8,10 +8,12 @@ import CartButton from './components/CartButton.js'
 import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
 import MenuListItem from './components/MenuListItem';
-import { BrowserRouter, BrowserRouter as Route, Routes } from 'react-router-dom';
+// import { BrowserRouter as Route, Router } from 'react-router-dom';
+import ChangeAddress from './pages/ChangeAddress';
 import { Main, CatFilter } from './pages';
 
 import dhspic from './img/DHS_photo.jpeg';
+import RestaurantPage from './pages/RestaurantPage';
 
 
 function App() {
@@ -59,12 +61,15 @@ function App() {
       false: "hide"}
   
   return (
-    <div className="App"> 
-
-      {/* <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
+    <div className="App">
+      {/* <Main/> */}
+      {/* <ChangeAddress/> */}
+      <RestaurantPage/>
+      
+      {/* <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox> */}
       <div className={objVisible[isVisible]}>
         <CartButton cartItem={cartItem}></CartButton>
-      </div> */}
+      </div>
       {/* <CatFilter restInfo={restInfo} curSelect={"Chicken"} catNameList={catNameList}/> */}
 
     </div>
