@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import RoomCard from '../components/RoomCard';
-// import CatFilterPage from './pages/CatFilterPage';
+// import CatFilter from './pages/CatFilter';
 import CatItem from '../components/CatItem';
 import RestCard from '../components/RestCard.js'
 import NavBar from '../components/NavBar.js'

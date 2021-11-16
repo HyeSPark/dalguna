@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import '../cat_filter_page.css';
+import '../cat_filter.css';
 import dhspic from '../img/DHS_photo.jpeg';
 import CatFilterBar from '../components/CatFilterBar';
 import RestCard from '../components/RestCard';
 
-function CatFilterPage(props) {
+function CatFilter(props) {
     
     const [curSelect, setCurSelect] = useState(props.curSelect)
     
@@ -15,9 +15,9 @@ function CatFilterPage(props) {
     </li>
     )
     return (
-        <div className="catFilterPage__">
+        <div className="CatFilter__">
             <CatFilterBar catNameList={props.catNameList} cur={curSelect} setCur={setCurSelect}/>
-            <ul className="catFilterPage__restList">
+            <ul className="CatFilter__restList">
                 {restList}
                 <li style={{marginBottom:"15px", fontSize:"0.8rem", color:"grey"}}>
                     찾으시는 음식점이 없나요? 제작자에게 알려주세요
@@ -27,4 +27,4 @@ function CatFilterPage(props) {
     )
 }
 
-export default CatFilterPage
+export default CatFilter

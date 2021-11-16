@@ -9,8 +9,9 @@ import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
 import MenuListItem from './components/MenuListItem';
 import { BrowserRouter as Route, Router } from 'react-router-dom';
-import { Main, CatFilterPage} from './pages';
 import ChangeAddress from './pages/ChangeAddress';
+import { Main, CatFilter } from './pages';
+
 import dhspic from './img/DHS_photo.jpeg';
 
 
@@ -67,7 +68,7 @@ function App() {
       <div className={objVisible[isVisible]}>
         <CartButton cartItem={cartItem}></CartButton>
       </div> */}
-      {/* <CatFilterPage restInfo={restInfo} curSelect={"Chicken"} catNameList={catNameList}/> */}
+      {/* <CatFilter restInfo={restInfo} curSelect={"Chicken"} catNameList={catNameList}/> */}
 
     </div>
   );
