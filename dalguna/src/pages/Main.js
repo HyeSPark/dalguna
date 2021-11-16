@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import RoomCard from '../components/RoomCard';
-// import CatFilter from './pages/CatFilter';
+import CatFilter from './CatFilter';
 import CatItem from '../components/CatItem';
 import RestCard from '../components/RestCard.js'
 import NavBar from '../components/NavBar.js'
@@ -54,7 +55,7 @@ function Main() {
         minOrd: 20000,
       }])
 
-    const catNameList = ["Korean", "Chicken", "Japanese", "Snacks", "Asian", "Salad", "Doshirak"]
+    
     const catInfoList = [
         {name: "Korean", img:dhspic}, 
         {name: "Chicken", img:dhspic},
@@ -62,6 +63,7 @@ function Main() {
         {name: "Snacks", img:dhspic},
         {name: "Asian", img:dhspic},
         {name: "Salad", img:dhspic},
+        {name: "Doshirak", img:dhspic},
     ]
 
     const restList = restInfo.map((rest) => 
@@ -69,43 +71,48 @@ function Main() {
       <a href="#"><RestCard restInfo={rest}></RestCard></a>
     </li>)
 
-    // [NOT IMPLEMENTED] key will be changed below (not unique)
+      // [NOT IMPLEMENTED] key will be changed below (room name is not unique)
     const roomList = roomInfo.map((room) => 
     <li key={room.name} style={{listStyle:'none'}}>
         <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
     </li>
     )
+
     const catList = catInfoList.map((cat) => 
         <li key={cat.name} style={{listStyle:'none'}}>
-        <a href="#"> <CatItem img={cat.img} name={cat.name}></CatItem> </a>
+          <Link to={{
+            pathname:`/filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
         </li>
     )
 
     return (
+      <div className="ui-container">
         <div className="mainPage__">
-            <NavBar/>
-            <div style={{height:"105px"}}/>
-            <div className = "mainPage__title">Food Categories</div>
-            <ul className = "mainPage__cat-list">
-                {catList}
-            </ul>
-            <div className = "mainPage__separation"/>
-            <div className = "mainPage__title">Your Room</div>
-            <ul style={{margin:0}} className = "mainPage__room-list">
-                {roomList[2]}
-            </ul>
-            <div className = "mainPage__separation"/>
-            <div className = "mainPage__title">Room Suggestions</div>
-            <ul style={{margin:0}} className = "mainPage__room-list">
-                {roomList.slice(0, 2)}
-            </ul>
-            <div className = "mainPage__separation"/>
-            <div className = "mainPage__title">Restaurant List</div>
-            <ul style={{margin:0}} className = "mainPage__rest-card-list">
-                {restList}
-            </ul>
-            <TabBar/>
+          <NavBar/>
+          <div style={{height:"105px"}}/>
+          <div className = "mainPage__title">Food Categories</div>
+          <ul className = "mainPage__cat-list">
+              {catList}
+          </ul>
+          <div className = "mainPage__separation"/>
+          <div className = "mainPage__title">Your Room</div>
+          <ul style={{margin:0}} className = "mainPage__room-list">
+              {roomList[2]}
+          </ul>
+          <div className = "mainPage__separation"/>
+          <div className = "mainPage__title">Room Suggestions</div>
+          <ul style={{margin:0}} className = "mainPage__room-list">
+              {roomList.slice(0, 2)}
+          </ul>
+          <div className = "mainPage__separation"/>
+          <div className = "mainPage__title">Restaurant List</div>
+          <ul style={{margin:0}} className = "mainPage__rest-card-list">
+              {restList}
+          </ul>
+          <TabBar/>
+        </div>
       </div>
+        
     )
 }
 

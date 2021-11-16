@@ -8,8 +8,7 @@ import CartButton from './components/CartButton.js'
 import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
 import MenuListItem from './components/MenuListItem';
-import { BrowserRouter as Route, Router } from 'react-router-dom';
-import ChangeAddress from './pages/ChangeAddress';
+import { BrowserRouter, BrowserRouter as Route, Routes } from 'react-router-dom';
 import { Main, CatFilter } from './pages';
 
 import dhspic from './img/DHS_photo.jpeg';
@@ -60,10 +59,8 @@ function App() {
       false: "hide"}
   
   return (
-    <div className="App">
-      {/* <Main/> */}
-      <ChangeAddress/>
-      
+    <div className="App"> 
+
       {/* <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
       <div className={objVisible[isVisible]}>
         <CartButton cartItem={cartItem}></CartButton>

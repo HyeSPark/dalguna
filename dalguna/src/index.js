@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Main, CatFilter} from './pages'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    {/* <App /> */}
+    <Routes>
+      <Route path="/" element={<Main />}/>
+      <Route path="/filter/:name" element={<CatFilter />} />
+      
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

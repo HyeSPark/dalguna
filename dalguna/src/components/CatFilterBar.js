@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../cat_filter.css';
 import dhspic from '../img/DHS_photo.jpeg';
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 function CatFilterBar(props) {
+    const navigate = useNavigate();
+    useEffect(() => {
+        let element = document.getElementsByClassName("catFilterBar__catList-item-active")[0]
+        element.parentElement.scrollIntoView({
+            inline: "center",
+            // behavior: "smooth"
+        });
+      }, []);
     // props.cur
     // props.setCur
     
@@ -15,9 +24,9 @@ function CatFilterBar(props) {
             curCatClssName = "catFilterBar__catList-item-active"
         }
         return(
-            <li key={name} ><a href="#" className={curCatClssName} onClick={(e) => changeCur(e, name)}>
+            <li key={name} ><button className={curCatClssName} onClick={(e) => changeCur(e, name)}>
                 {name}
-            </a></li>
+            </button></li>
         )
     })
 
@@ -33,7 +42,7 @@ function CatFilterBar(props) {
     return (
         <div className="catFilterBar__">
             <div className="catFilterBar__title">
-                <a href="#" className="catFilterBar__title-back">
+                <a href="#" className="catFilterBar__title-back" onClick={() => navigate(-1)}>
                     <AiOutlineArrowLeft /> 
                 </a>
                 <div className="catFilterBar__title-catName">
