@@ -21,12 +21,12 @@ function Main() {
         rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
         category: "Chicken"
       },{
-        name:"우동", minOrder:15000, 
+        name:"베리신주쿠", minOrder:15000, 
         deliFee: 3000, deliTime: "27~31", img: dhspic,
         rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
         category: "Japanese"
       },{
-        name:"우동1", minOrder:15000, 
+        name:"마쯔미", minOrder:15000, 
         deliFee: 3000, deliTime: "27~31", img: dhspic,
         rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
         category: "Japanese"
@@ -40,11 +40,25 @@ function Main() {
         deliTime: "21~30",
         raised: 10000,
         minOrd: 15000,
+      }, {
+        name: "마쯔미",
+        timeLeft: 13,
+        loc: "아름관",
+        deliTime: "31~40",
+        raised: 9000,
+        minOrd: 13000,
+      }, {
+        name: "잇마이타이",
+        timeLeft: 10,
+        loc: "아름관",
+        deliTime: "11~20",
+        raised: 23000,
+        minOrd: 20000,
       }])
 
     const catNameList = ["Korean", "Chicken", "Japanese", "Snacks", "Asian", "Salad", "Doshirak"]
     const catInfoList = [
-        {name: "Korean", img: dhspic}, 
+        {name: "Korean", img:dhspic}, 
         {name: "Chicken", img:dhspic},
         {name: "Japanese", img:dhspic},
         {name: "Snacks", img:dhspic},
@@ -71,26 +85,27 @@ function Main() {
 
     return (
         <div className="mainPage__">
-            
             <NavBar></NavBar>
+            <div style={{height:"105px"}}/>
+            <div className = "mainPage__title">Food Categories</div>
             <ul className = "mainPage__cat-list">
                 {catList}
             </ul>
+            <div className = "mainPage__separation"/>
+            <div className = "mainPage__title">Your Room</div>
+            <ul style={{margin:0}} className = "mainPage__room-list">
+                {roomList[2]}
+            </ul>
+            <div className = "mainPage__separation"/>
+            <div className = "mainPage__title">Room Suggestions</div>
+            <ul style={{margin:0}} className = "mainPage__room-list">
+                {roomList.slice(0, 2)}
+            </ul>
+            <div className = "mainPage__separation"/>
+            <div className = "mainPage__title">Restaurant List</div>
             <ul style={{margin:0}} className = "mainPage__rest-card-list">
                 {restList}
             </ul>
-            <ul style={{margin:0}} className = "mainPage__room-list">
-                {roomList}
-            </ul>
-            {/* <RestTab></RestTab>
-            <ul style={{margin:0}} className = "mainPage__menu-item-list">
-            {menuList}
-            </ul> */}
-            {/* <LongButton type="secondary">Button</LongButton>
-            <div className = "mainPage__buttons">
-            <ShortButton type="primary">Button</ShortButton>
-            <ShortButton type="secondary">Button</ShortButton>
-            </div> */}
             <TabBar></TabBar>
       </div>
     )
