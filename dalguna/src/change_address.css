@@ -1,18 +1,15 @@
-.chngAddr__locBtn {
-    margin: 15px 20px;
-    height: 50px;
-    border: 1px solid black;
-    border-radius: 7px;
+.selDelBox__ {
+    margin: 40px 15px 0px 15px;
+}
+
+.selDelBox__slider {
+    margin: 10px 10px;
+}
+
+.selDelBox__boxes {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.chngAddr_locBtn-icon {
-    margin: 5px 5px 0px 0px;
-    font-size: 1.2rem;
-}
-
-.chngAddr_locBtn-text {
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
