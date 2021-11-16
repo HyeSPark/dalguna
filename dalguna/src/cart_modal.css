@@ -1,0 +1,30 @@
+.CartModal__bar {
+    display: flex;
+    padding: 15px 19px;
+    align-items: center;
+    border-bottom: 1px rgb(218, 218, 218) solid;
+}
+
+.CartModal__bar-close {
+    padding: 10px 10px 6px 10px;
+    font-size: 1.5rem;
+}
+
+.CartModal__bar-cart {
+    margin-left: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.CartModal__address {
+    padding: 15px 24px;
+    font-size: 1.2rem;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.CartModal__address-edit {
+    color: chocolate;
+}

@@ -7,6 +7,7 @@ import CatItem from '../components/CatItem';
 import RestCard from '../components/RestCard.js'
 import NavBar from '../components/NavBar.js'
 import TabBar from '../components/TabBar.js'
+import CartModal from "../components/CartModal";
 
 import dhspic from '../img/DHS_photo.jpeg';
 
@@ -87,7 +88,9 @@ function Main() {
 
     return (
       <div className="ui-container">
-        <div className="mainPage__">
+        <CartModal></CartModal>
+
+        {/* <div className="mainPage__">
           <NavBar/>
           <div style={{height:"105px"}}/>
           <div className = "mainPage__title">Food Categories</div>
@@ -110,7 +113,7 @@ function Main() {
               {restList}
           </ul>
           <TabBar/>
-        </div>
+        </div> */}
       </div>
         
     )
