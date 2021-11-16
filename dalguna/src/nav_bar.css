@@ -1,6 +1,8 @@
 .navBar__ {
     background-color: #F5C35E;
     height: 106px;
+    width: 100%;
+    position: fixed;
 }
 
 .navBar__nav {
@@ -54,21 +56,18 @@
     border-radius: 7px 0px 0px 7px;
 }
 
-
 .navBar__search-input {
     width: 100%;
-    height: 22px;
+    height: 23px;
     padding: 9px 0px 9px 5px;
     background-color: white;
     border: none;
     font-size: 1rem;
     border-radius: 0px 7px 7px 0px;
     outline: none;
-
     transform: translate(-1px);
 }
 
 .navBar__search-input::placeholder {
-
     color: #fad58b;
 }
