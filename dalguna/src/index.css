@@ -16,11 +16,8 @@ code {
     monospace;
 }
 
-body {
-  background-color: grey;
-  text-align: center;
-}
-.App {
+
+.ui-container {
   max-width: 428px;
   background-color: white;
   position: fixed;
@@ -28,6 +25,12 @@ body {
   width: 100%;
   left: 50%;
   transform: translateX( -50% );
+}
+
+
+body {
+  background-color: grey;
+  text-align: center;
 }
 
 li {
@@ -55,4 +58,10 @@ a {
 
 .mainPage__menu-item {
   border-bottom: 1px #f6f6f6 solid;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }

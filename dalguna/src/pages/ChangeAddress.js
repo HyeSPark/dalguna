@@ -18,20 +18,23 @@ function ChangeAddress() {
     )
     
     return (
-        <div className="chngAddr__">
-            <AddrNavBar/>
-            <div className="selDelBox__">
-                <div className="selDelBox__title">
-                    <b>3</b> delivery boxes near <br/> 291 Daehak-ro, Yuseong-gu
-                </div>
-                <div className="selDelBox__slider">
-                    slider
-                </div>
-                <div className="selDelBox__boxes">
-                    {boxList}
+        <div className="ui-container">
+            <div className="chngAddr__">
+                <AddrNavBar/>
+                <div className="selDelBox__">
+                    <div className="selDelBox__title">
+                        <b>3</b> delivery boxes near <br/> 291 Daehak-ro, Yuseong-gu
+                    </div>
+                    <div className="selDelBox__slider">
+                        slider
+                    </div>
+                    <div className="selDelBox__boxes">
+                        {boxList}
+                    </div>
                 </div>
             </div>
         </div>
+        
     )
 }
 

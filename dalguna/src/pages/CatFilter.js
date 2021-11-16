@@ -3,27 +3,52 @@ import '../cat_filter.css';
 import dhspic from '../img/DHS_photo.jpeg';
 import CatFilterBar from '../components/CatFilterBar';
 import RestCard from '../components/RestCard';
+import { useParams, useNavigate } from 'react-router-dom';
 
-function CatFilter(props) {
+function CatFilter() {
+    const params = useParams();
+
+    const catNameList = ["Korean", "Chicken", "Japanese", "Snacks", "Asian", "Salad", "Doshirak"]
+
+    const [restInfo, setRestInfo] 
+    = useState([{
+        name:"대학생 치킨", minOrder:15000, 
+        deliFee: 3000, deliTime: "27~31", img: dhspic,
+        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+        category: "Chicken"
+      },{
+        name:"베리신주쿠", minOrder:15000, 
+        deliFee: 3000, deliTime: "27~31", img: dhspic,
+        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+        category: "Japanese"
+      },{
+        name:"마쯔미", minOrder:15000, 
+        deliFee: 3000, deliTime: "27~31", img: dhspic,
+        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+        category: "Japanese"
+      }])
     
-    const [curSelect, setCurSelect] = useState(props.curSelect)
+    const [curSelect, setCurSelect] = useState(params.name)
     
-    var visRestList = props.restInfo.filter((rest) => rest.category==curSelect)
+    var visRestList = restInfo.filter((rest) => rest.category==curSelect)
     const restList = visRestList.map((rest) => 
     <li key={rest.name} style={{listStyle:'none'}}>
       <a href="#"><RestCard restInfo={rest}></RestCard></a>
     </li>
     )
     return (
-        <div className="CatFilter__">
-            <CatFilterBar catNameList={props.catNameList} cur={curSelect} setCur={setCurSelect}/>
-            <ul className="CatFilter__restList">
-                {restList}
-                <li style={{marginBottom:"15px", fontSize:"0.8rem", color:"grey"}}>
-                    찾으시는 음식점이 없나요? 제작자에게 알려주세요
-                </li>
-            </ul>
+        <div className="ui-container">
+            <div className="CatFilter__">
+                <CatFilterBar catNameList={catNameList} cur={curSelect} setCur={setCurSelect}/>
+                <ul className="CatFilter__restList">
+                    {restList}
+                    <li style={{marginBottom:"15px", fontSize:"0.8rem", color:"grey"}}>
+                        찾으시는 음식점이 없나요? 제작자에게 알려주세요
+                    </li>
+                </ul>
+            </div>
         </div>
+        
     )
 }
 
