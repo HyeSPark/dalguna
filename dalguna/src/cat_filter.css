@@ -1,11 +1,11 @@
-.catFilterPage__restList {
+.CatFilter__restList {
     padding: 15px 19px;
     margin: 0px;
     height: calc(100vh - 117px);
     overflow: auto;
 }
 
-.catFilterPage__restList::-webkit-scrollbar {
+.CatFilter__restList::-webkit-scrollbar {
     display: none;
 }
 
