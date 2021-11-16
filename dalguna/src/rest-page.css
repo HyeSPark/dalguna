@@ -1,0 +1,5 @@
+.rest-title-image {
+  min-height: 293px;
+  display: flex;
+  background-size: cover;
+}
