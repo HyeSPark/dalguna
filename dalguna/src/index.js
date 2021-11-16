@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Main, CatFilter} from './pages'
+import {Main, CatFilter, ChangeAddress} from './pages'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -12,7 +12,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<Main />}/>
       <Route path="/filter/:name" element={<CatFilter />} />
-      
+      <Route path="/address/:id" element={<ChangeAddress />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
