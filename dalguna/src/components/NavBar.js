@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../nav_bar.css'
 import { CgMenu, CgProfile, CgSearch } from 'react-icons/cg';
 import { BsChevronDown } from 'react-icons/bs'
@@ -16,7 +16,7 @@ function NavBar() {
             </div>
             <div className="navBar__search">
                 <div className="navBar__search-icon"><CgSearch/></div>
-                <input className="navBar__search-input" placeholder="Search for the food and restaurant!"></input>
+                <input className="navBar__search-input" placeholder="Search for the food and restaurant!"/>
             </div>
         </div>
     )

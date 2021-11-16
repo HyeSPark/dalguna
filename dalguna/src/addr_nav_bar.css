@@ -1,0 +1,55 @@
+.addrNavBar__ {
+    height: 106px;
+    width: 100%;
+    position: fixed;
+}
+
+.addrNavBar__nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.addrNavBar__nav-close {
+    padding: 20px 15px 5px 15px;
+    font-size: 1.5rem;
+}
+
+.addrNavBar__nav-title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 23px;
+}
+
+.addrNavBar__search {
+    margin: 0px 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.addrNavBar__search-icon {
+    padding: 13px 0px 3px 2px;
+    font-size: 1rem;
+    color: gray;
+}
+
+.addrNavBar__search-input {
+    width: 100%;
+    height: 23px;
+    padding: 9px 0px 9px 15px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.addrNavBar__search-input::placeholder {
+    color: gray;
+}
+
+.addrNavBar__separation {
+    width: 100%;
+    height: 5px;
+    margin-top: 5px;
+    background-color: #F3F3F3;
+    border-top: 1px solid #E9E9E9;
+}

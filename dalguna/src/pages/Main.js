@@ -14,8 +14,7 @@ import "../main.css";
 
 function Main() {
 
-    const [restInfo, setRestInfo] 
-    = useState([{
+    const [restInfo, setRestInfo] = useState([{
         name:"대학생 치킨", minOrder:15000, 
         deliFee: 3000, deliTime: "27~31", img: dhspic,
         rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
@@ -32,8 +31,7 @@ function Main() {
         category: "Japanese"
       }])
 
-    const [roomInfo, setRoomInfo] = 
-      useState([{
+    const [roomInfo, setRoomInfo] = useState([{
         name: "대학생 치킨",
         timeLeft: 15,
         loc: "아름관",
@@ -71,7 +69,7 @@ function Main() {
       <a href="#"><RestCard restInfo={rest}></RestCard></a>
     </li>)
 
-      // [NOT IMPLEMENTED] key will be changed below (not unique)
+    // [NOT IMPLEMENTED] key will be changed below (not unique)
     const roomList = roomInfo.map((room) => 
     <li key={room.name} style={{listStyle:'none'}}>
         <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
@@ -85,7 +83,7 @@ function Main() {
 
     return (
         <div className="mainPage__">
-            <NavBar></NavBar>
+            <NavBar/>
             <div style={{height:"105px"}}/>
             <div className = "mainPage__title">Food Categories</div>
             <ul className = "mainPage__cat-list">
@@ -106,7 +104,7 @@ function Main() {
             <ul style={{margin:0}} className = "mainPage__rest-card-list">
                 {restList}
             </ul>
-            <TabBar></TabBar>
+            <TabBar/>
       </div>
     )
 }

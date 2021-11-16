@@ -9,8 +9,8 @@ import RestTitleBox from './components/RestTitleBox.js'
 import RestTab from './components/RestTab.js'
 import MenuListItem from './components/MenuListItem';
 import { BrowserRouter as Route, Router } from 'react-router-dom';
-import { Main, CatFilterPage } from './pages';
-
+import { Main, CatFilterPage} from './pages';
+import ChangeAddress from './pages/ChangeAddress';
 import dhspic from './img/DHS_photo.jpeg';
 
 
@@ -60,7 +60,8 @@ function App() {
   
   return (
     <div className="App">
-      <Main/>
+      {/* <Main/> */}
+      <ChangeAddress/>
       
       {/* <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>
       <div className={objVisible[isVisible]}>
