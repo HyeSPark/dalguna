@@ -1,0 +1,35 @@
+.checkout_info_block {
+  display: block;
+}
+
+.checkout_list_block {
+  display: block;
+}
+
+.checkout_info_heading {
+  display: block;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 15px;
+  font-weight: light;
+}
+
+.checkout_info_content {
+  display: block;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.estimated_time_arrival,
+.checkout_menu_name {
+  display: block;
+  float: left;
+}
+
+.pickup_location,
+.checkout_menu_price {
+  display: block;
+  float: right;
+}

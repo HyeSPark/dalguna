@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useParams, Outlet } from 'react-router-dom'
 
 import RestTitleBox from '../components/RestTitleBox.js'
 
@@ -7,26 +6,10 @@ import dhspic from '../img/DHS_photo.jpeg';
 import MenuListItem from '../components/MenuListItem';
 import RestTab from '../components/RestTab.js';
 import TabBar from '../components/TabBar.js';
-import CartButton from '../components/CartButton.js';
-import '../rest-page.css'
+import '../menu-page.css'
+import LongButton from '../components/LongButton.js';
 
-function RestaurantPage() {
-  const params = useParams();
-  const arrRestName = ["대학생 치킨", "베리신주쿠", "마쯔미"]
-  const [menuItemInfo, setMenuItemInfo]
-  = useState([{
-    id: 0,
-    name: "냉모밀+돈까스만 (+보통소스,매운소스 선택)", 
-    detail: "면요리(선택)+돈까스단품(선택)",
-    price: 13500,
-    img: dhspic
-  },{
-    id: 1,
-    name: "돈까스정식+냉모밀 세트",
-    detail: "돈까스(선택) + 소스2종 + 냉모밀 (미니냉모밀,빵잼은 제공하지 않아용)",
-    price: 16000,
-    img: dhspic,} 
-  ])
+function MenuPage(props) {
 
     const [menuItemInfo, setMenuItemInfo]
     = useState([{
@@ -46,22 +29,30 @@ function RestaurantPage() {
       }
     ])
 
-  const menuList = menuItemInfo.map((menu) => 
-  <li key={menu.name} style={{listStyle:'none'}} className = "mainPage__menu-item">
-    <a href="#"> <MenuListItem menuItemInfo={menu}></MenuListItem></a>
-  </li>
-  )
-
     return (
         <div className="ui-container">
             <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
                 <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>   
             </div>
-            <RestTab/>
-            {menuList}
-            <TabBar/>
+            <div className="menu-page-info-box">
+                <div className="menuListItem__desc-name">냉모밀+돈까스만 (+보통소스,매운소스 선택)</div>
+                <div className="menuListItem__desc-detail">면요리(선택)+돈까스단품(선택)</div>
+                <div className="menuListItem__desc-price menupage_price_box">
+                    <span className="menupage_price"> Price</span>
+                    <span className="menupage_price_value"> 16000 </span>
+                </div>
+                <br/>
+                <div className="menuListItem__desc-price menupage_price_box">
+                    <span className="menupage_price"> Amount</span>
+                    <span className="menupage_price_value"> 1 </span>
+                </div>
+            </div>
+            
+            <div className="menu-page-add-to-cart-button">
+                <LongButton type="primary"> Add to Cart</LongButton>
+            </div>
         </div>
     )
 }
 
-export default RestaurantPage
+export default MenuPage
