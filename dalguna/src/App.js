@@ -64,7 +64,7 @@ function App() {
     <div className="App">
       {/* <Main/> */}
       {/* <ChangeAddress/> */}
-      <RestaurantPage/>
+      {/* <RestaurantPage/> */}
       
       {/* <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox> */}
       <div className={objVisible[isVisible]}>

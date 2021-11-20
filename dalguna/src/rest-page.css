@@ -3,3 +3,7 @@
   display: flex;
   background-size: cover;
 }
+
+.restPage {
+  /* height: calc(100% - 49px); */
+}

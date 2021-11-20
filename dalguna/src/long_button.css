@@ -1,69 +1,63 @@
-
 .longButton__ {
-    display: block;
-    margin: 6px 19px;
-    line-height: 45px;
-    /* width: 100%; */
-    height: 45px;
-    border-radius: 10px;
-    padding: 4px;
-    background-color: white;
-    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
-    font-weight: bold;
+  display: block;
+  margin: 6px 19px;
+  line-height: 45px;
+  /* width: 100%; */
+  height: 45px;
+  border-radius: 10px;
+  padding: 4px;
+  background-color: white;
+  box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
 }
 
 .longButton__primary {
-    color: white;
-    background-color: #69ACFC;
+  color: white;
+  background-color: #69acfc;
 }
 
 .longButton__secondary {
-    color: #69ACFC;
-    background-color: white;
+  color: #69acfc;
+  background-color: white;
 }
 
-
-
-
-
-
 .longButtonActive__text {
-    color: white;
-    font-weight: bold;
+  color: white;
+  font-weight: bold;
 }
 
 .longButtonInactive__text {
-    color: #69ACFC;
-    font-weight: bold;
+  color: #69acfc;
+  font-weight: bold;
 }
 
 .longButtonActive {
-    display: block;
-    margin: 6px 19px;
-    line-height: 45px;
-    /* width: 100%; */
-    height: 45px;
-    border-radius: 10px;
-    padding: 4px;
-    background-color: #69ACFC;
-    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
-    /* position: fixed;
+  display: block;
+  margin: 6px 19px;
+  line-height: 45px;
+  /* width: 100%; */
+  height: 45px;
+  border-radius: 10px;
+  padding: 4px;
+  background-color: #69acfc;
+  box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  /* position: fixed;
     left: 19px;
     right: 19px;
     bottom: 128px; */
 }
 
 .longButtonInactive {
-    display: block;
-    margin: 6px 19px;
-    line-height: 45px;
-    /* width: 100%; */
-    height: 45px;
-    border-radius: 10px;
-    padding: 4px;
-    background-color: white;
-    box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
-    /* position: fixed;
+  display: block;
+  margin: 6px 19px;
+  line-height: 45px;
+  /* width: 100%; */
+  height: 45px;
+  border-radius: 10px;
+  padding: 4px;
+  background-color: white;
+  box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.25);
+  /* position: fixed;
     left: 19px;
     right: 19px;
     bottom: 128px; */

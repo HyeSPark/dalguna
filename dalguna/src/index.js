@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Main, CatFilter, ChangeAddress} from './pages'
+import {Main, CatFilter, ChangeAddress, RestaurantPage, MenuPage, CheckOut} from './pages'
 
 ReactDOM.render(
   <BrowserRouter>
     {/* <App /> */}
     <Routes>
-      <Route path="/" element={<Main />}/>
+      {/* <Route path="/" element={<MenuPage />}/> */}
+      <Route path="/" element={<CheckOut />}/>
+      <Route path="/" element={<RestaurantPage />}/>
+      {/* <Route path="/" element={<Main />}/> */}
       <Route path="/filter/:name" element={<CatFilter />} />
       <Route path="/address/:id" element={<ChangeAddress />} />
     </Routes>
