@@ -41,7 +41,6 @@ function CartModal() {
     useEffect(updateCartMenu, [menuList])
     const [menuVisible, setMenuVisible] = useState(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)
     function updateCartMenu() {
-        console.log("effectadw", menuList[0])
         if (menuList[0] == undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
         else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
         else {setMenuVisible()}
@@ -72,7 +71,7 @@ function CartModal() {
             </div>
             <div className = "mainPage__separation"/>
             <div className="CartModal__request">
-
+            {/* but request how */}
             </div>
             <div className = "mainPage__separation"/>
             <div className ="CartModal__room">

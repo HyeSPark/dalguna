@@ -88,9 +88,7 @@ function Main() {
 
     return (
       <div className="ui-container">
-        <CartModal></CartModal>
-
-        {/* <div className="mainPage__">
+        <div className="mainPage__">
           <NavBar/>
           <div style={{height:"105px"}}/>
           <div className = "mainPage__title">Food Categories</div>
@@ -113,7 +111,7 @@ function Main() {
               {restList}
           </ul>
           <TabBar/>
-        </div> */}
+        </div>
       </div>
         
     )

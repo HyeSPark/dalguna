@@ -22,6 +22,7 @@
 }
 
 .menuListItem__desc-name {
+    text-align: start;
     white-space: nowrap;
     margin-bottom: 6px;
     width: 100%;

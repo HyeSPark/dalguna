@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Main, CatFilter, ChangeAddress} from './pages'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Main, CatFilter, ChangeAddress, RestaurantPage } from './pages'
 
 ReactDOM.render(
   <BrowserRouter>
     {/* <App /> */}
     <Routes>
       <Route path="/" element={<Main />}/>
-      <Route path="/filter/:name" element={<CatFilter />} />
-      <Route path="/address/:id" element={<ChangeAddress />} />
+      <Route path="filter/:name" element={<CatFilter />} />
+      <Route path="address/:id" element={<ChangeAddress />} />
+      <Route path="restaurant/:restId" element={<RestaurantPage />} >
+      </Route>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
