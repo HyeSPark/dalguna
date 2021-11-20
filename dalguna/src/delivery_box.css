@@ -1,18 +1,18 @@
 .delBox__ {
     width: 195px;
     height: 60px;
-    background-color: #F5C35E;
+    background-color: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 8px;
+    box-sizing: border-box;
 }
 
 .delBox__name {
     position: relative;
     top: 5px;
     left: -30px;
-    color: black;
+    color: #F5C35E;
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -21,14 +21,31 @@
     position: relative;
     right: -55px;
     bottom: -10px;
+    color: #F5C35E;
 }
 
 .delBoxInactive__ {
     width: 195px;
     height: 60px;
-    border: 1px solid #F5C35E;
+    border: 1px solid white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.delBoxInactive__name {
+    position: relative;
+    top: 5px;
+    left: -30px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.delBoxInactive__time {
+    position: relative;
+    right: -55px;
+    bottom: -10px;
+    color: white;
 }

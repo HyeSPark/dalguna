@@ -63,7 +63,7 @@ function App() {
   return (
     <div className="App">
       {/* <Main/> */}
-      {/* <ChangeAddress/> */}
+      <ChangeAddress/>
       {/* <RestaurantPage/> */}
       
       {/* <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox> */}
