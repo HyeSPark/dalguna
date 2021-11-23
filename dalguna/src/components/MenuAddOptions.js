@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 function MenuAddOptions(props) {
-    const { name, options, type, totalPrice, setTotalPrice } = props;
+    const { name, options, type, totalPrice, setTotalPrice, selectedAddOptions, setSelectedAddOptions } = props;
 
-    const [selectedOptions, setSelectedOptions] = useState([])
+    // const [selectedOptions, setSelectedOptions] = useState([])
 
     var optionList;
 
@@ -15,7 +15,7 @@ function MenuAddOptions(props) {
                     id = {opt.name}
                     value={opt.name}
                     name="priceOption"
-                    checked={[...selectedOptions].filter((e)=> e === opt.name).length !== 0}
+                    checked={[...selectedAddOptions].filter((e)=> e === opt.name).length !== 0}
                     onChange={() => handleSelectedOptionsChange(opt.name, opt.price)}/>
                 &nbsp;&nbsp;{opt.name}
             </div>
@@ -26,12 +26,12 @@ function MenuAddOptions(props) {
         </li>)
 
     function handleSelectedOptionsChange(name, price) {
-        var copied = [...selectedOptions]
+        var copied = [...selectedAddOptions]
         if (copied.filter((e)=> e === name).length !== 0) {
-            setSelectedOptions(copied.filter((e)=> e !== name))
+            setSelectedAddOptions(copied.filter((e)=> e !== name))
             setTotalPrice(totalPrice - price)
         } else {
-            setSelectedOptions([...selectedOptions, name])
+            setSelectedAddOptions([...selectedAddOptions, name])
             setTotalPrice(totalPrice + price)
         }
     }

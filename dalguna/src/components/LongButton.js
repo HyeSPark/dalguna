@@ -7,7 +7,7 @@ function LongButton(props) {
         "secondary": "longButton__ longButton__secondary"
     }
     return (
-        <a href="#" className={objType[props.type]}>
+        <a href="#" className={objType[props.type]} onClick={props.onClick} >
             <span className="longButton__text"> {props.children} </span>
         </a>
     )

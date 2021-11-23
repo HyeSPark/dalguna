@@ -21,7 +21,6 @@ function CartMenuItem(props) {
     }
     function updateMenuDetail() {
         const copiedDetail = { ...props.menuDetail }
-        console.log(copiedDetail);
         copiedDetail["qnty"] = menuQnty;
         props.setMenuDetail([copiedDetail])
     }
@@ -33,7 +32,7 @@ function CartMenuItem(props) {
             <div className="CartMenuItem__detail">
                 <p>{props.menuDetail.name}</p>
                 <br/>
-                <p>{ props.menuDetail.detail.map((el) => (<span>{el}, </span>))}</p>
+                <p>{ props.menuDetail.detail.map((el, i) => (<span key={i}>{el}, </span>))}</p>
                 <p>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                 .format(props.menuDetail.price)}</p>
             </div>
