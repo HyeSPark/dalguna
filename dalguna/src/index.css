@@ -65,3 +65,15 @@ button {
   outline: none;
   background-color: transparent;
 }
+
+input[type="radio"] {
+  -ms-transform: scale(1.6); /* IE 9 */
+  -webkit-transform: scale(1.6); /* Chrome, Safari, Opera */
+  transform: scale(1.6);
+}
+
+input[type="checkbox"] {
+  -ms-transform: scale(1.6); /* IE 9 */
+  -webkit-transform: scale(1.6); /* Chrome, Safari, Opera */
+  transform: scale(1.6);
+}
