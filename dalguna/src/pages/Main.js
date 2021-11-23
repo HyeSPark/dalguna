@@ -43,9 +43,10 @@ function getDB(restInfo, setRestInfo, roomInfo, setRoomInfo) {
 }
 
 function Main() {
-  const [restInfo, setRestInfo] = useState([]);
+  // const [restInfo, setRestInfo] = useState([]);
   const [roomInfo, setRoomInfo] = useState([]);
-  getDB(restInfo, setRestInfo, roomInfo, setRoomInfo);
+  const [restInfo, setRestInfo] = useState(staticDB);
+  // getDB(restInfo, setRestInfo, roomInfo, setRoomInfo);
 
   for (const room of roomInfo) {
     room['minOrd'] = restInfo.filter((rest) => rest.restName == room.restName)['minOrd']
@@ -59,11 +60,13 @@ function Main() {
       {name: "Asian", img:dhspic},
       {name: "Salad", img:dhspic},
       {name: "Doshirak", img:dhspic},
+      {name: "중국집", img:dhspic},
+      {name: "덮밥", img:dhspic},
   ]
 
   const restList = restInfo.map((rest) => 
   <li key={rest.restName} style={{listStyle:'none'}}>
-    <a href="#"><RestCard restInfo={rest}></RestCard></a>
+     <Link to={{pathname: `/restaurant/${rest.id}`}}><RestCard restInfo={rest}></RestCard></Link>
   </li>)
 
     // [NOT IMPLEMENTED] key will be changed below (room name is not unique)

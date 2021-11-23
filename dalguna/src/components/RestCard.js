@@ -19,11 +19,11 @@ function RestCard(props) {
 
     const minOrd = 
         new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                .format(props.restInfo.minOrd)
+                .format(props.restInfo.deliInfo.minOrder)
     
     const deliFee = 
         new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                .format(props.restInfo.deliFee)
+                .format(props.restInfo.deliInfo.fee)
     // 일단은 room list 가 너무 길어지면 담줄로 넘어가게 만듦
     // .. 으로 표시하는게 나을까? 
     return (
@@ -31,9 +31,9 @@ function RestCard(props) {
             <div><img className="restCard__img" src={props.restInfo.img}></img></div>
             <div className= "restCard__container">
                 <div className="restCard__name-deli-time">
-                    <div className="restCard__name">{props.restInfo.restName}</div>
+                    <div className="restCard__name">{props.restInfo.name}</div>
                     <div className="restCard__deli-time">
-                        <FaMotorcycle className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {props.restInfo.deliTime} 
+                        <FaMotorcycle className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {props.restInfo.deliInfo.time} 
                         <span className="restCard__secondary"> min</span>
                     </div>
                 </div>
