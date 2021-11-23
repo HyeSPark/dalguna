@@ -8,7 +8,7 @@ import MenuListItem from '../components/MenuListItem';
 import RestTab from '../components/RestTab.js';
 import TabBar from '../components/TabBar.js';
 import CartButton from '../components/CartButton.js';
-import MenuPage from '../components/MenuPage.js';
+import MenuModal from '../components/MenuModal.js';
 
 import staticDB from "../db/static.json";
 import '../rest-page.css'
@@ -33,9 +33,10 @@ function RestaurantPage() {
   //   img: dhspic,} 
   // ])
   = useState(restInfo.menu)
-  var modal = <></>
+  
+  const [modal, setModal] = useState(<></>)
   function openMenuModal(menu) {
-    modal = <MenuPage menuInfo={menu}></MenuPage>
+    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal}></MenuModal>)
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -67,6 +68,7 @@ function RestaurantPage() {
 
     return (
         <div className="ui-container">
+            {modal}
             <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
                 <RestTitleBox restName={restInfo.name} restRating="5.0 (100)"></RestTitleBox>   
             </div>
@@ -74,7 +76,6 @@ function RestaurantPage() {
             {curTabContent[curTab]}
             <CartButton cartItem={cartItem}/>
             <TabBar/>
-            {modal}
         </div>
     )
 }

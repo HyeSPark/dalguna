@@ -1,3 +1,7 @@
+.menuModal__ {
+  z-index:1000;
+}
+
 .menu-page-info-box {
   background-color: #e7e6e6;
   padding: 30px;
@@ -5,16 +9,16 @@
   text-align: left;
 }
 
-.menupage_price_box {
+.menuModal_price_box {
   display: block;
 }
 
-.menupage_price {
+.menuModal_price {
   display: block;
   float: left;
 }
 
-.menupage_price_value {
+.menuModal_price_value {
   display: block;
   float: right;
 }
@@ -23,21 +27,43 @@
   height: 200px;
 }
 
-.menuPage__title {
+.menuModal__title {
   display: flex;
   padding: 19px 19px 13px 19px;
 }
 
-.menuPage__title-back {
+.menuModal__title-back {
   width: 30px;
   height: 30px;
   text-align: center;
   font-size: 1.6rem;
 }
 
-.menuPage__title-restName {
+.menuModal__title-restName {
   width: 100%;
   font-size: 1.3rem;
   font-weight: bold;
   margin-right: 10px;
+}
+
+.menuModal__option {
+  text-align: left;
+  padding: 15px 19px;
+}
+
+.menuModal__option-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.menuModal__option-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.menuModal__option-list {
+  padding-left: 0px;
 }
