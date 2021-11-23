@@ -55,6 +55,7 @@
     padding: 6px;
     font-size: 1.1rem;
     color: grey;
+    white-space:nowrap;
 }
 
 .catFilterBar__catList-item-active {
@@ -65,4 +66,5 @@
     font-size: 1.1rem;
     color: black;
     font-weight: bold;
+    white-space:nowrap;
 }

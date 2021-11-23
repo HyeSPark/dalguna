@@ -5,28 +5,15 @@ import CatFilterBar from '../components/CatFilterBar';
 import RestCard from '../components/RestCard';
 import { useParams, Link } from 'react-router-dom';
 
+import staticDB from "../db/static.json";
+
 function CatFilter() {
     const params = useParams();
 
-    const catNameList = ["Korean", "Chicken", "Japanese", "Snacks", "Asian", "Salad", "Doshirak"]
+    const catNameList = ["Korean", "Chicken", "Japanese", "Snacks", "Asian", "Salad", "Doshirak", "중국집", "덮밥"]
 
     const [restInfo, setRestInfo] 
-    = useState([{
-        id:0, name:"대학생 치킨", minOrder:15000, 
-        deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
-        category: "Chicken"
-      },{
-        id:1, name:"베리신주쿠", minOrder:15000, 
-        deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
-        category: "Japanese"
-      },{
-        id:2, name:"마쯔미", minOrder:15000, 
-        deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
-        category: "Japanese"
-      }])
+    = useState(staticDB)
     
     const [curSelect, setCurSelect] = useState(params.name)
     var visRestList = restInfo.filter((rest) => rest.category==curSelect)

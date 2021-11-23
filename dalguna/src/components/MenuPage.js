@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
-import RestTitleBox from '../components/RestTitleBox.js'
+import RestTitleBox from 'RestTitleBox.js'
 
 import dhspic from '../img/DHS_photo.jpeg';
-import MenuListItem from '../components/MenuListItem';
-import RestTab from '../components/RestTab.js';
-import TabBar from '../components/TabBar.js';
+import MenuListItem from 'MenuListItem';
+import RestTab from 'RestTab.js';
+import TabBar from 'TabBar.js';
 import '../menu-page.css'
-import LongButton from '../components/LongButton.js';
+import LongButton from 'LongButton.js';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function MenuPage(props) {
 
@@ -31,8 +32,15 @@ function MenuPage(props) {
 
     return (
         <div className="ui-container">
-            <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
-                <RestTitleBox restName="대학생 치킨" restRating="5.0 (100)"></RestTitleBox>   
+            {/* <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
+            </div> */}
+            <div className="menuPage__title">
+                <a href="#" className="menuPage__title-back">
+                    <AiOutlineArrowLeft /> 
+                </a>
+                <div className="menuPage__title-restName">
+                    메뉴이름
+                </div>
             </div>
             <div className="menu-page-info-box">
                 <div className="menuListItem__desc-name">냉모밀+돈까스만 (+보통소스,매운소스 선택)</div>

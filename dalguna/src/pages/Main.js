@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar.js'
 import TabBar from '../components/TabBar.js'
 import CartModal from "../components/CartModal";
 
+import staticDB from "../db/static.json";
 import dhspic from '../img/DHS_photo.jpeg';
 
 import "../main.css";
@@ -16,22 +17,23 @@ import "../main.css";
 
 function Main() {
 
-    const [restInfo, setRestInfo] = useState([{
-        name:"대학생 치킨", minOrder:15000, 
-        deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
-        category: "Chicken"
-      },{
-        name:"베리신주쿠", minOrder:15000, 
-        deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
-        category: "Japanese"
-      },{
-        name:"마쯔미", minOrder:15000, 
-        deliFee: 3000, deliTime: "27~31", img: dhspic,
-        rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
-        category: "Japanese"
-      }])
+    // const [restInfo, setRestInfo] = useState([{
+    //     name:"대학생 치킨", minOrder:15000, 
+    //     deliFee: 3000, deliTime: "27~31", img: dhspic,
+    //     rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+    //     category: "Chicken"
+    //   },{
+    //     name:"베리신주쿠", minOrder:15000, 
+    //     deliFee: 3000, deliTime: "27~31", img: dhspic,
+    //     rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+    //     category: "Japanese"
+    //   },{
+    //     name:"마쯔미", minOrder:15000, 
+    //     deliFee: 3000, deliTime: "27~31", img: dhspic,
+    //     rooms: [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
+    //     category: "Japanese"
+    //   }])
+    const [restInfo, setRestInfo] = useState(staticDB);
 
     const [roomInfo, setRoomInfo] = useState([{
         name: "대학생 치킨",
@@ -65,11 +67,13 @@ function Main() {
         {name: "Asian", img:dhspic},
         {name: "Salad", img:dhspic},
         {name: "Doshirak", img:dhspic},
+        {name: "중국집", img:dhspic},
+        {name: "덮밥", img:dhspic},
     ]
 
     const restList = restInfo.map((rest) => 
     <li key={rest.name} style={{listStyle:'none'}}>
-      <a href="#"><RestCard restInfo={rest}></RestCard></a>
+      <Link to={{pathname: `/restaurant/${rest.id}`}}><RestCard restInfo={rest}></RestCard></Link>
     </li>)
 
       // [NOT IMPLEMENTED] key will be changed below (room name is not unique)

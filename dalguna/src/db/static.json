@@ -1,0 +1,149 @@
+[
+    {
+        "name":"이비가짬뽕 유성본점",
+        "id":0,
+        "photo":"../img/000.jpg",
+        "category":"중국집",
+        "deliInfo": {
+            "fee":2000,
+            "time":"0~0",
+            "minOrder":14000
+        },
+        "open": "11:00",
+        "close": "20:50",
+        "info": "다양한 토핑과 함께하는 퓨전 고기덮밥 핵밥",
+        "menu":[
+            {   
+                "id": 0,
+                "name": "이비가짬뽕",
+                "detail": "이비가짬뽕의 대표 인기 메뉴 진한 사골국물 베이스의 개운하고 얼콘한 한국식 영양 짬뽕입니다",
+                "priceOptions": true,
+                "price": [
+                    {
+                        "name": "기본(면)",
+                        "price": 9500
+                    },
+                    {
+                        "name": "(곱)",
+                        "price": 10500
+                    },
+                    {
+                        "name": "(밥)(면없음)",
+                        "price": 9500
+                    }
+                ],
+                "addOptions": false,
+                "add": []
+            },
+            {   
+                "id": 1,
+                "name": "이비가 탕수육",
+                "detail": "질좋은 국내산 생돼지 등심을 매일 깨끗한 기름으로 초벌없이 한번만 튀겨내어 같은 하얗고 속살은 부드러운 쫄깃한 탕수육입니다",
+                "priceOptions": true,
+                "price": [
+                    {
+                        "name": "소(160g)",
+                        "price": 13500
+                    },
+                    {
+                        "name": "대(260g)",
+                        "price": 18500
+                    }
+                ],
+                "addOptions": false,
+                "add": []
+            },
+            {   
+                "id": 2,
+                "name": "이비가 볶음짬뽕",
+                "detail": "깔끔한 불맛과 칼칼한 식감을 살린 매콤 담백한 이비가표 볶음짬뽕 입니다",
+                "priceOptions": false,
+                "price": [10500],
+                "addOptions": false,
+                "add": []
+            }
+        ]
+    },
+    {
+        "name":"핵밥",
+        "id":1,
+        "photo":"../img/001.jpg",
+        "category":"덮밥",
+        "deliInfo": {
+            "fee":3000,
+            "time":"0~0",
+            "minOrder":12000
+        },
+        "open": "10:50",
+        "close": "20:30",
+        "info": "다양한 토핑과 함께하는 퓨전 고기덮밥 핵밥",
+        "menu":[
+            {   
+                "id": 0,
+                "name": "핵스테이크",
+                "detail": "최상급 토시살을, 무려 ~200도 이상에서 구워낸 살살녹는 명품 핵스테이크덮밥",
+                "priceOptions": false,
+                "price": [17000],
+                "addOptions": true,
+                "add": [
+                    {
+                        "name": "곁들여 먹으면, 더 꿀맛 추가선택",
+                        "options":[
+                            {
+                                "name": "교자만두튀김 4 pcs",
+                                "price": 4000
+                            },{
+                                "name": "닭튀김 2 pcs",
+                                "price": 2000
+                            },{
+                                "name": "왕새우튀김 1pc",
+                                "price": 2500
+                            }
+                        ]
+                    },{
+                        "name": "반찬빼주세요",
+                        "options":[
+                            {
+                                "name": "반찬빼주세요",
+                                "price": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            {   
+                "id": 1,
+                "name": "큐브스테이크덮밥(대표)",
+                "detail": "최상급 토시살을, 무려 ~200도 이상에서 갓 구워내 살살녹는 명품덮밥",
+                "priceOptions": false,
+                "price": [10900],
+                "addOptions": true,
+                "add": [
+                    {
+                        "name": "곁들여 먹으면, 더 꿀맛 추가선택",
+                        "options":[
+                            {
+                                "name": "교자만두튀김 4 pcs",
+                                "price": 4000
+                            },{
+                                "name": "닭튀김 2 pcs",
+                                "price": 2000
+                            },{
+                                "name": "왕새우튀김 1pc",
+                                "price": 2500
+                            }
+                        ]
+                    },{
+                        "name": "반찬빼주세요",
+                        "options":[
+                            {
+                                "name": "반찬빼주세요",
+                                "price": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
