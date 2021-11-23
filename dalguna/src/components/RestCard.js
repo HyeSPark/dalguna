@@ -27,7 +27,7 @@ function RestCard(props) {
             <div><img className="restCard__img" src={props.restInfo.img}></img></div>
             <div className= "restCard__container">
                 <div className="restCard__name-deli-time">
-                    <div className="restCard__name">{props.restInfo.name}</div>
+                    <div className="restCard__name">{props.restInfo.restName}</div>
                     <div className="restCard__deli-time">
                         <FaMotorcycle className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {props.restInfo.deliTime} 
                         <span className="restCard__secondary"> min</span>
