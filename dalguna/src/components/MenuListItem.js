@@ -3,9 +3,19 @@ import '../menu-list-item.css';
 
 function MenuListItem(props) {
     // [SOLVED] name responsive하게 줄어들도록 js 처리
-    const price = 
+   
+    var price;
+
+    if (props.menuItemInfo.priceOptions) {
+        price = 
         new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                .format(props.menuItemInfo.price)
+                .format(props.menuItemInfo.price[0].price)
+    } else {
+        price = 
+        new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                .format(props.menuItemInfo.price[0])
+    }
+
     return (
         <div className="menuListItem__">
             <div className="menuListItem__desc">
@@ -20,7 +30,7 @@ function MenuListItem(props) {
                 </div>
             </div>
             
-            <img className="menuListItem__img" src={props.menuItemInfo.img}/>
+            {/* <img className="menuListItem__img" src={props.menuItemInfo.img}/> */}
         </div>
     )
 }

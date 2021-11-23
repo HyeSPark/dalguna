@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Main, CatFilter, ChangeAddress, RestaurantPage, MenuPage, CheckOut} from './pages'
+import {Main, CatFilter, RestaurantPage, CheckOut} from './pages'
 
 ReactDOM.render(
   <BrowserRouter>

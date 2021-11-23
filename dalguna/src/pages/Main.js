@@ -9,7 +9,9 @@ import CatItem from '../components/CatItem';
 import RestCard from '../components/RestCard.js'
 import NavBar from '../components/NavBar.js'
 import TabBar from '../components/TabBar.js'
+import CartModal from "../components/CartModal";
 
+import staticDB from "../db/static.json";
 import dhspic from '../img/DHS_photo.jpeg';
 
 import "../main.css";

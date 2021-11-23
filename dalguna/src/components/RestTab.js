@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import '../rest_tab.css'
 
-function RestTab() {
+function RestTab(props) {
     const [menuFocused, setMenuFocused] = useState([true, false, false])
+    const tabList = ["menu", "info", "room"]
     const focus = (ord) => {
         var newArr = [false, false, false]
         newArr[ord] = true
         setMenuFocused(newArr)
+        props.setCurTab(tabList[ord])
     }
 
     const focusClassName = {true: "restTab__item restTab__focus", false: "restTab__item"}
