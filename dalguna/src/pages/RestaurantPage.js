@@ -9,6 +9,7 @@ import RestTab from '../components/RestTab.js';
 import TabBar from '../components/TabBar.js';
 import CartButton from '../components/CartButton.js';
 import MenuModal from '../components/MenuModal.js';
+import CartModal from '../components/CartModal.js';
 
 import staticDB from "../db/static.json";
 import '../rest-page.css'
@@ -36,7 +37,7 @@ function RestaurantPage() {
   
   const [modal, setModal] = useState(<></>)
   function openMenuModal(menu) {
-    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal}></MenuModal>)
+    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem}></MenuModal>)
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -64,18 +65,22 @@ function RestaurantPage() {
   }
 
   const [cartItem, setCartItem] 
-  = useState({restName:"대학생 치킨", items:["몬스터 오븐 구이"]})
+  = useState([])
+
+  function openCartModal() {
+    setModal(<CartModal style={{zIndex: 9000}} restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
+  }
 
     return (
         <div className="ui-container">
+            <TabBar/>
             {modal}
             <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
                 <RestTitleBox restName={restInfo.name} restRating="5.0 (100)"></RestTitleBox>   
             </div>
             <RestTab curTab = {curTab} setCurTab = {setCurTab}/>
             {curTabContent[curTab]}
-            <CartButton cartItem={cartItem}/>
-            <TabBar/>
+            <CartButton cartItem={cartItem} onClick={openCartModal}/>
         </div>
     )
 }

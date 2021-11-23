@@ -8,28 +8,12 @@ import RestTab from './RestTab.js';
 import TabBar from './TabBar.js';
 import '../menu-page.css'
 import LongButton from './LongButton.js';
+import MenuAddOptions from './MenuAddOptions.js';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function MenuModal(props) {
     // 맨 위에 이름을 가게 이름으로 하는게 나을까?
-    const { menuInfo, restName, setModal } = props;
-    const [menuItemInfo, setMenuItemInfo]
-    = useState([{
-      name: "냉모밀+돈까스만 (+보통소스,매운소스 선택)", 
-      detail: "면요리(선택)+돈까스단품(선택)",
-      price: 13500,
-      img: dhspic
-    },
-    {name: "냉모밀+돈까스만 (+보통소스,매운소스 선택)",
-      detail: "돈까스(선택) + 소스2종 + 냉모밀 (미니냉모밀,빵잼은 제공하지 않아용)",
-      price: 16000,
-      img: dhspic,},{
-        name: "냉모밀+돈까스만 (+보통소스,매운소스 선택)", 
-        detail: "면요리(선택)+돈까스단품(선택)",
-        price: 13500,
-        img: dhspic
-      }
-    ])
+    const { menuInfo, restName, setModal, cartItem, setCartItem } = props;
 
     function goBack() {
         props.setModal(<></>)
@@ -41,16 +25,10 @@ function MenuModal(props) {
     } else {
         basePrice = menuInfo.price[0]
     }
-    const [totalPrice, setTotalPrice] = useState(new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-    .format(basePrice))
+    const [totalPrice, setTotalPrice] = useState(basePrice)
 
     const [selectedPriceOption, setSelectedPriceOption] = useState(menuInfo.price[0].name)
-
-    function handlePriceOptionChange(name, price) {
-        setSelectedPriceOption(name)
-        setTotalPrice(new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-        .format(price))
-    }
+    const [selectedAddOptions, setSelectedAddOptions] = useState([])
 
     const priceOptionList = menuInfo["price"].map((opt, i) => 
         <li className="menuModal__option-item" key={i}>
@@ -62,14 +40,34 @@ function MenuModal(props) {
                     name="priceOption"
                     checked={selectedPriceOption === opt.name}
                     onChange={() => handlePriceOptionChange(opt.name, opt.price)}/>
-                {opt.name}
+                &nbsp;&nbsp;{opt.name}
             </div>
             <div className="menuModal__option-item-price">
                 {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                     .format(opt.price)}
             </div>
         </li>)
-    
+
+    function handlePriceOptionChange(name, price) {
+        setSelectedPriceOption(name)
+        setTotalPrice(price)
+    }
+
+
+    function addToCart() {
+        const addedItem = 
+        {
+            name: menuInfo.name,
+            qnty: 1,
+            detail: selectedAddOptions,
+            price: totalPrice,
+        }
+        setCartItem([...cartItem, addedItem])
+        goBack()
+
+        console.log(cartItem)
+    }
+
 
     return (
         <div className="ui-container">
@@ -91,16 +89,28 @@ function MenuModal(props) {
                 <div className="menuModal__selections">
                     <div className="menuModal__option">
                         <span className="menuModal__option-title">
-                            Price
+                            <span>Price</span>
+                            {menuInfo.priceOptions ? null : <span>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                            .format(basePrice)}</span>}
                         </span>
-                        <ul className="menuModal__option-list">
-                            {priceOptionList}
-                        </ul>
+                        {menuInfo.priceOptions ? <ul className="menuModal__option-list">{priceOptionList}</ul>
+                            : null}
+                    </div>
+                    <div className="menuModal__option">
+                        {menuInfo.addMulti.map((opt, i) => 
+                            <MenuAddOptions key={i} name={opt.name} options ={opt.options} type="checkbox"
+                            totalPrice={totalPrice} setTotalPrice={setTotalPrice} selectedAddOptions={selectedAddOptions}
+                            setSelectedAddOptions={setSelectedAddOptions}/>)}
+                        {menuInfo.addUni.map((opt, i) => 
+                            <MenuAddOptions key={i} name={opt.name} options ={opt.options} type="radio"
+                            totalPrice={totalPrice} setTotalPrice={setTotalPrice} selectedAddOptions={selectedAddOptions}
+                            setSelectedAddOptions={setSelectedAddOptions}/>)}
                     </div>
                 </div>
                 
                 <div className="menu-page-add-to-cart-button">
-                    <LongButton type="primary">Add to Cart ({totalPrice})</LongButton>
+                    <LongButton type="primary" onClick={addToCart}>Add to Cart ({new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+    .format(totalPrice)})</LongButton>
                 </div>
             </div>
         </div>

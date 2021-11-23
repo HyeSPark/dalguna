@@ -6,7 +6,8 @@ import LongButton from "./LongButton";
 
 import "../cart_modal.css"
 
-function CartModal() {
+function CartModal(props) {
+    const { restName, menuList, setMenuList, setModal } = props
     const [roomInfo, setRoomInfo] = useState([{
         name: "대학생 치킨",
         timeLeft: 15,
@@ -30,33 +31,37 @@ function CartModal() {
         minOrd: 20000,
       }])
     const deliveryAdrs = "아름관"
-    const restName = "대학생 치킨"
-    const [menuList, setMenuList] = useState([{
-        name: "맛있는 돈까스",
-        qnty: 1,
-        detail: ["데리야끼 소스로 변경", "양 추가"],
-        price: 10000,
-    }])
+    // const [menuList, setMenuList] = useState([{
+    //     name: "맛있는 돈까스",
+    //     qnty: 1,
+    //     detail: ["데리야끼 소스로 변경", "양 추가"],
+    //     price: 10000,
+    // }])
+
 
     useEffect(updateCartMenu, [menuList])
-    const [menuVisible, setMenuVisible] = useState(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)
+
+    const [menuVisible, setMenuVisible] 
+        = useState(menuList.map((menu, i) => 
+            <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList}/>))
+
     function updateCartMenu() {
-        if (menuList[0] == undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
-        else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
-        else {setMenuVisible()}
+        // if (menuList[0] == undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
+        // else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
+        // else {setMenuVisible()}
     }
 
     const roomList = roomInfo
                         .filter((room) => room.name==restName)
-                        .map((room) => 
-                                <li key={room.name} style={{listStyle:'none'}}>
+                        .map((room, i) => 
+                                <li key={i} style={{listStyle:'none'}}>
                                     <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
                                 </li>)
 
     return (
-        <div className="CartModal__">
+        <div className="CartModal__" style={{backgroundColor:"white", height:"100%"}}>
             <div className="CartModal__bar">
-                <a href="#" className="CartModal__bar-close"><CgClose></CgClose></a>
+                <a href="#" onClick={() => setModal(<></>)} className="CartModal__bar-close"><CgClose></CgClose></a>
                 <span className="CartModal__bar-cart">Cart</span>
             </div>
             <div className="CartModal__address">
@@ -70,10 +75,9 @@ function CartModal() {
                 <button className="CartModal__restmenu-add">+ Add More Menu</button>
             </div>
             <div className = "mainPage__separation"/>
-            <div className="CartModal__request">
-            {/* but request how */}
+            {/* <div className="CartModal__request">
             </div>
-            <div className = "mainPage__separation"/>
+            <div className = "mainPage__separation"/> */}
             <div className ="CartModal__room">
                 <div className="CartModal__title">
                     Rooms Available
