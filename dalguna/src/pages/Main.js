@@ -16,23 +16,18 @@ import dhspic from '../img/DHS_photo.jpeg';
 
 import "../main.css";
 
-function Main() {
-  const [restInfo, setRestInfo] = useState([]);
-  const [roomInfo, setRoomInfo] = useState([]);
-
+function getDB(restInfo, setRestInfo, roomInfo, setRoomInfo) {
   getDocs(collection(db, 'STATIC')).then((snapshot) => {
     const tmp = [];
     snapshot.forEach((doc) => tmp.push(doc.data()))
     setRestInfo(tmp.map((rest) => ({
-      'restName': rest.restName, 'minOrder': rest.minOrder,
+      'restName': rest.restName, 'minOrd': rest.minOrd,
       'deliFee': rest.deliFee, 'category' : rest.category,
       'deliTime': rest.deliTime['min']+'~'+rest.deliTime['max'],
       'rooms': [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
       'img': dhspic
     })))
-  })
-
-  getDocs(collection(db, 'DYNAMIC')).then((snapshot) => {
+  }).then(getDocs(collection(db, 'DYNAMIC')).then((snapshot) => {
     const tmp = [];
     snapshot.forEach((doc) => tmp.push(doc.data()))
     setRoomInfo(tmp.map((room) => ({
@@ -40,9 +35,21 @@ function Main() {
       'poolMon': room.poolMon, 'endTime': room.endTime,
       'ordStat': room.ordStat, 'participants': room.participants,
       'roomId': room.roomID,
-      'timeLeft': 15, 'minOrd': 15000
+      'timeLeft': 15
     })))
+  })).then(() => {
+    console.log(restInfo);
   })
+}
+
+function Main() {
+  const [restInfo, setRestInfo] = useState([]);
+  const [roomInfo, setRoomInfo] = useState([]);
+  getDB(restInfo, setRestInfo, roomInfo, setRoomInfo);
+
+  for (const room of roomInfo) {
+    room['minOrd'] = restInfo.filter((rest) => rest.restName == room.restName)['minOrd']
+  }
 
   const catInfoList = [
       {name: "Korean", img:dhspic}, 

@@ -19,7 +19,7 @@ function RestCard(props) {
 
     const minOrd = 
         new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                .format(props.restInfo.minOrder)
+                .format(props.restInfo.minOrd)
     
     const deliFee = 
         new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
