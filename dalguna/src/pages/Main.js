@@ -16,15 +16,9 @@ import dhspic from '../img/DHS_photo.jpeg';
 
 import "../main.css";
 
-const getRest = async () => {
-  const querySnapshot = await getDocs(collection(db, "STATIC"));
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-  })
-}
-
 function Main() {
   const [restInfo, setRestInfo] = useState([]);
+  const [roomInfo, setRoomInfo] = useState([]);
 
   getDocs(collection(db, 'STATIC')).then((snapshot) => {
     const tmp = [];
@@ -35,34 +29,21 @@ function Main() {
       'deliTime': rest.deliTime['min']+'~'+rest.deliTime['max'],
       'rooms': [{part: 2, order: "17:00"}, {part: 1, order: "18:00"}],
       'img': dhspic
-    }
-    )))
+    })))
   })
 
-  const [roomInfo, setRoomInfo] = useState([{
-      name: "대학생 치킨",
-      timeLeft: 15,
-      loc: "아름관",
-      deliTime: "21~30",
-      raised: 10000,
-      minOrd: 15000,
-    }, {
-      name: "마쯔미",
-      timeLeft: 13,
-      loc: "아름관",
-      deliTime: "31~40",
-      raised: 9000,
-      minOrd: 13000,
-    }, {
-      name: "잇마이타이",
-      timeLeft: 10,
-      loc: "아름관",
-      deliTime: "11~20",
-      raised: 23000,
-      minOrd: 20000,
-    }])
+  getDocs(collection(db, 'DYNAMIC')).then((snapshot) => {
+    const tmp = [];
+    snapshot.forEach((doc) => tmp.push(doc.data()))
+    setRoomInfo(tmp.map((room) => ({
+      'restName': room.restName, 'deliLoc': room.deliLoc,
+      'poolMon': room.poolMon, 'endTime': room.endTime,
+      'ordStat': room.ordStat, 'participants': room.participants,
+      'roomId': room.roomID,
+      'timeLeft': 15, 'minOrd': 15000
+    })))
+  })
 
-  
   const catInfoList = [
       {name: "Korean", img:dhspic}, 
       {name: "Chicken", img:dhspic},
@@ -80,7 +61,7 @@ function Main() {
 
     // [NOT IMPLEMENTED] key will be changed below (room name is not unique)
   const roomList = roomInfo.map((room) => 
-  <li key={room.name} style={{listStyle:'none'}}>
+  <li key={room.roomName} style={{listStyle:'none'}}>
       <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
   </li>
   )
