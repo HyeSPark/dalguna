@@ -1,3 +1,9 @@
+.CartModal__ {
+
+    position: relative;
+    z-index: 5000;
+}
+
 .CartModal__bar {
     display: flex;
     padding: 15px 14px;

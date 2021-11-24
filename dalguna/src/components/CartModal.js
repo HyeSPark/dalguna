@@ -38,15 +38,22 @@ function CartModal(props) {
     //     price: 10000,
     // }])
 
-
-    useEffect(updateCartMenu, [menuList])
-
     const [menuVisible, setMenuVisible] 
         = useState(menuList.map((menu, i) => 
-            <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList}/>))
+            <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList}/>))
+    
+    useEffect(updateCartMenu, [menuList]) 
 
     function updateCartMenu() {
-        // if (menuList[0] == undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
+        console.log(menuList)
+        /////// not solvedddddd
+        // if (menuList[0] === undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
+        if (menuList[0] !== undefined) {
+            var copied = [...menuList]
+            console.log(copied.filter((el)=> el.qnty !== 0))
+            setMenuVisible(copied.filter((el)=> el.qnty !== 0).map((menu, i) =><CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList}/>))
+        }
+        
         // else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
         // else {setMenuVisible()}
     }
@@ -61,7 +68,7 @@ function CartModal(props) {
     return (
         <div className="CartModal__" style={{backgroundColor:"white", height:"100%"}}>
             <div className="CartModal__bar">
-                <a href="#" onClick={() => setModal(<></>)} className="CartModal__bar-close"><CgClose></CgClose></a>
+                <button onClick={() => setModal(<></>)} className="CartModal__bar-close"><CgClose></CgClose></button>
                 <span className="CartModal__bar-cart">Cart</span>
             </div>
             <div className="CartModal__address">

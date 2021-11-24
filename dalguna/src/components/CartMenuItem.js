@@ -4,8 +4,6 @@ import { CgClose } from 'react-icons/cg';
 function CartMenuItem(props) {
     const [menuQnty, setMenuQnty] = useState(1);
 
-    console.log(menuQnty);
-
     function incQnty() {
         setMenuQnty(menuQnty + 1);
     }
@@ -20,9 +18,12 @@ function CartMenuItem(props) {
         }
     }
     function updateMenuDetail() {
-        const copiedDetail = { ...props.menuDetail }
-        copiedDetail["qnty"] = menuQnty;
-        props.setMenuDetail([copiedDetail])
+
+        const copiedDetail = [...props.menuList]
+        copiedDetail[0].qnty = menuQnty;
+
+        console.log(copiedDetail);
+        props.setMenuDetail(copiedDetail)
     }
 
     useEffect(updateMenuDetail, [menuQnty])

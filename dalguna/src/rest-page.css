@@ -1,9 +1,19 @@
 .rest-title-image {
   min-height: 293px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-size: cover;
 }
 
 .restPage {
   /* height: calc(100% - 49px); */
+}
+
+
+.rest-title-back {
+  color: white;
+  font-size: 1.6rem;
+  text-align: left;
+  padding: 19px;
 }

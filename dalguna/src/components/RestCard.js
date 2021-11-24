@@ -41,6 +41,10 @@ function RestCard(props) {
                     <span className="restCard__secondary">Min. order</span> {minOrd} 
                     <span className="restCard__secondary"> Delivery fee</span> {deliFee}
                 </div>
+                <ul className="restCard__room-tag-list">
+                    There's no room for this restaurant
+                </ul>
+                
                 {/* <ul className="restCard__room-tag-list">
                     {roomTagList}
                 </ul> */}

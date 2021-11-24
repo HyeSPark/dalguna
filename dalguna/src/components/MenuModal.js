@@ -75,9 +75,9 @@ function MenuModal(props) {
             </div> */}
             <div className="menuModal__">
                 <div className="menuModal__title">
-                    <a href="#" className="menuModal__title-back" onClick={goBack}>
+                    <button className="menuModal__title-back" onClick={goBack}>
                         <AiOutlineArrowLeft /> 
-                    </a>
+                    </button>
                     <div className="menuModal__title-restName">
                         {restName}
                     </div>

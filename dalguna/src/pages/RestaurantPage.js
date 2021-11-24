@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Outlet } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import RestTitleBox from '../components/RestTitleBox.js'
 
@@ -13,9 +13,11 @@ import CartModal from '../components/CartModal.js';
 
 import staticDB from "../db/static.json";
 import '../rest-page.css'
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function RestaurantPage() {
   const params = useParams();
+  const navigate = useNavigate();
   const arrRestName = ["대학생 치킨", "베리신주쿠", "마쯔미"];
 
   const [restInfo, setRestInfo] = useState(staticDB[params.restId])
@@ -36,13 +38,22 @@ function RestaurantPage() {
   = useState(restInfo.menu)
   
   const [modal, setModal] = useState(<></>)
+
   function openMenuModal(menu) {
     setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem}></MenuModal>)
   }
 
+  const [cartItem, setCartItem] 
+  = useState([])
+  function openCartModal() {
+    setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
+  }
+
+  
+
   const menuList = menuItemInfo.map((menu) => 
   <li key={menu.id} style={{listStyle:'none'}} className = "mainPage__menu-item">
-    <a href="#" onClick={() => openMenuModal(menu)}> <MenuListItem menuItemInfo={menu}></MenuListItem></a>
+    <a onClick={() => openMenuModal(menu)}> <MenuListItem menuItemInfo={menu}></MenuListItem></a>
   </li>
   )
 
@@ -64,18 +75,15 @@ function RestaurantPage() {
     "room": roomList
   }
 
-  const [cartItem, setCartItem] 
-  = useState([])
-
-  function openCartModal() {
-    setModal(<CartModal style={{zIndex: 9000}} restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
-  }
 
     return (
         <div className="ui-container">
             <TabBar/>
             {modal}
             <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
+                <a href="#" className="rest-title-back" onClick={() => navigate(-1)}>
+                    <AiOutlineArrowLeft /> 
+                </a>
                 <RestTitleBox restName={restInfo.name} restRating="5.0 (100)"></RestTitleBox>   
             </div>
             <RestTab curTab = {curTab} setCurTab = {setCurTab}/>

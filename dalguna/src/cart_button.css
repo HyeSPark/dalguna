@@ -7,6 +7,7 @@
     position: fixed;
     right: 12px;
     bottom: 70px;
+    z-index: 1500;
 }
 
 .cartButton__cart-icon {
