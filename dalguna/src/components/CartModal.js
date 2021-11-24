@@ -3,10 +3,13 @@ import { CgClose } from 'react-icons/cg';
 import CartMenuItem from "./CartMenuItem";
 import RoomCard from "./RoomCard";
 import LongButton from "./LongButton";
+import { useParams } from "react-router-dom";
 
 import "../cart_modal.css"
 
 function CartModal(props) {
+    const params = useParams()
+    
     const { restName, menuList, setMenuList, setModal } = props
     const [roomInfo, setRoomInfo] = useState([{
         name: "대학생 치킨",
@@ -45,15 +48,14 @@ function CartModal(props) {
     useEffect(updateCartMenu, [menuList]) 
 
     function updateCartMenu() {
-        console.log(menuList)
+        console.log(params.userId, menuList)
         /////// not solvedddddd
         // if (menuList[0] === undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
         if (menuList[0] !== undefined) {
             var copied = [...menuList]
-            console.log(copied.filter((el)=> el.qnty !== 0))
+            // console.log(copied.filter((el)=> el.qnty !== 0))
             setMenuVisible(copied.filter((el)=> el.qnty !== 0).map((menu, i) =><CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList}/>))
         }
-        
         // else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
         // else {setMenuVisible()}
     }

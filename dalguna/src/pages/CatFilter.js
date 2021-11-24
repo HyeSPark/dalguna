@@ -19,7 +19,7 @@ function CatFilter() {
     var visRestList = restInfo.filter((rest) => rest.category==curSelect)
     const restList = visRestList.map((rest) => 
     <li key={rest.name} style={{listStyle:'none'}}>
-      <Link to={{pathname: `/restaurant/${rest.id}`}}><RestCard restInfo={rest}></RestCard></Link>
+      <Link to={`../${params.userId}/restaurant/${rest.id}`}><RestCard restInfo={rest}></RestCard></Link>
     </li>
     )
     return (

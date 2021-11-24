@@ -66,7 +66,7 @@ function Main() {
 
   const restList = restInfo.map((rest) => 
   <li key={rest.restName} style={{listStyle:'none'}}>
-     <Link to={{pathname: `/restaurant/${rest.id}`}}><RestCard restInfo={rest}></RestCard></Link>
+     <Link to={`./restaurant/${rest.id}`}><RestCard restInfo={rest}></RestCard></Link>
   </li>)
 
     // [NOT IMPLEMENTED] key will be changed below (room name is not unique)
@@ -79,7 +79,7 @@ function Main() {
   const catList = catInfoList.map((cat) => 
       <li key={cat.name} style={{listStyle:'none'}}>
         <Link to={{
-          pathname:`/filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
+          pathname:`./filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
       </li>
   )
 
