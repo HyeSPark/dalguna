@@ -1,51 +1,64 @@
+.delBox__wrap {
+    width: 100%;
+}
+
 .delBox__ {
-    width: 195px;
+    /* width: 100%; */
     height: 60px;
     background-color: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
+    padding: 7px 10px;
 }
 
 .delBox__name {
-    position: relative;
+    /* position: relative;
     top: 5px;
-    left: -30px;
+    left: -30px; */
     color: #F5C35E;
     font-weight: bold;
     font-size: 1.2rem;
+    align-self: flex-start;
 }
 
 .delBox__time {
-    position: relative;
+    /* position: relative;
     right: -55px;
-    bottom: -10px;
+    bottom: -10px; */
     color: #F5C35E;
+    align-self: flex-end;
 }
 
 .delBoxInactive__ {
-    width: 195px;
+    /* width: 195px; */
     height: 60px;
     border: 1px solid white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    justify-content: space-between;
+    padding: 7px 10px;
 }
 
 .delBoxInactive__name {
-    position: relative;
+    /* position: relative;
     top: 5px;
-    left: -30px;
+    left: -30px; */
     color: white;
     font-weight: bold;
     font-size: 1.2rem;
+    align-self: flex-start;
 }
 
 .delBoxInactive__time {
-    position: relative;
+    /* position: relative;
     right: -55px;
-    bottom: -10px;
+    bottom: -10px; */
     color: white;
+    align-self: flex-end;
+    
 }

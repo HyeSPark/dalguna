@@ -16,19 +16,19 @@ function RestTab(props) {
         <div className="restTab__">
             <ul className="restTab__list" >
                 <li className="restTab__menu" onClick={() => {focus(0)}}>
-                    <a className={focusClassName[menuFocused[0]]} href="#">
-                    <span className="restTab__item-name">Menu</span>
-                    </a>
+                    <button className={focusClassName[menuFocused[0]]}>
+                        <span className="restTab__item-name">Menu</span>
+                    </button>
                 </li>
                 <li className="restTab__info" onClick={() => {focus(1)}}>
-                    <a className={focusClassName[menuFocused[1]]} href="#">
-                    <span className="restTab__item-name">Info</span>
-                    </a>
+                    <button className={focusClassName[menuFocused[1]]}>
+                        <span className="restTab__item-name">Info</span>
+                    </button>
                 </li>
                 <li className="restTab__room" onClick={() => {focus(2)}}>
-                    <a className={focusClassName[menuFocused[2]]} href="#">
-                    <span className="restTab__item-name">Room</span>
-                    </a>
+                    <button className={focusClassName[menuFocused[2]]}>
+                        <span className="restTab__item-name">Room</span>
+                    </button>
                 </li>
             </ul>
         </div>

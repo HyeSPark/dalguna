@@ -8,21 +8,23 @@ function NavBar() {
     const [showAddr, setShowAddr] = useState(false)
     const onClick = () => setShowAddr(!showAddr)
 
+    const [curAddr, setCurAddr] = useState("배달장소 선택")
+
     return (
         <div className="navBar__">
             <div className="navBar__nav">
                 <a href="#" className="navBar__nav-menu"><CgMenu/></a>
-                <a href="#" className="navBar__nav-loc" onClick={onClick}>
-                    <div className="navBar__nav-loc-adrs">291 Daehak-ro, Yuseong-gu</div> 
+                <button href="#" className="navBar__nav-loc" onClick={onClick}>
+                    <div className="navBar__nav-loc-adrs">{curAddr}</div> 
                     <BsChevronDown style={{marginTop:"2px", marginLeft:"2px"}}/>
-                </a>
+                </button>
                 <a href="#" className="navBar__nav-profile"><CgProfile/></a>
             </div>
             <div className="navBar__search">
                 <div className="navBar__search-icon"><CgSearch/></div>
                 <input className="navBar__search-input" placeholder="Search for the food and restaurant!"/>
             </div>
-            {showAddr ? <AddrSel/> : null}
+            {showAddr ? <AddrSel curAddr={curAddr} setCurAddr={setCurAddr} setShowAddr={setShowAddr}/> : null}
         </div>
     )
 }

@@ -25,6 +25,7 @@
     flex-direction: row;
     justify-content: center;
     overflow:hidden;
+    font-size: 1rem;
 }
 
 .navBar__nav-loc-adrs {

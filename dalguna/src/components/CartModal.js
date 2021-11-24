@@ -30,7 +30,7 @@ function CartModal(props) {
         raised: 23000,
         minOrd: 20000,
       }])
-    const deliveryAdrs = "아름관"
+    const deliveryAdrs = "Areum Hall"
     // const [menuList, setMenuList] = useState([{
     //     name: "맛있는 돈까스",
     //     qnty: 1,
