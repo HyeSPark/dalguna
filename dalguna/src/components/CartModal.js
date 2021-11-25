@@ -10,7 +10,7 @@ import "../cart_modal.css"
 function CartModal(props) {
     const params = useParams()
     
-    const { restName, menuList, setMenuList, setModal } = props
+    const { restName, menuList, setMenuList, setModal, setVisible } = props
     const [roomInfo, setRoomInfo] = useState([{
         name: "대학생 치킨",
         timeLeft: 15,
@@ -46,7 +46,10 @@ function CartModal(props) {
             <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList} menuId={i}/>))
     
     useEffect(updateCartMenu, [menuList]) 
-
+    function goBack() {
+        setModal(<></>)
+        setVisible("restPage")
+    }
     function updateCartMenu() {
         console.log(params.userId, menuList)
         /////// not solvedddddd
@@ -72,7 +75,7 @@ function CartModal(props) {
     return (
         <div className="CartModal__" style={{backgroundColor:"white", height:"100%"}}>
             <div className="CartModal__bar">
-                <button onClick={() => setModal(<></>)} className="CartModal__bar-close"><CgClose></CgClose></button>
+                <button onClick={goBack} className="CartModal__bar-close"><CgClose></CgClose></button>
                 <span className="CartModal__bar-cart">Cart</span>
             </div>
             <div className="CartModal__address">
@@ -83,7 +86,7 @@ function CartModal(props) {
             <div className="CartModal__restmenu">
                 <div className="CartModal__title">{restName}</div>
                 { menuVisible }
-                <button className="CartModal__restmenu-add" onClick={() => setModal(<></>)}>+ Add More Menu</button>
+                <button className="CartModal__restmenu-add" onClick={goBack}>+ Add More Menu</button>
             </div>
             <div className = "mainPage__separation"/>
             {/* <div className="CartModal__request">

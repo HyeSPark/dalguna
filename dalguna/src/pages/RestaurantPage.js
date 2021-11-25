@@ -20,6 +20,8 @@ function RestaurantPage() {
   const navigate = useNavigate();
   const arrRestName = ["대학생 치킨", "베리신주쿠", "마쯔미"];
 
+  const [classNameRestPage, setClassNameRestPage] = useState("restPage");
+
   const [restInfo, setRestInfo] = useState(staticDB[params.restId])
   const [menuItemInfo, setMenuItemInfo]
   // = useState([{
@@ -40,13 +42,14 @@ function RestaurantPage() {
   const [modal, setModal] = useState(<></>)
 
   function openMenuModal(menu) {
-    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem}></MenuModal>)
+    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem} setVisible={setClassNameRestPage}></MenuModal>)
+    setClassNameRestPage("restPage-hide")
   }
   
   function handleCartItemUpdate() {
     if (document.getElementsByClassName("restPage")[0].previousSibling !== null 
       && document.getElementsByClassName("restPage")[0].previousSibling.className === "CartModal__") {
-      setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
+      setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} setVisible={setClassNameRestPage}></CartModal>)
     }
       
   }
@@ -55,10 +58,9 @@ function RestaurantPage() {
     = useState([])
   useEffect(handleCartItemUpdate, [cartItem])
   
-
-  
   function openCartModal() {
-    setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
+    setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} setVisible={setClassNameRestPage}></CartModal>)
+    setClassNameRestPage("restPage-hide")
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -100,7 +102,7 @@ function RestaurantPage() {
     return (
         <div className="ui-container">
           {modal}
-          <div className="restPage">
+          <div className={classNameRestPage}>
             {/* <TabBar/> */}
             
             <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>

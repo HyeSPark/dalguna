@@ -42,9 +42,9 @@ function CatFilterBar(props) {
     return (
         <div className="catFilterBar__">
             <div className="catFilterBar__title">
-                <a href="#" className="catFilterBar__title-back" onClick={() => navigate(-1)}>
+                <button className="catFilterBar__title-back" onClick={() => navigate(-1)}>
                     <AiOutlineArrowLeft /> 
-                </a>
+                </button>
                 <div className="catFilterBar__title-catName">
                     {props.cur}
                 </div>
