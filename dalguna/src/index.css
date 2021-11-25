@@ -1,4 +1,6 @@
 
+
+
 body {
   margin: 0;
   font-family: Pretendard, -apple-system, 
@@ -78,4 +80,8 @@ input[type="checkbox"] {
   -ms-transform: scale(1.6); /* IE 9 */
   -webkit-transform: scale(1.6); /* Chrome, Safari, Opera */
   transform: scale(1.6);
+}
+
+@media all and (max-width: 375px) {
+  html { font-size: 90%; } 
 }
