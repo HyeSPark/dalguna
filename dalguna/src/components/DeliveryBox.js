@@ -8,7 +8,7 @@ function DeliveryBox(props) {
     return (
         <div className={focusClassName[props.boxInfo.selected]}>
             <div className={focusClassName[props.boxInfo.selected]+"name"}>{props.boxInfo.name}</div>
-            <div className={focusClassName[props.boxInfo.selected]+"time"}><BiWalk/>{props.boxInfo.time} mins</div>
+            {/* <div className={focusClassName[props.boxInfo.selected]+"time"}><BiWalk/>{props.boxInfo.time} mins</div> */}
         </div>
 
     )

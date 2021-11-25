@@ -10,13 +10,9 @@ function AddrSel(props) {
     const { curAddr, setCurAddr, setShowAddr } = props;
 
     const [boxInfo, setBoxInfo] = useState([{
-        name: "Areum Hall", time: 5, selected: true
+        name: "아름관", time: 5, selected: curAddr=="아름관" ? true : false
     }, {
-        name: "Seongsil Hall", time: 7, selected: false
-    }, {
-        name: "Mirae Hall", time: 9, selected: false
-    }, {
-        name: "Narae Hall", time: 10, selected: false
+        name: "미르나래관", time: 7, selected: curAddr=="미르나래관" ? true : false
     }])
 
     const focus = (ord) => {
