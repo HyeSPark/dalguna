@@ -17,14 +17,14 @@ function RoomCard(props) {
                     </div>
                     <div className ="roomCard__info-deli">
                         <span className ="roomCard__info-deli-loc">
-                            <FaMapMarkerAlt className="roomCard__info-deli-icon" style={{verticalAlign:"-5%"}}/> {props.roomInfo.deliLoc}
+                            <FaMapMarkerAlt className="roomCard__info-deli-icon" style={{verticalAlign:"-5%"}}/> {props.roomInfo.deliInfo.addr}
                         </span>
                         <span className ="roomCard__info-deli-deliTime">
-                            <FaMotorcycle className="roomCard__info-deli-icon" style={{verticalAlign:"-5%"}}/> {props.roomInfo.deliTime} mins
+                            <FaMotorcycle className="roomCard__info-deli-icon" style={{verticalAlign:"-5%"}}/> {props.roomInfo.rest.deliInfo.time} mins
                         </span>
                     </div>
                     <div className ="roomCard__info-price">
-                        <span><RoomPriceRaised raised={props.roomInfo.poolMon} minOrd={props.roomInfo.minOrd}/></span>
+                        <span><RoomPriceRaised raised={props.roomInfo.deliInfo.poolMon} minOrd={props.roomInfo.rest.deliInfo.minOrder}/></span>
                     </div>
                 </div>
                 

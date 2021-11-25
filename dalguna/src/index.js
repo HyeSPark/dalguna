@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Main, CatFilter, RestaurantPage, CheckOut} from './pages'
 
+console.warn = () => {};
+
 ReactDOM.render(
   <BrowserRouter>
     {/* <App /> */}
