@@ -13,6 +13,9 @@
   overflow: auto;
 }
 
+.restPage-hide {
+  display: none;
+}
 
 .rest-title-back {
   color: white;
