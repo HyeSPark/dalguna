@@ -14,9 +14,7 @@ ReactDOM.render(
     <Routes>
       {/* <Route path="/" element={<MenuPage />}/> */}
       {/* <Route path="/" element={<CheckOut />}/> */}
-      <Route path="/" element={<Main />}/>
-
-      {/* <Route path="/:userId" element={<Main />}/> */}
+      <Route path="/:userId" element={<Main />}/>
       <Route path="/:userId/restaurant/:restId" element={<RestaurantPage />}/>
       <Route path="/:userId/filter/:name" element={<CatFilter />} />
       {/* <Route path="/address/:id" element={<ChangeAddress />} /> */}
