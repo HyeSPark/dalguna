@@ -52,7 +52,6 @@ function Main() {
 
   const catInfoList = [
     {name: "Korean", img:dhspic}, 
-    {name: "Chicken", img:dhspic},
     {name: "Japanese", img:dhspic},
     {name: "Snacks", img:dhspic},
     {name: "Asian", img:dhspic},

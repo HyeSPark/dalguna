@@ -48,7 +48,7 @@ function CartModal(props) {
     useEffect(updateCartMenu, [menuList]) 
     function goBack() {
         setModal(<></>)
-        setVisible("restPage")
+        // setVisible("restPage")
     }
     function updateCartMenu() {
         console.log(params.userId, menuList)

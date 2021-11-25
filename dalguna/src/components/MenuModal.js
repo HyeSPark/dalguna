@@ -17,7 +17,7 @@ function MenuModal(props) {
 
     function goBack() {
         setModal(<></>)
-        setVisible("restPage")
+        // setVisible("restPage")
     }
 
     var basePrice;
@@ -75,9 +75,7 @@ function MenuModal(props) {
 
 
     return (
-        <div className="ui-container">
-            {/* <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
-            </div> */}
+        
             <div className="menuModal__">
                 <div className="menuModal__title">
                     <button className="menuModal__title-back" onClick={goBack}>
@@ -115,10 +113,9 @@ function MenuModal(props) {
                 
                 <div className="menu-page-add-to-cart-button">
                     <LongButton type="primary" onClick={addToCart}>Add to Cart ({new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-    .format(totalPrice)})</LongButton>
+                        .format(totalPrice)})</LongButton>
                 </div>
             </div>
-        </div>
     )
 }
 

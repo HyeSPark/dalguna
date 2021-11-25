@@ -28,7 +28,7 @@ function RestCard(props) {
     // .. 으로 표시하는게 나을까? 
     return (
         <div className="restCard__">
-            <div><img className="restCard__img" src={props.restInfo.img}></img></div>
+            <div><img className="restCard__img" src={props.restInfo.photo}></img></div>
             <div className= "restCard__container">
                 <div className="restCard__name-deli-time">
                     <div className="restCard__name">{props.restInfo.name}</div>

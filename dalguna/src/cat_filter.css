@@ -15,13 +15,14 @@
 
 .catFilterBar__title {
     display: flex;
-    padding: 19px 19px 0px 19px;
+    padding: 19px 13px 0px 10px;
 }
 .catFilterBar__title-back {
     width: 30px;
     height: 30px;
-    text-align: center;
+    text-align: left;
     font-size: 1.6rem;
+    color: black;
 }
 
 .catFilterBar__title-catName {

@@ -43,7 +43,7 @@ function RestaurantPage() {
 
   function openMenuModal(menu) {
     setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem} setVisible={setClassNameRestPage}></MenuModal>)
-    setClassNameRestPage("restPage-hide")
+    // setClassNameRestPage("restPage-hide")
   }
   
   function handleCartItemUpdate() {
@@ -60,7 +60,7 @@ function RestaurantPage() {
   
   function openCartModal() {
     setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} setVisible={setClassNameRestPage}></CartModal>)
-    setClassNameRestPage("restPage-hide")
+    // setClassNameRestPage("restPage-hide")
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -105,10 +105,14 @@ function RestaurantPage() {
           <div className={classNameRestPage}>
             {/* <TabBar/> */}
             
-            <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
+            <div className="rest-title-image" style={{backgroundImage: `url(${restInfo.photo})`}}>
+              <div className="rest-title">
                 <button className="rest-title-back" onClick={goBack}>
                     <AiOutlineArrowLeft /> 
                 </button>
+                <div></div>
+              </div>
+                
                 <RestTitleBox restName={restInfo.name} restRating="5.0 (100)"></RestTitleBox>   
             </div>
             <RestTab curTab = {curTab} setCurTab = {setCurTab}/>

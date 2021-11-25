@@ -10,7 +10,7 @@ import staticDB from "../db/static.json";
 function CatFilter() {
     const params = useParams();
 
-    const catNameList = ["Korean", "Chicken", "Japanese", "Snacks", "Asian", "Salad", "Doshirak", "중국집", "덮밥"]
+    const catNameList = ["Korean", "Japanese", "Snacks", "Asian", "Salad", "Doshirak", "중국집", "덮밥"]
 
     const [restInfo, setRestInfo] 
     = useState(staticDB)
