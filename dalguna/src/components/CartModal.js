@@ -43,7 +43,7 @@ function CartModal(props) {
 
     const [menuVisible, setMenuVisible] 
         = useState(menuList.map((menu, i) => 
-            <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList}/>))
+            <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList} menuId={i}/>))
     
     useEffect(updateCartMenu, [menuList]) 
 
@@ -51,11 +51,13 @@ function CartModal(props) {
         console.log(params.userId, menuList)
         /////// not solvedddddd
         // if (menuList[0] === undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
-        if (menuList[0] !== undefined) {
+        // if (menuList[0] !== undefined) {
             var copied = [...menuList]
             // console.log(copied.filter((el)=> el.qnty !== 0))
-            setMenuVisible(copied.filter((el)=> el.qnty !== 0).map((menu, i) =><CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList}/>))
-        }
+            setMenuVisible(copied.filter((el)=> el.qnty !== 0)
+                .map((menu, i) =>
+                    <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList} menuId={i}/>))
+        // }
         // else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
         // else {setMenuVisible()}
     }
@@ -81,7 +83,7 @@ function CartModal(props) {
             <div className="CartModal__restmenu">
                 <div className="CartModal__title">{restName}</div>
                 { menuVisible }
-                <button className="CartModal__restmenu-add">+ Add More Menu</button>
+                <button className="CartModal__restmenu-add" onClick={() => setModal(<></>)}>+ Add More Menu</button>
             </div>
             <div className = "mainPage__separation"/>
             {/* <div className="CartModal__request">
@@ -93,13 +95,15 @@ function CartModal(props) {
                 </div>
                 <ul style={{padding:0}} className = "CartModal__room-list">
                     {roomList}
+                    {roomInfo.length !== 0 ? <p style={{color:"grey"}}> 현재 가능한 방이 없습니다. </p> : null}
                 </ul>
             </div>
+            <div className = "mainPage__separation"/>
             <div className="CartModal__create-room">
                 <span style={{color:"grey", fontSize:"0.9rem", fontWeight:"bold"}}>Didn’t find a room suitable for you?</span>
                 <LongButton type="primary">Create your own room</LongButton>
             </div>
-            <div className = "mainPage__separation"/>
+            
         </div>
     )
 }

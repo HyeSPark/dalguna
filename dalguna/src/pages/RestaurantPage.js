@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 
 import RestTitleBox from '../components/RestTitleBox.js'
@@ -42,14 +42,24 @@ function RestaurantPage() {
   function openMenuModal(menu) {
     setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem}></MenuModal>)
   }
-
+  
+  function handleCartItemUpdate() {
+    if (document.getElementsByClassName("restPage")[0].previousSibling !== null 
+      && document.getElementsByClassName("restPage")[0].previousSibling.className === "CartModal__") {
+      setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
+    }
+      
+  }
+  
   const [cartItem, setCartItem] 
-  = useState([])
+    = useState([])
+  useEffect(handleCartItemUpdate, [cartItem])
+  
+
+  
   function openCartModal() {
     setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal}></CartModal>)
   }
-
-  
 
   const menuList = menuItemInfo.map((menu) => 
   <li key={menu.id} style={{listStyle:'none'}} className = "mainPage__menu-item">
@@ -66,6 +76,7 @@ function RestaurantPage() {
       </div>
     </div>
   
+  // TBD
   const roomList = <div></div>
 
   const [curTab, setCurTab] = useState("menu");
@@ -75,22 +86,38 @@ function RestaurantPage() {
     "room": roomList
   }
 
+  function goBack() {
+    if (cartItem.length != 0) {
+      if (window.confirm("카트가 비워집니다. 뒤로 가시겠습니까?")) {
+        navigate(-1)
+      }
+    } else {
+      navigate(-1)
+    }
+  }
+
 
     return (
         <div className="ui-container">
-            <TabBar/>
-            {modal}
+          {modal}
+          <div className="restPage">
+            {/* <TabBar/> */}
+            
             <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
-                <a href="#" className="rest-title-back" onClick={() => navigate(-1)}>
+                <button className="rest-title-back" onClick={goBack}>
                     <AiOutlineArrowLeft /> 
-                </a>
+                </button>
                 <RestTitleBox restName={restInfo.name} restRating="5.0 (100)"></RestTitleBox>   
             </div>
             <RestTab curTab = {curTab} setCurTab = {setCurTab}/>
-            {curTabContent[curTab]}
+            <ul className="restPage__content-list">
+              {curTabContent[curTab]}
+            </ul>
             <CartButton cartItem={cartItem} onClick={openCartModal}/>
+          </div>
         </div>
     )
-}
+    }
+
 
 export default RestaurantPage

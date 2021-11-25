@@ -16,7 +16,7 @@ function MenuModal(props) {
     const { menuInfo, restName, setModal, cartItem, setCartItem } = props;
 
     function goBack() {
-        props.setModal(<></>)
+        setModal(<></>)
     }
 
     var basePrice;
@@ -55,9 +55,13 @@ function MenuModal(props) {
 
 
     function addToCart() {
+        var menuName = menuInfo.name
+        if (menuInfo.priceOptions) {
+            menuName = menuName + " " + selectedPriceOption
+        }
         const addedItem = 
-        {
-            name: menuInfo.name,
+        {   
+            name: menuName,
             qnty: 1,
             detail: selectedAddOptions,
             price: totalPrice,
