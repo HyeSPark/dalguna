@@ -3,6 +3,7 @@
     height: 106px;
     width: 100%;
     position: fixed;
+    z-index: 10;
 }
 
 .navBar__nav {
