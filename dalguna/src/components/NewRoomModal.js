@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
 import '../new-room-modal.css'
 import LongButton from './LongButton';
+
+import { db } from '../firebase-config.js';
 
 function NewRoomModal(props) {
     const { restName, menuList } = props;
@@ -27,8 +30,15 @@ function NewRoomModal(props) {
     }
 
     function createNewRoom() {
-        console.log("creating new room", params.userId, ordTime, menuList)
+        const priceSum = menuList.reduce((menu, money) => menu.price + money);
+        addDoc(collection(db, "rooms"), {
+            id: 1, restName: restName,
+            deliInfo: { addr: "아름관", poolMon: priceSum }, 'ordStat': 0,
+            parti: [{ id: params.userId, menu: menuList, ordNow: false, price: priceSum }],
+            endTime: ordTime
+        }).then(console.log('uploaded'))
     }
+
     return (
         <div className="newRoomModal__">
             <div className="newRoomModal__title">New Room</div>
