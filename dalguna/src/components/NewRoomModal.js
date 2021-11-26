@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import '../new-room-modal.css'
 import LongButton from './LongButton';
@@ -61,7 +61,9 @@ function NewRoomModal(props) {
                 
             </div>
             <div className="newRoomModal__button">
+                <Link to={`../${params.userId}`}>
                 <LongButton type={longButtonType} onClick={createNewRoom}>Create</LongButton>
+                </Link>
             </div>
         </div>
     )

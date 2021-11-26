@@ -65,20 +65,20 @@ function Main() {
     room['rest'] = restInfo.filter((rest) => rest.name == room.restName)[0];
   }
 
-  const restList = restInfo.map((rest) => 
-  <li key={rest.name} style={{listStyle:'none'}}>
-     <Link to={`./restaurant/${rest.id}`}><RestCard restInfo={rest}></RestCard></Link>
+  const restList = restInfo.map((rest, i) => 
+  <li key={i} style={{listStyle:'none'}}>
+     <Link to={`./restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
   </li>)
 
     // [NOT IMPLEMENTED] key will be changed below (room name is not unique)
-  const roomList = roomInfo.map((room) => 
-  <li key={room.roomId} style={{listStyle:'none'}}>
+  const roomList = roomInfo.map((room, i) => 
+  <li key={i} style={{listStyle:'none'}}>
       <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
   </li>
   )
 
-  const catList = catInfoList.map((cat) => 
-      <li key={cat.name} style={{listStyle:'none'}}>
+  const catList = catInfoList.map((cat, i) => 
+      <li key={i} style={{listStyle:'none'}}>
         <Link to={{
           pathname:`./filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
       </li>

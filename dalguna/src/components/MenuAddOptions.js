@@ -20,7 +20,7 @@ function MenuAddOptions(props) {
                 &nbsp;&nbsp;{opt.name}
             </div>
             <div className="menuModal__option-item-price">
-                {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                + {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                     .format(opt.price)}
             </div>
         </li>)
