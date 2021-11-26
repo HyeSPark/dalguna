@@ -1,7 +1,8 @@
 
 
 .mainPage__ {
-    height: calc(100% - 49px);
+    /* height: calc(100% - 49px); */
+    height: 100%;
     overflow: scroll;
     /* display: none; */
 }

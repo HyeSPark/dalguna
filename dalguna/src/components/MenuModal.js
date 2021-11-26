@@ -110,10 +110,11 @@ function MenuModal(props) {
                             setSelectedAddOptions={setSelectedAddOptions}/>)}
                     </div>
                 </div>
-                
-                <div className="menu-page-add-to-cart-button">
-                    <LongButton type="primary" onClick={addToCart}>Add to Cart ({new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                        .format(totalPrice)})</LongButton>
+                <div className="menuModal__button-container">
+                    <div className="menu-page-add-to-cart-button">
+                        <LongButton type="primary" onClick={addToCart}>Add to Cart ({new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                            .format(totalPrice)})</LongButton>
+                    </div>
                 </div>
             </div>
     )

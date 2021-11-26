@@ -12,6 +12,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
   cursor:'pointer';
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 
@@ -26,6 +28,7 @@ code {
   background-color: white;
   position: fixed;
   height: 100%;
+  
   width: 100%;
   left: 50%;
   transform: translateX( -50% );
@@ -84,4 +87,15 @@ input[type="checkbox"] {
 
 @media all and (max-width: 375px) {
   html { font-size: 90%; } 
+}
+
+/* iOS only */
+@supports (-webkit-touch-callout: none) {
+  .ui-container {
+    height: -webkit-fill-available;
+  }
+}
+
+html {
+  height: -webkit-fill-available;
 }

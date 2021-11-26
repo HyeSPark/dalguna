@@ -27,11 +27,14 @@
   float: right;
 }
 
-.menu-page-add-to-cart-button {
+.menuModal__button-container {
     position: fixed;
     bottom: 0px;
     width: 100%;
-    padding: 15px 0px;
+}
+.menu-page-add-to-cart-button {
+    
+    padding: 15px 19px;
     border-top: rgb(224, 224, 224) 2px solid;
     background-color: white;
 }

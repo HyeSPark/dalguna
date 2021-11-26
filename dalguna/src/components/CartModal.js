@@ -4,6 +4,7 @@ import CartMenuItem from "./CartMenuItem";
 import RoomCard from "./RoomCard";
 import LongButton from "./LongButton";
 import { useParams } from "react-router-dom";
+import NewRoomModal from "./NewRoomModal"
 
 import "../cart_modal.css"
 
@@ -65,6 +66,22 @@ function CartModal(props) {
         // else {setMenuVisible()}
     }
 
+    const [newRoomModal, setNewRoomModal] = useState(<></>)
+
+    function openNewRoomModal() {
+        setNewRoomModal(<div className="new-modal-container" onClick={closeNewRoomModal}><NewRoomModal restName={restName} menuList={menuList}/></div>)
+    }
+
+    const closeNewRoomModal = (e) => {
+        var contactHeight = e.clientY;
+        var windowHeight = window.innerHeight;
+        if (windowHeight - contactHeight > 255) {
+            setNewRoomModal(<></>)
+        }
+        
+        // 
+    }
+
     const roomList = roomInfo
                         .filter((room) => room.name==restName)
                         .map((room, i) => 
@@ -104,9 +121,9 @@ function CartModal(props) {
             <div className = "mainPage__separation"/>
             <div className="CartModal__create-room">
                 <span style={{color:"grey", fontSize:"0.9rem", fontWeight:"bold"}}>Didn’t find a room suitable for you?</span>
-                <LongButton type="primary">Create your own room</LongButton>
+                <LongButton onClick={openNewRoomModal} type="primary">Create your own room</LongButton>
             </div>
-            
+            {newRoomModal}
         </div>
     )
 }

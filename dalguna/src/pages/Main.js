@@ -108,7 +108,7 @@ function Main() {
         <ul style={{margin:0}} className = "mainPage__rest-card-list">
             {restList}
         </ul>
-        <TabBar/>
+        {/* <TabBar/> */}
       </div>
     </div>
       

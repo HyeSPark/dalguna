@@ -1,7 +1,7 @@
 .CatFilter__restList {
     padding: 15px 19px;
     margin: 0px;
-    height: calc(100vh - 117px);
+    height: calc(100% - 102px);
     overflow: auto;
 }
 
