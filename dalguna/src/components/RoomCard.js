@@ -4,10 +4,13 @@ import {FaMapMarkerAlt,FaMotorcycle} from "react-icons/fa";
 import dhspic from '../img/DHS_photo.jpeg';
 import RoomTimer from './RoomTimer.js';
 import RoomPriceRaised from './RoomPriceRaised.js';
+import { AiOutlineUser } from "react-icons/ai"
+
 
 // [NOT DECIDED] price raised?
 // [SOLVED] not yet passed any props
 function RoomCard(props) {
+    console.log(props.roomInfo.rest.photo)
     return (
         <div className ="roomCard__">
                 <div className ="roomCard__info">
@@ -28,7 +31,9 @@ function RoomCard(props) {
                     </div>
                 </div>
                 
-                <img className="roomCard__img" src={dhspic}/>
+                <div className="roomCard__img" style={{backgroundImage:`url(${props.roomInfo.rest.photo})`}}>
+                    <span className="roomCard__members"><AiOutlineUser style={{verticalAlign:"-10%"}}/> {props.roomInfo.parti.length}</span>
+                </div>
             </div>
     )
 }
