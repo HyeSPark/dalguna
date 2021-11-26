@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { CgClose } from 'react-icons/cg';
 
 function CartMenuItem(props) {
-    const [menuQnty, setMenuQnty] = useState(1);
+    const { menuDetail, setMenuDetail, menuList, menuId } = props;
+
+    const [menuQnty, setMenuQnty] = useState(menuDetail.qnty);
 
     function incQnty() {
         setMenuQnty(menuQnty + 1);
@@ -14,16 +16,19 @@ function CartMenuItem(props) {
     }
     function remove() {
         if (window.confirm("Want to remove?")) {
-            setMenuQnty(0)
+            var copiedDetail = [...menuList]
+            const len = copiedDetail.length
+            copiedDetail = copiedDetail.slice(0, menuId).concat( copiedDetail.slice(menuId+1, len) )
+            setMenuDetail(copiedDetail)
+            // setMenuQnty(0)
         }
     }
     function updateMenuDetail() {
-
-        const copiedDetail = [...props.menuList]
-        copiedDetail[0].qnty = menuQnty;
-
-        console.log(copiedDetail);
-        props.setMenuDetail(copiedDetail)
+        var copiedDetail = [...menuList]
+        const len = copiedDetail.length
+        copiedDetail[menuId].qnty = menuQnty;
+        
+        setMenuDetail(copiedDetail)
     }
 
     useEffect(updateMenuDetail, [menuQnty])
@@ -31,11 +36,11 @@ function CartMenuItem(props) {
     return (
         <div className="CartMenuItem__">
             <div className="CartMenuItem__detail">
-                <p>{props.menuDetail.name}</p>
+                <p>{menuDetail.name}</p>
                 <br/>
-                <p>{ props.menuDetail.detail.map((el, i) => (<span key={i}>{el}, </span>))}</p>
+                <p>{ menuDetail.detail.map((el, i) => (<span key={i}>{el}, </span>))}</p>
                 <p>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                .format(props.menuDetail.price)}</p>
+                .format(menuDetail.price)}</p>
             </div>
             <div className="CartMenuItem__right">
                 <button onClick={remove}><CgClose style={{color: "grey", fontSize: "1.5rem"}}/></button>

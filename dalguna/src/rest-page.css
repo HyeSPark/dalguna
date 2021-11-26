@@ -1,19 +1,38 @@
 .rest-title-image {
-  min-height: 293px;
+  min-height: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-size: cover;
+  background-position: center;
 }
 
 .restPage {
   /* height: calc(100% - 49px); */
+  height: 100%;
+  overflow: auto;
+  position:relative;
+  z-index:1;
 }
 
+.restPage-hide {
+  display: none;
+}
+
+.rest-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .rest-title-back {
-  color: white;
+  color: black;
   font-size: 1.6rem;
   text-align: left;
-  padding: 19px;
+  padding: 20px 13px 13px 16px;
+}
+
+.restPage__content-list {
+  margin: 0px;
+  padding-left: 0px;
 }

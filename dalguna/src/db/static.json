@@ -2,7 +2,7 @@
     {
         "name":"이비가짬뽕 유성본점",
         "id":0,
-        "photo":"../img/000.jpg",
+        "photo":"/img/000.jpg",
         "category":"중국집",
         "deliInfo": {
             "fee":2000,
@@ -70,7 +70,7 @@
     {
         "name":"핵밥",
         "id":1,
-        "photo":"../img/001.jpg",
+        "photo":"/img/001.jpg",
         "category":"덮밥",
         "deliInfo": {
             "fee":3000,

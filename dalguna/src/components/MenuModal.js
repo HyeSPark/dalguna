@@ -13,10 +13,11 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function MenuModal(props) {
     // 맨 위에 이름을 가게 이름으로 하는게 나을까?
-    const { menuInfo, restName, setModal, cartItem, setCartItem } = props;
+    const { menuInfo, restName, setModal, cartItem, setCartItem, setVisible } = props;
 
     function goBack() {
-        props.setModal(<></>)
+        setModal(<></>)
+        // setVisible("restPage")
     }
 
     var basePrice;
@@ -55,9 +56,13 @@ function MenuModal(props) {
 
 
     function addToCart() {
+        var menuName = menuInfo.name
+        if (menuInfo.priceOptions) {
+            menuName = menuName + " " + selectedPriceOption
+        }
         const addedItem = 
-        {
-            name: menuInfo.name,
+        {   
+            name: menuName,
             qnty: 1,
             detail: selectedAddOptions,
             price: totalPrice,
@@ -70,9 +75,7 @@ function MenuModal(props) {
 
 
     return (
-        <div className="ui-container">
-            {/* <div className="rest-title-image" style={{backgroundImage: `url(${dhspic})`}}>
-            </div> */}
+        
             <div className="menuModal__">
                 <div className="menuModal__title">
                     <button className="menuModal__title-back" onClick={goBack}>
@@ -107,13 +110,13 @@ function MenuModal(props) {
                             setSelectedAddOptions={setSelectedAddOptions}/>)}
                     </div>
                 </div>
-                
-                <div className="menu-page-add-to-cart-button">
-                    <LongButton type="primary" onClick={addToCart}>Add to Cart ({new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-    .format(totalPrice)})</LongButton>
+                <div className="menuModal__button-container">
+                    <div className="menu-page-add-to-cart-button">
+                        <LongButton type="primary" onClick={addToCart}>Add to Cart ({new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                            .format(totalPrice)})</LongButton>
+                    </div>
                 </div>
             </div>
-        </div>
     )
 }
 

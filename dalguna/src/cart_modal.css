@@ -1,7 +1,7 @@
 .CartModal__ {
-
     position: relative;
     z-index: 5000;
+    overflow: auto;
 }
 
 .CartModal__bar {
@@ -96,10 +96,11 @@
 }
 
 .CartModal__create-room {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
+    /* position: fixed;
+    bottom: 0px; */
+    /* width: 100%; */
     padding: 19px 0px;
     background-color: white;
     border-top: 1px rgb(223, 223, 223) solid;
+    margin: 0px 19px;
 }

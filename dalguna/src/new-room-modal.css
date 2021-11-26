@@ -1,0 +1,76 @@
+.new-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+}
+
+.new-modal-container-hide {
+    display: none;
+}
+
+.newRoomModal__ {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    /* height: 100px; */
+    background-color: white;
+    border-radius: 19px 19px 0px 0px;
+    padding: 19px;
+    display: flex;
+    flex-direction: column;
+}
+
+.newRoomModal__title {
+    font-weight: bold;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.newRoomModal__restName {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.newRoomModal__form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.newRoomModal__form-time {
+    font-weight: bold;
+}
+
+.newRoomModal__form-time-input {
+    max-width: 50px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgb(221, 221, 221);
+    border: none;
+    outline: none;
+}
+
+.newRoomModal__timeNotice {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: grey;
+}
+
+.newRoomModal__button {
+    text-align: center;
+}
+/* .newRoomModal__bg {
+    background-color: rgba(0, 0, 0, 0.404);
+    width: 100vw;
+    height: 100vh;
+} */
