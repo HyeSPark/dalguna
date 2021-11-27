@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
@@ -33,16 +33,28 @@ import "../main.css";
 function Main() {
   const restInfo = staticDB;
   const [roomInfo, setRoomInfo] = useState([]);
+  const [myRoomCard, setMyRoomCard] = useState(<></>);
+  
+  const { userId } = useParams();
 
   function getRooms() {
     onSnapshot(collection(db, "rooms"), (snapshot) => {
       const tmp = [];
-      snapshot.forEach((doc) => tmp.push(doc.data()))
-      setRoomInfo(tmp.map((room) => ({
-        'roomId': room.id, 'restName': room.restName,
-        'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
-        'parti': room.parti /*, 'entime': room.endTime*/
-      })));
+      snapshot.forEach((doc) => tmp.push({room_id: doc.id, room: doc.data()}))
+      setRoomInfo(tmp.map(({room, room_id}) => {
+        const roomInfoObj = {
+          'roomId': room.id, 'restName': room.restName,
+          'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
+          'parti': room.parti /*, 'entime': room.endTime*/,
+          'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
+        }
+        
+        if (room.parti.filter((el) => el.id === userId).length !== 0) {
+          setMyRoomCard(<Link to={{pathname:`./${room_id}`}}> <RoomCard roomInfo={roomInfoObj} photo={true}></RoomCard></Link>)
+        }
+
+        return roomInfoObj }));
+
     })
   }
 
@@ -62,9 +74,9 @@ function Main() {
   ]
   
   // [Not Solved] 근데 my room 이 생긴 상태의 사람은 suggestion 없애야할듯
-  for (const room of roomInfo) {
-    room['rest'] = restInfo.filter((rest) => rest.name == room.restName)[0];
-  }
+  // for (const room of roomInfo) {
+  //   room['rest'] = restInfo.filter((rest) => rest.name == room.restName)[0];
+  // }
 
   const restList = restInfo.map((rest, i) => 
   <li key={i} style={{listStyle:'none'}}>
@@ -97,7 +109,8 @@ function Main() {
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Your Room</div>
         <ul style={{margin:0}} className = "mainPage__room-list">
-            {roomList[2]}
+            {/* {roomList[2]} */}
+            {myRoomCard}
         </ul>
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Room Suggestions</div>
