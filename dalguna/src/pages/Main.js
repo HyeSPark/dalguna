@@ -74,7 +74,7 @@ function Main() {
     // [IMPLEMENTED] key will be changed below (room name is not unique)
   const roomList = roomInfo.map((room, i) => 
   <li key={i} style={{listStyle:'none'}}>
-      <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
+      <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
   </li>
   )
 

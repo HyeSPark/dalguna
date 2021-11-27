@@ -13,7 +13,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function MenuModal(props) {
     // 맨 위에 이름을 가게 이름으로 하는게 나을까?
-    const { menuInfo, restName, setModal, cartItem, setCartItem, setVisible } = props;
+    const { menuInfo, restName, setModal, cartItem, setCartItem } = props;
 
     function goBack() {
         setModal(<></>)

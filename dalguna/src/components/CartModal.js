@@ -3,7 +3,9 @@ import { CgClose } from 'react-icons/cg';
 import CartMenuItem from "./CartMenuItem";
 import RoomCard from "./RoomCard";
 import LongButton from "./LongButton";
+
 import { useParams } from "react-router-dom";
+
 import NewRoomModal from "./NewRoomModal"
 
 import "../cart_modal.css"
@@ -11,36 +13,9 @@ import "../cart_modal.css"
 function CartModal(props) {
     const params = useParams()
     
-    const { restName, menuList, setMenuList, setModal, setVisible } = props
-    const [roomInfo, setRoomInfo] = useState([{
-        name: "대학생 치킨",
-        timeLeft: 15,
-        loc: "아름관",
-        deliTime: "21~30",
-        raised: 10000,
-        minOrd: 15000,
-      }, {
-        name: "마쯔미",
-        timeLeft: 13,
-        loc: "아름관",
-        deliTime: "31~40",
-        raised: 9000,
-        minOrd: 13000,
-      }, {
-        name: "잇마이타이",
-        timeLeft: 10,
-        loc: "아름관",
-        deliTime: "11~20",
-        raised: 23000,
-        minOrd: 20000,
-      }])
+    const { restName, menuList, setMenuList, setModal, roomList, roomLength } = props
+    
     const deliveryAdrs = "Areum Hall"
-    // const [menuList, setMenuList] = useState([{
-    //     name: "맛있는 돈까스",
-    //     qnty: 1,
-    //     detail: ["데리야끼 소스로 변경", "양 추가"],
-    //     price: 10000,
-    // }])
 
     const [menuVisible, setMenuVisible] 
         = useState(menuList.map((menu, i) => 
@@ -49,21 +24,14 @@ function CartModal(props) {
     useEffect(updateCartMenu, [menuList]) 
     function goBack() {
         setModal(<></>)
-        // setVisible("restPage")
     }
     function updateCartMenu() {
         console.log(params.userId, menuList)
-        /////// not solvedddddd
-        // if (menuList[0] === undefined) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
-        // if (menuList[0] !== undefined) {
-            var copied = [...menuList]
-            // console.log(copied.filter((el)=> el.qnty !== 0))
-            setMenuVisible(copied.filter((el)=> el.qnty !== 0)
-                .map((menu, i) =>
-                    <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList} menuId={i}/>))
-        // }
-        // else if (menuList[0]["qnty"] !== 0) {setMenuVisible(<CartMenuItem menuDetail={menuList[0]} setMenuDetail={setMenuList}/>)}
-        // else {setMenuVisible()}
+        var copied = [...menuList]
+           
+        setMenuVisible(copied.filter((el)=> el.qnty !== 0)
+            .map((menu, i) =>
+                <CartMenuItem key={i} menuDetail={menu} setMenuDetail={setMenuList} menuList={menuList} menuId={i}/>))
     }
 
     const [newRoomModal, setNewRoomModal] = useState(<></>)
@@ -81,13 +49,6 @@ function CartModal(props) {
         
         // 
     }
-
-    const roomList = roomInfo
-                        .filter((room) => room.name==restName)
-                        .map((room, i) => 
-                                <li key={i} style={{listStyle:'none'}}>
-                                    <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>
-                                </li>)
 
     return (
         <div className="CartModal__" style={{backgroundColor:"white", height:"100%"}}>
@@ -114,8 +75,7 @@ function CartModal(props) {
                     Rooms Available
                 </div>
                 <ul style={{padding:0}} className = "CartModal__room-list">
-                    {roomList}
-                    {roomInfo.length !== 0 ? <p style={{color:"grey"}}> 현재 가능한 방이 없습니다. </p> : null}
+                    {roomLength !== 0 ? roomList : <p style={{color:"grey"}}> 현재 가능한 방이 없습니다. </p> }
                 </ul>
             </div>
             <div className = "mainPage__separation"/>

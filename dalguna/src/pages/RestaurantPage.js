@@ -10,8 +10,12 @@ import TabBar from '../components/TabBar.js';
 import CartButton from '../components/CartButton.js';
 import MenuModal from '../components/MenuModal.js';
 import CartModal from '../components/CartModal.js';
+import RoomCard from '../components/RoomCard.js';
 
 import staticDB from "../db/static.json";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase-config.js";
+
 import '../rest-page.css'
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
@@ -23,33 +27,19 @@ function RestaurantPage() {
   const [classNameRestPage, setClassNameRestPage] = useState("restPage");
 
   const [restInfo, setRestInfo] = useState(staticDB[params.restId])
-  const [menuItemInfo, setMenuItemInfo]
-  // = useState([{
-  //   id: 0,
-  //   name: "냉모밀+돈까스만 (+보통소스,매운소스 선택)", 
-  //   detail: "면요리(선택)+돈까스단품(선택)",
-  //   price: 13500,
-  //   img: dhspic
-  // },{
-  //   id: 1,
-  //   name: "돈까스정식+냉모밀 세트",
-  //   detail: "돈까스(선택) + 소스2종 + 냉모밀 (미니냉모밀,빵잼은 제공하지 않아용)",
-  //   price: 16000,
-  //   img: dhspic,} 
-  // ])
-  = useState(restInfo.menu)
+  const [menuItemInfo, setMenuItemInfo] = useState(restInfo.menu)
   
   const [modal, setModal] = useState(<></>)
 
   function openMenuModal(menu) {
-    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem} setVisible={setClassNameRestPage}></MenuModal>)
-    // setClassNameRestPage("restPage-hide")
+    setModal(<MenuModal menuInfo={menu} restName={restInfo.name} setModal={setModal} cartItem={cartItem} setCartItem={setCartItem} ></MenuModal>)
   }
   
   function handleCartItemUpdate() {
     if (document.getElementsByClassName("restPage")[0].previousSibling !== null 
       && document.getElementsByClassName("restPage")[0].previousSibling.className === "CartModal__") {
-      setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} setVisible={setClassNameRestPage}></CartModal>)
+      setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
+            roomList={roomList} roomLength={roomInfo.length}></CartModal>)
     }
       
   }
@@ -59,8 +49,8 @@ function RestaurantPage() {
   useEffect(handleCartItemUpdate, [cartItem])
   
   function openCartModal() {
-    setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} setVisible={setClassNameRestPage}></CartModal>)
-    // setClassNameRestPage("restPage-hide")
+    setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
+          roomList={roomList} roomLength={roomInfo.length}></CartModal>)
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -78,8 +68,38 @@ function RestaurantPage() {
       </div>
     </div>
   
-  // TBD
-  const roomList = <div></div>
+
+  const [roomInfo, setRoomInfo] = useState([]);
+
+  function getRooms() {
+    onSnapshot(collection(db, "rooms"), (snapshot) => {
+      const tmp = [];
+      snapshot.forEach((doc) => tmp.push(doc.data()))
+      setRoomInfo(tmp.map((room) => ({
+        'roomId': room.id, 'restName': room.restName,
+        'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
+        'parti': room.parti /*, 'entime': room.endTime*/
+      })));
+    })
+  }
+
+  useEffect(() => {
+    getRooms();
+  }, []);
+
+  for (const room of roomInfo) {
+      room['rest'] = restInfo;
+  }
+
+  const [roomList, setRoomList] = useState(<></>)
+  useEffect(() => {
+      setRoomList(roomInfo.filter((room) => room.restName==restInfo.name)
+                      .map((room, i) => 
+                              <li key={i} style={{listStyle:'none'}}>
+                                  <a href="#"> <RoomCard roomInfo={room} photo={false}></RoomCard></a>
+                              </li>))
+  }, [roomInfo]);
+  
 
   const [curTab, setCurTab] = useState("menu");
   const curTabContent = {
