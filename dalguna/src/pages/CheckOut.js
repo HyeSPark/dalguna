@@ -33,7 +33,7 @@ function CheckOut() {
 
   const [roomCard, setRoomCard] = useState(<></>)
 
-  const [deliInfo, setDeliInfo] = useState({time:"0~0", addr:" " , expDeliTime:" ", deliFee:0, orgPrice:""})
+  const [deliInfo, setDeliInfo] = useState({time:"0~0", addr:" " , expDeliTime:" ", deliFee:0, orgFee:""})
 
   const [totPrice, setTotPrice] = useState(0);
 
@@ -146,7 +146,7 @@ function CheckOut() {
                 <div className="checkout_info">
                     <div className="checkout_info-eta">
                         <span className="estimated_time_arrival checkout_info_heading">{deliInfo.expDeliTime} 도착 예정</span>
-                        <span className="estimated_time_arrival checkout_info_content">{deliInfo.time} mins</span>
+                        <span className="estimated_time_arrival checkout_info_content">{deliInfo.time} 분 후</span>
                     </div>
                 </div>
                 <br/>
@@ -155,23 +155,26 @@ function CheckOut() {
                     <span className="pickup_location checkout_info_content">{deliInfo.addr}</span>
                 </div>
             </div>
-            <br/>
+
+            <div className = "mainPage__separation"/>
+            <span className="checkout_info_content" style={{textAlign:"start", marginTop:"10px"}}>주문내역</span>
             <ul className="checkOut__orderList">
                 {checkOutList}
                 <li className="checkOut__deliFee">
                     <span className="checkout_menu_name">배달비</span>
                     <span className="checkout_menu_price">
                         <span className="checkout_menu_orgPrice">{deliInfo.orgFee}</span> 
-                        <span style={{color:"rgba(0, 0, 0, 0.2)"}}>➡</span> 
+                        <span style={{color:"rgba(0, 0, 0, 0.2)"}}>➡ </span> 
                         {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                             .format(deliInfo.deliFee)} </span>
                 </li>
                 <li className = "checkout_list_block">
                     <span className="checkout_menu_name" style={{fontWeight:"bold"}}>전체</span>
-                    <span className="checkout_menu_price">{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                    <span className="checkout_menu_price" style={{fontWeight:"bold"}}>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                             .format(totPrice)}</span>
                 </li>
             </ul>
+            <div className = "mainPage__separation"/>
             <div className = "checkout_orderNow">
                 {orderNow}
             </div>

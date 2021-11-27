@@ -30,7 +30,7 @@ function NewRoomModal(props) {
     }
 
     function createNewRoom() {
-        const priceSum = menuList.reduce((menu, money) => menu.price + money);
+        const priceSum = menuList.reduce((money, menu) => money + menu.price, 0);
         addDoc(collection(db, "rooms"), {
             id: 1, restName: restName,
             deliInfo: { addr: "아름관", poolMon: priceSum }, 'ordStat': 0,

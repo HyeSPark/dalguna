@@ -31,9 +31,54 @@ import "../main.css";
 // }
 
 function Main() {
+  const curAddr = "아름관"
+
   const restInfo = staticDB;
   const [roomInfo, setRoomInfo] = useState([]);
+  const [isUserParticipants, setIsUserParticipants] = useState(false);
+
+
+  const catInfoList = [
+    {name: "Korean", img:dhspic}, 
+    {name: "Japanese", img:dhspic},
+    {name: "Snacks", img:dhspic},
+    {name: "Asian", img:dhspic},
+    {name: "Salad", img:dhspic},
+    {name: "Doshirak", img:dhspic},
+    {name: "중국집", img:dhspic},
+    {name: "덮밥", img:dhspic},
+  ]
+
+  const restList = restInfo.map((rest, i) => 
+  <li key={i} style={{listStyle:'none'}}>
+     <Link to={`./restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
+  </li>)
+
+    // [IMPLEMENTED] key will be changed below (room name is not unique)
+  // const roomList = roomInfo.map((room, i) => 
+  // <li key={i} style={{listStyle:'none'}}>
+  //     <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
+  // </li>
+  // )
+
+  const catList = catInfoList.map((cat, i) => 
+      <li key={i} style={{listStyle:'none'}}>
+        <Link to={{
+          pathname:`./filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
+      </li>
+  )
+  
+  
   const [myRoomCard, setMyRoomCard] = useState(<></>);
+  const [otherRoomList, setOtherRoomList] = useState(<>
+    <div className = "mainPage__separation"/>
+    <div className = "mainPage__title">Room Suggestions</div>
+    <ul style={{margin:0}} className = "mainPage__room-list">
+        {roomInfo.map((room, i) => 
+        <li key={i} style={{listStyle:'none'}}>
+            <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
+        </li>)}
+    </ul></>);
   
   const { userId } = useParams();
 
@@ -48,11 +93,12 @@ function Main() {
           'parti': room.parti /*, 'entime': room.endTime*/,
           'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
         }
-        
+        // myroomcard는 한개씩 밖에 안시켜짐!!!!
         if (room.parti.filter((el) => el.id === userId).length !== 0) {
           setMyRoomCard(<Link to={{pathname:`./${room_id}`}}> <RoomCard roomInfo={roomInfoObj} photo={true}></RoomCard></Link>)
+          setOtherRoomList(<></>)
+          setIsUserParticipants(true);
         }
-
         return roomInfoObj }));
 
     })
@@ -62,40 +108,31 @@ function Main() {
     getRooms();
   }, []);
 
-  const catInfoList = [
-    {name: "Korean", img:dhspic}, 
-    {name: "Japanese", img:dhspic},
-    {name: "Snacks", img:dhspic},
-    {name: "Asian", img:dhspic},
-    {name: "Salad", img:dhspic},
-    {name: "Doshirak", img:dhspic},
-    {name: "중국집", img:dhspic},
-    {name: "덮밥", img:dhspic},
-  ]
+  useEffect(() => {
+    if (isUserParticipants) {}
+    else {
+      setMyRoomCard(<div className="mainPage__noYourRoom">참여하시는 방이 없습니다.</div>)
+      setOtherRoomList(<>
+        <div className = "mainPage__separation"/>
+        <div className = "mainPage__title">Room Suggestions</div>
+        <ul style={{margin:0}} className = "mainPage__room-list">
+            {roomInfo.filter((el) => el.deliInfo.addr === curAddr).map((room, i) => 
+            <li key={i} style={{listStyle:'none'}}>
+                <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
+            </li>)}
+        </ul></>
+        )
+    }
+
+  }, [roomInfo, isUserParticipants])
+  
+
   
   // [Not Solved] 근데 my room 이 생긴 상태의 사람은 suggestion 없애야할듯
   // for (const room of roomInfo) {
   //   room['rest'] = restInfo.filter((rest) => rest.name == room.restName)[0];
   // }
 
-  const restList = restInfo.map((rest, i) => 
-  <li key={i} style={{listStyle:'none'}}>
-     <Link to={`./restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
-  </li>)
-
-    // [IMPLEMENTED] key will be changed below (room name is not unique)
-  const roomList = roomInfo.map((room, i) => 
-  <li key={i} style={{listStyle:'none'}}>
-      <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
-  </li>
-  )
-
-  const catList = catInfoList.map((cat, i) => 
-      <li key={i} style={{listStyle:'none'}}>
-        <Link to={{
-          pathname:`./filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
-      </li>
-  )
 
   return (
     <div className="ui-container">
@@ -108,15 +145,13 @@ function Main() {
         </ul>
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Your Room</div>
-        <ul style={{margin:0}} className = "mainPage__room-list">
+        <div className = "mainPage__room-list">
             {/* {roomList[2]} */}
             {myRoomCard}
-        </ul>
-        <div className = "mainPage__separation"/>
-        <div className = "mainPage__title">Room Suggestions</div>
-        <ul style={{margin:0}} className = "mainPage__room-list">
-            {roomList.slice(0, 2)}
-        </ul>
+        </div>
+
+        {otherRoomList}
+        
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Restaurant List</div>
         <ul style={{margin:0}} className = "mainPage__rest-card-list">

@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../cat_filter.css';
 import dhspic from '../img/DHS_photo.jpeg';
 import CatFilterBar from '../components/CatFilterBar';
 import RestCard from '../components/RestCard';
+
 import { useParams, Link } from 'react-router-dom';
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase-config.js";
 
 import staticDB from "../db/static.json";
 
@@ -12,14 +15,31 @@ function CatFilter() {
 
     const catNameList = ["Korean", "Japanese", "Snacks", "Asian", "Salad", "Doshirak", "중국집", "덮밥"]
 
-    const [restInfo, setRestInfo] 
-    = useState(staticDB)
+    const [restInfo, setRestInfo] = useState(staticDB)
+    const [roomInfo, setRoomInfo] = useState([]);
+
+    function getRooms() {
+        onSnapshot(collection(db, "rooms"), (snapshot) => {
+          const tmp = [];
+          snapshot.forEach((doc) => tmp.push({room_id: doc.id, room: doc.data()}))
+          setRoomInfo(tmp.map(({room}) => ({
+              'roomId': room.id, 'restName': room.restName,
+              'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
+              'parti': room.parti /*, 'entime': room.endTime*/,
+              'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
+            })));
+        })
+      }
+    
+      useEffect(() => {
+        getRooms();
+      }, []);
     
     const [curSelect, setCurSelect] = useState(params.name)
     var visRestList = restInfo.filter((rest) => rest.category==curSelect)
     const restList = visRestList.map((rest) => 
     <li key={rest.name} style={{listStyle:'none'}}>
-      <Link to={`../${params.userId}/restaurant/${rest.id}`}><RestCard restInfo={rest}></RestCard></Link>
+      <Link to={`../${params.userId}/restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
     </li>
     )
     return (
