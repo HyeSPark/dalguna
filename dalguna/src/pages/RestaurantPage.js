@@ -13,7 +13,7 @@ import CartModal from '../components/CartModal.js';
 import RoomCard from '../components/RoomCard.js';
 
 import staticDB from "../db/static.json";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
 import '../rest-page.css'
@@ -21,10 +21,13 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function RestaurantPage() {
   const params = useParams();
+  const { userId, restId } = params;
   const navigate = useNavigate();
-  const arrRestName = ["대학생 치킨", "베리신주쿠", "마쯔미"];
+  // const arrRestName = ["대학생 치킨", "베리신주쿠", "마쯔미"];
 
+  const [isUserJoiningFromRoomCard, setIsUserJoiningFromRoomCard] = useState(false);
   const [classNameRestPage, setClassNameRestPage] = useState("restPage");
+  const [deliAddr, setDeliAddr] = useState("");
 
   const [restInfo, setRestInfo] = useState(staticDB[params.restId])
   const [menuItemInfo, setMenuItemInfo] = useState(restInfo.menu)
@@ -39,7 +42,8 @@ function RestaurantPage() {
     if (document.getElementsByClassName("restPage")[0].previousSibling !== null 
       && document.getElementsByClassName("restPage")[0].previousSibling.className === "CartModal__") {
       setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
-            roomList={roomList} roomLength={roomInfo.length}></CartModal>)
+            roomList={roomList} roomLength={roomInfo.length} 
+            isCreateAvailable={!isUserJoiningFromRoomCard} deliAddr={deliAddr}></CartModal>)
     }
       
   }
@@ -50,7 +54,8 @@ function RestaurantPage() {
   
   function openCartModal() {
     setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
-          roomList={roomList} roomLength={roomInfo.length}></CartModal>)
+          roomList={roomList} roomLength={roomInfo.length} 
+          isCreateAvailable={!isUserJoiningFromRoomCard} deliAddr={deliAddr}></CartModal>)
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -72,14 +77,30 @@ function RestaurantPage() {
   const [roomInfo, setRoomInfo] = useState([]);
 
   function getRooms() {
-    onSnapshot(collection(db, "rooms"), (snapshot) => {
-      const tmp = [];
-      snapshot.forEach((doc) => tmp.push(doc.data()))
-      setRoomInfo(tmp.map((room) => ({
-        'roomId': room.id, 'restName': room.restName,
-        'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
-        'parti': room.parti /*, 'entime': room.endTime*/
-      })));
+    getDoc(doc(db, "users", userId)).then((user) => {
+      setDeliAddr(user.data().addr)
+
+      if (user.data().curRoomId !== "") {
+        setIsUserJoiningFromRoomCard(true)
+        getDoc(doc(db, "rooms", user.data().curRoomId)).then((room) => {
+          const { restName, deliInfo, ordStat, parti } = room.data();
+          setRoomInfo([{
+            'roomId': user.data().curRoomId, 'restName': restName,
+            'deliInfo': deliInfo, 'ordStat': ordStat,
+            'parti': parti /*, 'entime': room.endTime*/
+          }])
+        })
+      } else {
+        onSnapshot(collection(db, "rooms"), (snapshot) => {
+          const tmp = [];
+          snapshot.forEach((doc) => tmp.push(doc.data()))
+          setRoomInfo(tmp.map((room) => ({
+            'roomId': room.id, 'restName': room.restName,
+            'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
+            'parti': room.parti /*, 'entime': room.endTime*/
+          })));
+        })
+      }
     })
   }
 

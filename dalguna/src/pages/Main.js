@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { collection, onSnapshot } from "firebase/firestore";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { collection, onSnapshot, updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
 import RoomCard from '../components/RoomCard';
@@ -70,17 +70,10 @@ function Main() {
   
   
   const [myRoomCard, setMyRoomCard] = useState(<></>);
-  const [otherRoomList, setOtherRoomList] = useState(<>
-    <div className = "mainPage__separation"/>
-    <div className = "mainPage__title">Room Suggestions</div>
-    <ul style={{margin:0}} className = "mainPage__room-list">
-        {roomInfo.map((room, i) => 
-        <li key={i} style={{listStyle:'none'}}>
-            <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
-        </li>)}
-    </ul></>);
+  const [otherRoomList, setOtherRoomList] = useState(<></>);
   
   const { userId } = useParams();
+  const navigate = useNavigate();
 
   function getRooms() {
     onSnapshot(collection(db, "rooms"), (snapshot) => {
@@ -88,25 +81,38 @@ function Main() {
       snapshot.forEach((doc) => tmp.push({room_id: doc.id, room: doc.data()}))
       setRoomInfo(tmp.map(({room, room_id}) => {
         const roomInfoObj = {
-          'roomId': room.id, 'restName': room.restName,
+          'roomId': room_id, 'restName': room.restName,
           'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
           'parti': room.parti /*, 'entime': room.endTime*/,
           'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
         }
-        // myroomcard는 한개씩 밖에 안시켜짐!!!!
+        // myroomcard는 한개씩 밖에 안 보여줌!!!!
         if (room.parti.filter((el) => el.id === userId).length !== 0) {
           setMyRoomCard(<Link to={{pathname:`./${room_id}`}}> <RoomCard roomInfo={roomInfoObj} photo={true}></RoomCard></Link>)
           setOtherRoomList(<></>)
           setIsUserParticipants(true);
         }
         return roomInfoObj }));
-
+        updateDoc(doc(db, "users", userId), {
+          curRoomId: ""
+        })
     })
   }
 
   useEffect(() => {
     getRooms();
   }, []);
+
+  function handleRoomEnter(roomId, restName) {
+    updateDoc(doc(db, "users", userId), {
+      curRoomId: roomId
+    })
+    const restId = restInfo.filter(({name}) => name === restName)[0].id
+    if (window.confirm("먼저 배달음식을 담아주세요")) {
+      navigate(`./restaurant/${restId}`)
+    }
+    console.log(roomId)
+  }
 
   useEffect(() => {
     if (isUserParticipants) {}
@@ -118,7 +124,7 @@ function Main() {
         <ul style={{margin:0}} className = "mainPage__room-list">
             {roomInfo.filter((el) => el.deliInfo.addr === curAddr).map((room, i) => 
             <li key={i} style={{listStyle:'none'}}>
-                <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
+                <div onClick={() => handleRoomEnter(room.roomId, room.restName)}> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
             </li>)}
         </ul></>
         )

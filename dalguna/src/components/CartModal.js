@@ -13,9 +13,8 @@ import "../cart_modal.css"
 function CartModal(props) {
     const params = useParams()
     
-    const { restName, menuList, setMenuList, setModal, roomList, roomLength } = props
+    const { restName, menuList, setMenuList, setModal, roomList, roomLength, isCreateAvailable, deliAddr } = props
     
-    const deliveryAdrs = "Areum Hall"
 
     const [menuVisible, setMenuVisible] 
         = useState(menuList.map((menu, i) => 
@@ -57,7 +56,7 @@ function CartModal(props) {
                 <span className="CartModal__bar-cart">Cart</span>
             </div>
             <div className="CartModal__address">
-                <div><span>Delivery to </span><span style={{fontWeight:"bold"}}>{deliveryAdrs}</span></div>
+                <div><span>Delivery to </span><span style={{fontWeight:"bold"}}>{deliAddr}</span></div>
                 <a href="#" className="CartModal__address-edit">Edit</a>
             </div>
             <div className = "mainPage__separation"/>

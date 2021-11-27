@@ -18,6 +18,14 @@ ReactDOM.render(
       <Route path="/:userId/restaurant/:restId" element={<RestaurantPage />}/>
       <Route path="/:userId/filter/:name" element={<CatFilter />} />
       {/* <Route path="/address/:id" element={<ChangeAddress />} /> */}
+      <Route
+      path="*"
+      element={
+        <main style={{ padding: "1rem" }}>
+          <p>카카오톡으로 보낸 링크로 접속해주세요!</p>
+        </main>
+      }
+    />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
