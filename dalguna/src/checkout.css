@@ -1,23 +1,68 @@
+.checkout_title__ {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  line-height: 66px;
+}
+
+.checkout_title__goBack {
+  font-size: 1.6rem;
+  color: black;
+  padding: 2px 19px;
+}
+
+
+.checkOut__orderList {
+  display: flex;
+  flex-direction: column;
+  padding: 19px 13px;
+}
+
 .checkout_info_block {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 15px;
 }
 
 .checkout_list_block {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 6px;
+  margin-bottom: 6px;
 }
 
+.checkOut__deliFee {
+  padding: 6px;
+  margin-bottom: 6px;
+  background-color: rgb(252, 245, 208);
+  border-bottom: 1px grey solid;
+}
+
+.checkout_info-eta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.checkout_info-location {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 .checkout_info_heading {
   display: block;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 5px 19px; 
   font-size: 15px;
   font-weight: light;
 }
 
 .checkout_info_content {
   display: block;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 5px 19px; 
   font-size: 20px;
   font-weight: bold;
 }
@@ -32,4 +77,19 @@
 .checkout_menu_price {
   display: block;
   float: right;
+}
+
+
+.checkout_menu_orgPrice {
+  text-decoration: line-through;
+}
+
+.checkout_orderNow {
+  padding: 19px;
+}
+
+.checkout_orderNow-explain {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: grey;
 }
