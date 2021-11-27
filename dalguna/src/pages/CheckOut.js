@@ -1,44 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RoomCard from "../components/RoomCard";
+
+import staticDB from "../db/static.json";
+import { useParams } from "react-router-dom";
+import { collection, onSnapshot, doc } from "firebase/firestore";
+import { db } from "../firebase-config.js";
 
 import '../checkout.css'
 
 function CheckOut() {
 
-    const [roomInfo, setRoomInfo] = useState([{
-        name: "잇마이타이",
-        timeLeft: 10,
-        loc: "아름관",
-        deliTime: "11~20",
-        raised: 23000,
-        minOrd: 20000,
-      }])
+    // const [roomInfo, setRoomInfo] = useState([{
+    //     name: "잇마이타이",
+    //     timeLeft: 10,
+    //     loc: "아름관",
+    //     deliTime: "11~20",
+    //     raised: 23000,
+    //     minOrd: 20000,
+    //   }])
 
-      const [menuItemInfo, setMenuItemInfo]
-      = useState([{
-        name: "냉모밀+돈까스만", 
-        detail: "면요리(선택)+돈까스단품(선택)",
-        price: 13500,
-      },
-      {name: "냉모밀+돈까스만",
-        detail: "돈까스(선택) + 소스2종 + 냉모밀 (미니냉모밀,빵잼은 제공하지 않아용)",
-        price: 16000,},{
-          name: "냉모밀+돈까스만", 
-          detail: "면요리(선택)+돈까스단품(선택)",
-          price: 13500
-        }
-      ])
+  const { userId, roomId } = useParams()
 
-      const room = roomInfo.map((room) =>
-          <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>)
+  const [menuItemInfo, setMenuItemInfo] = useState([]) // arr
 
-      const checkoutList = menuItemInfo.map((menu) => 
-          <li key={menu.name} style={{listStyle:'none'}} className = "checkout_list_block">
+  const [roomInfo, setRoomInfo] = useState(); // obj from the docID
+
+  const [checkOutList, setCheckOutList] = useState(<></>)
+
+  const [restInfo, setRestInfo] = useState(); // obj from the static db
+
+  const [roomCard, setRoomCard] = useState(<></>)
+
+
+  function getRooms() {
+
+    onSnapshot(collection(db, "rooms"), (snapshot) => {
+      const tmp = [];
+      snapshot.forEach((doc) => {
+          if (doc.id === roomId) {
+            tmp.push(doc.data())
+          }
+      })
+
+      const roomInfoObj = tmp.map((room) => ({
+        'roomId': room.id, 'restName': room.restName,
+        'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
+        'parti': room.parti /*, 'entime': room.endTime*/
+      }))[0]
+
+      roomInfoObj['rest'] = staticDB.filter((el) => String(el.name) === String(roomInfoObj.restName))[0];
+
+      setRoomInfo(roomInfoObj);
+      console.log(roomInfoObj)
+
+      setRoomCard(<div>
+            <a href="#"> <RoomCard roomInfo={roomInfoObj} photo={false}></RoomCard></a>
+        </div>)
+      setMenuItemInfo(roomInfoObj.parti.filter((el) => String(el.id) === String(userId))[0].menu)
+      
+    })
+  }
+
+  useEffect(() => {
+    getRooms();
+  }, []);
+
+  
+  useEffect(() => {
+      setCheckOutList(menuItemInfo.map((menu) => 
+            <li key={menu.name} style={{listStyle:'none'}} className = "checkout_list_block">
             <span className="checkout_menu_name">{menu.name}</span>
             <span className="checkout_menu_price">{menu.price}</span>
-          </li>
-          
-          )
+        </li>))
+    
+  }, [menuItemInfo])
+    //   const room = roomInfo.map((room) =>
+    //       <a href="#"> <RoomCard roomInfo={room}></RoomCard></a>)
+
+
 
       
     return (
@@ -46,8 +85,8 @@ function CheckOut() {
             <div className ="checkout_title__">
                 Room #2
             </div>
-            {room}
-        <div classname="checkout_info_block">
+            {roomCard}
+        <div className="checkout_info_block">
             <div className="checkout_info_heading">
                 <span className="estimated_time_arrival">ETA 18:32 PM</span>
                 <span className="pickup_location">Pick up location</span>
@@ -60,7 +99,7 @@ function CheckOut() {
         </div>
         <br/>
         <div>
-            {checkoutList}
+            {checkOutList}
         </div>
         </div>
     )

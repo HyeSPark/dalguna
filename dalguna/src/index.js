@@ -13,7 +13,7 @@ ReactDOM.render(
     {/* <App /> */}
     <Routes>
       {/* <Route path="/" element={<MenuPage />}/> */}
-      {/* <Route path="/" element={<CheckOut />}/> */}
+      <Route path="/:userId/:roomId" element={<CheckOut />}/>
       <Route path="/:userId" element={<Main />}/>
       <Route path="/:userId/restaurant/:restId" element={<RestaurantPage />}/>
       <Route path="/:userId/filter/:name" element={<CatFilter />} />
