@@ -18,11 +18,9 @@ import "../main.css";
 
 function Main() {
   const curAddr = "아름관"
-
   const restInfo = staticDB;
   const [roomInfo, setRoomInfo] = useState([]);
   const [isUserParticipants, setIsUserParticipants] = useState(false);
-
   const catInfoList = [
     {name: "Korean", img:dhspic}, 
     {name: "Japanese", img:dhspic},
@@ -34,17 +32,17 @@ function Main() {
     {name: "덮밥", img:dhspic},
   ]
 
-  const restList = restInfo.map((rest, i) => 
+  const stringToTime = (str) => {
+    const [hour, minute] = str.split(':').map((el) => parseInt(el));
+    return hour * 60 + minute;
+  }
+  const restList = restInfo.filter((rest) => {
+    const nowTime = new Date().getHours() * 60 + new Date().getMinutes();
+    return stringToTime(rest.open) <= nowTime && nowTime <= stringToTime(rest.close);
+  }).map((rest, i) => 
   <li key={i} style={{listStyle:'none'}}>
      <Link to={`./restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
   </li>)
-
-    // [IMPLEMENTED] key will be changed below (room name is not unique)
-  // const roomList = roomInfo.map((room, i) => 
-  // <li key={i} style={{listStyle:'none'}}>
-  //     <a href="#"> <RoomCard roomInfo={room} photo={true}></RoomCard></a>
-  // </li>
-  // )
 
   const catList = catInfoList.map((cat, i) => 
       <li key={i} style={{listStyle:'none'}}>
@@ -52,7 +50,6 @@ function Main() {
           pathname:`./filter/${cat.name}`}}> <CatItem img={cat.img} name={cat.name}></CatItem> </Link>
       </li>
   )
-  
   
   const [myRoomCard, setMyRoomCard] = useState(<></>);
   const [otherRoomList, setOtherRoomList] = useState(<></>);
@@ -78,10 +75,10 @@ function Main() {
           setOtherRoomList(<></>)
           setIsUserParticipants(true);
         }
-        return roomInfoObj }));
-        updateDoc(doc(db, "users", userId), {
-          curRoomId: ""
-        })
+        return roomInfoObj}));
+      updateDoc(doc(db, "users", userId), {
+        curRoomId: ""
+      })
     })
   }
 
@@ -138,12 +135,9 @@ function Main() {
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Your Room</div>
         <div className = "mainPage__room-list">
-            {/* {roomList[2]} */}
             {myRoomCard}
         </div>
-
         {otherRoomList}
-        
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Restaurant List</div>
         <ul style={{margin:0}} className = "mainPage__rest-card-list">
