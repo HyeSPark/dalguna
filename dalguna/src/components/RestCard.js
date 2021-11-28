@@ -9,14 +9,16 @@ function RestCard(props) {
     ///// room tag list is not solved
     const [roomTagList, setRoomTagList] = useState(<></>)
     // const [roomListForRest, setRoomListForRest] = useState(props.roomInfo.filter((el) => el.restName === props.restInfo.name))
-
+    const isPrimaryTag = {
+        true: "restCard__tag-primary",
+        false: "restCard__tag-secondary",
+    }
     useEffect( updateRoomTagList , [props.roomInfo])
     function updateRoomTagList() {
-        console.log(props.roomInfo.filter((el) => el.restName === props.restInfo.name))
-        setRoomTagList( props.roomInfo.filter((el) => el.restName === props.restInfo.name).map(({parti}, i) =>
-                <li key={i} className="restCard__room-tag">
+        setRoomTagList( props.roomInfo.filter((el) => el.restName === props.restInfo.name).map(({parti, poolMon, rest, timeLeft}, i) =>
+                <li key={i} className={`restCard__room-tag ${isPrimaryTag[poolMon >= rest.deliInfo.minOrder]}`}>
                     <AiOutlineUser className="restCard__secondary" style={{verticalAlign:"-5%"}}/> {parti.length} 
-                    <span className="restCard__secondary"> until</span> TBD
+                    <span className="restCard__secondary"> 주문</span> {timeLeft}<span className="restCard__secondary">분 전</span>
                 </li>
             ))
     }

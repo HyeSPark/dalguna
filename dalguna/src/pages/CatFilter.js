@@ -25,8 +25,10 @@ function CatFilter() {
           setRoomInfo(tmp.map(({room}) => ({
               'roomId': room.id, 'restName': room.restName,
               'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
-              'parti': room.parti /*, 'entime': room.endTime*/,
+              'parti': room.parti, 'endTime': room.endTime,
               'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
+              'timeLeft': parseInt((room.endTime.seconds - new Date().getTime() / 1000) / 60),
+              'poolMon': room.parti.reduce((money, part) => money + part.price, 0)
             })));
         })
       }

@@ -53,11 +53,18 @@
 
 .restCard__room-tag {
     font-size: 0.8125 rem;
-    background-color: #E1DEDE;
     border-radius: 13px;
     padding: 4px 11px;
     margin-right: 4px;
     margin-bottom: 5px;
+}
+
+.restCard__tag-primary {
+    background-color: #cee4ff;
+}
+
+.restCard__tag-secondary {
+    background-color: #E1DEDE;
 }
 
 .restCard__secondary {
