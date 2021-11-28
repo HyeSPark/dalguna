@@ -83,11 +83,14 @@ function RestaurantPage() {
       if (user.data().curRoomId !== "") {
         setIsUserJoiningFromRoomCard(true)
         getDoc(doc(db, "rooms", user.data().curRoomId)).then((room) => {
-          const { restName, deliInfo, ordStat, parti } = room.data();
+          const { restName, deliInfo, ordStat, parti, endTime } = room.data();
           setRoomInfo([{
             'roomId': user.data().curRoomId, 'restName': restName,
             'deliInfo': deliInfo, 'ordStat': ordStat,
-            'parti': parti /*, 'entime': room.endTime*/
+            'parti': parti, 'endTime': endTime,
+            'timeLeft': parseInt((endTime.seconds - new Date().getTime() / 1000) / 60),
+            'rest': restInfo,
+            'poolMon': parti.reduce((money, menu) => money + menu.price, 0) 
           }])
         })
       } else {
@@ -97,7 +100,10 @@ function RestaurantPage() {
           setRoomInfo(tmp.map((room) => ({
             'roomId': room.id, 'restName': room.restName,
             'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
-            'parti': room.parti /*, 'entime': room.endTime*/
+            'parti': room.parti, 'endTime': room.endTime,
+            'timeLeft': parseInt((room.endTime.seconds - new Date().getTime() / 1000) / 60),
+            'rest': restInfo,
+            'poolMon': room.parti.reduce((money, menu) => money + menu.price, 0) 
           })));
         })
       }
@@ -108,17 +114,21 @@ function RestaurantPage() {
     getRooms();
   }, []);
 
-  for (const room of roomInfo) {
-      room['rest'] = restInfo;
-  }
+  // for (const room of roomInfo) {
+  //     room['rest'] = restInfo;
+  // }
 
   const [roomList, setRoomList] = useState(<></>)
   useEffect(() => {
+
       setRoomList(roomInfo.filter((room) => room.restName==restInfo.name)
-                      .map((room, i) => 
-                              <li key={i} style={{listStyle:'none'}}>
-                                  <a href="#"> <RoomCard roomInfo={room} photo={false}></RoomCard></a>
-                              </li>))
+      .map((room, i) => 
+      <li key={i} style={{listStyle:'none'}}>
+          <div> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
+      </li>))
+      if (roomInfo.length === 0) {
+        setRoomList(<p>만들어진 방이 없습니다.</p>)
+      }
   }, [roomInfo]);
   
 

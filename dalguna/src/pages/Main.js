@@ -100,12 +100,13 @@ function Main() {
   useEffect(() => {
     if (isUserParticipants) {}
     else {
+      console.log(roomInfo)
       setMyRoomCard(<div className="mainPage__noYourRoom">참여하시는 방이 없습니다.</div>)
       setOtherRoomList(<>
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Room Suggestions</div>
         <ul style={{margin:0}} className = "mainPage__room-list">
-            {roomInfo.filter((el) => el.deliInfo.addr === curAddr).map((room, i) => 
+            {roomInfo.filter((el) => el.addr === curAddr).map((room, i) => 
             <li key={i} style={{listStyle:'none'}}>
                 <div onClick={() => handleRoomEnter(room.roomId, room.restName)}> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
             </li>)}

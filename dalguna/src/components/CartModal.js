@@ -14,7 +14,8 @@ function CartModal(props) {
     const params = useParams()
     
     const { restName, menuList, setMenuList, setModal, roomList, roomLength, isCreateAvailable, deliAddr } = props
-    
+    const createButtonClassName = { true: "" ,
+            false: "cartModal__createHide" }
 
     const [menuVisible, setMenuVisible] 
         = useState(menuList.map((menu, i) => 
@@ -78,7 +79,7 @@ function CartModal(props) {
                 </ul>
             </div>
             <div className = "mainPage__separation"/>
-            <div className="CartModal__create-room">
+            <div className={`CartModal__create-room ${createButtonClassName[isCreateAvailable]}`}>
                 <span style={{color:"grey", fontSize:"0.9rem", fontWeight:"bold"}}>Didn’t find a room suitable for you?</span>
                 <LongButton onClick={openNewRoomModal} type="primary">Create your own room</LongButton>
             </div>
