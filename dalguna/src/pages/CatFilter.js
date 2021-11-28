@@ -13,7 +13,7 @@ import staticDB from "../db/static.json";
 function CatFilter() {
     const params = useParams();
 
-    const catNameList = ["Korean", "Japanese", "Snacks", "Asian", "Salad", "Doshirak", "중국집", "덮밥"]
+    const catNameList = ["한식", "일식", "분식", "아시아", "샐러드", "도시락", "중국집", "덮밥"]
 
     const [restInfo, setRestInfo] = useState(staticDB)
     const [roomInfo, setRoomInfo] = useState([]);

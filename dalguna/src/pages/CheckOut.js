@@ -158,7 +158,7 @@ function CheckOut() {
                 </div>
                 <br/>
                 <div className="checkout_info-location">
-                    <span className="pickup_location checkout_info_heading">Pick up location</span>
+                    <span className="pickup_location checkout_info_heading">Pick up Address</span>
                     <span className="pickup_location checkout_info_content">{deliInfo.addr}</span>
                 </div>
             </div>

@@ -22,12 +22,12 @@ function Main() {
   const [roomInfo, setRoomInfo] = useState([]);
   const [isUserParticipants, setIsUserParticipants] = useState(false);
   const catInfoList = [
-    {name: "Korean", img:dhspic}, 
-    {name: "Japanese", img:dhspic},
-    {name: "Snacks", img:dhspic},
-    {name: "Asian", img:dhspic},
-    {name: "Salad", img:dhspic},
-    {name: "Doshirak", img:dhspic},
+    {name: "한식", img:dhspic}, 
+    {name: "일식", img:dhspic},
+    {name: "분식", img:dhspic},
+    {name: "아시아", img:dhspic},
+    {name: "샐러드", img:dhspic},
+    {name: "도시락", img:dhspic},
     {name: "중국집", img:dhspic},
     {name: "덮밥", img:dhspic},
   ]
@@ -82,11 +82,13 @@ function Main() {
     })
 
     getDoc(doc(db, "users", userId)).then((user)=> {
-      const { addr } = user.data()
-      if (addr === "") {
-        setDeliAddr("배달장소 선택")
-      } else {
-        setDeliAddr(addr)
+      if (user.data() !== undefined) {
+        const { addr } = user.data()
+        if (addr === "" || addr === undefined) {
+          setDeliAddr("배달장소 선택")
+        } else {
+          setDeliAddr(addr)
+        }
       }
     })
   }

@@ -96,9 +96,9 @@ function RestaurantPage() {
       } else {
         onSnapshot(collection(db, "rooms"), (snapshot) => {
           const tmp = [];
-          snapshot.forEach((doc) => tmp.push(doc.data()))
-          setRoomInfo(tmp.filter((el) => el.addr === user.data().addr).map((room) => ({
-            'roomId': room.id, 'restName': room.restName,
+          snapshot.forEach((doc) => tmp.push({room: doc.data(), room_id: doc.id}))
+          setRoomInfo(tmp.filter((el) => el.room.addr === user.data().addr).map(({room, room_id}) => ({
+            'roomId': room_id, 'restName': room.restName,
             'addr': room.addr, 'ordStat': room.ordStat,
             'parti': room.parti, 'endTime': room.endTime,
             'timeLeft': parseInt((room.endTime.seconds - new Date().getTime() / 1000) / 60),

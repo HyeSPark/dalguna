@@ -98,6 +98,7 @@ function CartModal(props) {
                     <LongButton onClick={() => enterExistingRoom(roomIdUserJoining)} type="primary">모임에 합류하기</LongButton>
                 </div>)
             }
+            console.log(roomInfo)
             setRoomListClickable(roomInfo.filter((room) => room.restName==restName)
                 .map((room, i) => 
                     <li key={i} style={{listStyle:'none'}}>
