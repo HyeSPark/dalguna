@@ -4,7 +4,10 @@ import CartMenuItem from "./CartMenuItem";
 import RoomCard from "./RoomCard";
 import LongButton from "./LongButton";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { collection, onSnapshot, getDoc, updateDoc, doc } from "firebase/firestore";
+import { db } from "../firebase-config.js";
 
 import NewRoomModal from "./NewRoomModal"
 
@@ -12,10 +15,28 @@ import "../cart_modal.css"
 
 function CartModal(props) {
     const params = useParams()
+    const navigate = useNavigate()
     
-    const { restName, menuList, setMenuList, setModal, roomList, roomLength, isCreateAvailable, deliAddr } = props
-    const createButtonClassName = { true: "" ,
-            false: "cartModal__createHide" }
+    const { restName, menuList, setMenuList, setModal, roomList, roomLength, roomIdUserJoining, deliAddr } = props
+    // const createButtonClassName = { true: "" ,
+    //         false: "cartModal__createHide" }
+
+    const [createButton, setCreateButton] = useState(<></>)
+    useEffect(()=> {
+        if (roomIdUserJoining === "") {
+            setCreateButton(<div className="CartModal__create-room">
+                <span style={{color:"grey", fontSize:"0.9rem", fontWeight:"bold"}}>원하는 방을 찾지 못하셨나요?</span>
+                <LongButton onClick={openNewRoomModal} type="primary">새로운 방 만들기</LongButton>
+            </div>)
+        } else {
+            setCreateButton(<div className="CartModal__create-room">
+                <span style={{color:"grey", fontSize:"0.9rem", fontWeight:"bold"}}>선택한 방에서 같이 주문할까요?</span>
+                <LongButton onClick={() => enterExistingRoom(roomIdUserJoining)} type="primary">모임에 합류하기</LongButton>
+            </div>)
+        }
+
+    }, [roomIdUserJoining])
+    
 
     const [menuVisible, setMenuVisible] 
         = useState(menuList.map((menu, i) => 
@@ -50,6 +71,25 @@ function CartModal(props) {
         // 
     }
 
+    function enterExistingRoom(roomId) {
+        if (window.confirm("주문할까요?")) {
+            getDoc(doc(db, "rooms", roomId)).then((room) => {
+                const { parti } = room.data();
+                const updatedParti = [...parti, {
+                    "id": params.userId,
+                    "menu": menuList, 
+                    "ordNow": false,
+                    "price": menuList.reduce((price, menu) => price + menu.price * menu.qnty, 0)
+                }]
+                updateDoc(doc(db, "rooms", roomId), {
+                    parti: updatedParti,
+                })
+                navigate(`../${params.userId}`)
+            }
+            )
+        }
+    }
+
     return (
         <div className="CartModal__" style={{backgroundColor:"white", height:"100%"}}>
             <div className="CartModal__bar">
@@ -79,10 +119,7 @@ function CartModal(props) {
                 </ul>
             </div>
             <div className = "mainPage__separation"/>
-            <div className={`CartModal__create-room ${createButtonClassName[isCreateAvailable]}`}>
-                <span style={{color:"grey", fontSize:"0.9rem", fontWeight:"bold"}}>Didn’t find a room suitable for you?</span>
-                <LongButton onClick={openNewRoomModal} type="primary">Create your own room</LongButton>
-            </div>
+            {createButton}
             {newRoomModal}
         </div>
     )

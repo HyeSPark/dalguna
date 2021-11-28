@@ -102,7 +102,7 @@ function CheckOut() {
                 <span className = "checkout_orderNow-explain">버튼을 이미 눌렀어요</span></>)
             } else {
                 setOrderNowButton(<LongButton onClick={plzOrderNow} type="primary">지금 시키고 싶어요!</LongButton>)
-                setOrderNow(<><span className = "checkout_orderNow-explain">{numOrdNowPeople}명의 사람이 지금 시키고 싶어해요</span>
+                setOrderNow(<><span className = "checkout_orderNow-explain">{roomInfo.parti.length}명 중 {numOrdNowPeople}명의 사람이 지금 시키고 싶어해요</span>
                 {orderNowButton}</>)
             }
           }
@@ -138,7 +138,7 @@ function CheckOut() {
           endTime: roomInfo.endTime, addr: roomInfo.addr,
           parti: roomInfo.parti
       });
-      setOrderNow(<><span className = "checkout_orderNow-explain">{numOrdNowPeople + 1}명의 사람이 지금 시키고 싶어해요</span>
+      setOrderNow(<><span className = "checkout_orderNow-explain">{roomInfo.parti.length}명 중 {numOrdNowPeople + 1}명의 사람이 지금 시키고 싶어해요</span>
             <LongButton type="secondary">지금 시키고 싶어요!</LongButton>
             <span className = "checkout_orderNow-explain">버튼을 이미 눌렀어요</span></>)
   }

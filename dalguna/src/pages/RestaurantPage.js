@@ -25,7 +25,7 @@ function RestaurantPage() {
   const navigate = useNavigate();
   // const arrRestName = ["대학생 치킨", "베리신주쿠", "마쯔미"];
 
-  const [isUserJoiningFromRoomCard, setIsUserJoiningFromRoomCard] = useState(false);
+  const [roomIdUserJoining, setRoomIdUserJoining] = useState("");
   const [classNameRestPage, setClassNameRestPage] = useState("restPage");
   const [deliAddr, setDeliAddr] = useState("");
 
@@ -43,7 +43,7 @@ function RestaurantPage() {
       && document.getElementsByClassName("restPage")[0].previousSibling.className === "CartModal__") {
       setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
             roomList={roomList} roomLength={roomInfo.length} 
-            isCreateAvailable={!isUserJoiningFromRoomCard} deliAddr={deliAddr}></CartModal>)
+            roomIdUserJoining={roomIdUserJoining} deliAddr={deliAddr}></CartModal>)
     }
       
   }
@@ -55,7 +55,7 @@ function RestaurantPage() {
   function openCartModal() {
     setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
           roomList={roomList} roomLength={roomInfo.length} 
-          isCreateAvailable={!isUserJoiningFromRoomCard} deliAddr={deliAddr}></CartModal>)
+          roomIdUserJoining={roomIdUserJoining} deliAddr={deliAddr}></CartModal>)
   }
 
   const menuList = menuItemInfo.map((menu) => 
@@ -81,7 +81,7 @@ function RestaurantPage() {
       setDeliAddr(user.data().addr)
 
       if (user.data().curRoomId !== "") {
-        setIsUserJoiningFromRoomCard(true)
+        setRoomIdUserJoining(user.data().curRoomId)
         getDoc(doc(db, "rooms", user.data().curRoomId)).then((room) => {
           const { restName, deliInfo, ordStat, parti, endTime } = room.data();
           setRoomInfo([{
@@ -130,6 +130,7 @@ function RestaurantPage() {
         setRoomList(<p>만들어진 방이 없습니다.</p>)
       }
   }, [roomInfo]);
+
   
 
   const [curTab, setCurTab] = useState("menu");
