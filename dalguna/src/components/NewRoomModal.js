@@ -7,7 +7,7 @@ import LongButton from './LongButton';
 import { db } from '../firebase-config.js';
 
 function NewRoomModal(props) {
-    const { restName, menuList } = props;
+    const { restName, menuList, deliAddr } = props;
 
     const [longButtonType, setLongButtonType] = useState("secondary")
     const [ordTimeJSX, setOrdTimeJSX] = useState(<></>)
@@ -32,8 +32,8 @@ function NewRoomModal(props) {
     function createNewRoom() {
         const priceSum = menuList.reduce((money, menu) => money + menu.price, 0);
         addDoc(collection(db, "rooms"), {
-            id: 1, restName: restName,
-            deliInfo: { addr: "아름관", poolMon: priceSum }, 'ordStat': 0,
+            restName: restName,
+            addr: deliAddr, 'ordStat': 0,
             parti: [{ id: params.userId, menu: menuList, ordNow: false, price: priceSum }],
             endTime: ordTime
         }).then(console.log('uploaded'))

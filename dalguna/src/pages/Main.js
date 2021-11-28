@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { collection, onSnapshot, updateDoc, doc } from "firebase/firestore";
+import { collection, onSnapshot, updateDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
 import RoomCard from '../components/RoomCard';
@@ -17,7 +17,7 @@ import dhspic from '../img/DHS_photo.jpeg';
 import "../main.css";
 
 function Main() {
-  const curAddr = "아름관"
+  const [deliAddr, setDeliAddr] = useState("");
   const restInfo = staticDB;
   const [roomInfo, setRoomInfo] = useState([]);
   const [isUserParticipants, setIsUserParticipants] = useState(false);
@@ -80,6 +80,15 @@ function Main() {
         curRoomId: ""
       })
     })
+
+    getDoc(doc(db, "users", userId)).then((user)=> {
+      const { addr } = user.data()
+      if (addr === "") {
+        setDeliAddr("배달장소 선택")
+      } else {
+        setDeliAddr(addr)
+      }
+    })
   }
 
   useEffect(() => {
@@ -100,13 +109,13 @@ function Main() {
   useEffect(() => {
     if (isUserParticipants) {}
     else {
-      console.log(roomInfo)
-      setMyRoomCard(<div className="mainPage__noYourRoom">참여하시는 방이 없습니다.</div>)
+      console.log(roomInfo, )
+      setMyRoomCard(<div className="mainPage__noYourRoom">아직 참여하신 방이 없습니다.</div>)
       setOtherRoomList(<>
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Room Suggestions</div>
         <ul style={{margin:0}} className = "mainPage__room-list">
-            {roomInfo.filter((el) => el.addr === curAddr).map((room, i) => 
+            {roomInfo.filter((el) => el.addr === deliAddr).map((room, i) => 
             <li key={i} style={{listStyle:'none'}}>
                 <div onClick={() => handleRoomEnter(room.roomId, room.restName)}> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
             </li>)}
@@ -114,9 +123,15 @@ function Main() {
         )
     }
 
-  }, [roomInfo, isUserParticipants])
+  }, [roomInfo, isUserParticipants, deliAddr])
   
-
+  useEffect(() => {
+    if (deliAddr !== "배달장소 선택" && deliAddr !== "") {
+      updateDoc(doc(db, "users", userId), {
+        addr: deliAddr
+      })
+    }
+  }, [deliAddr])
   
   // [Not Solved] 근데 my room 이 생긴 상태의 사람은 suggestion 없애야할듯
   // for (const room of roomInfo) {
@@ -127,7 +142,7 @@ function Main() {
   return (
     <div className="ui-container">
       <div className="mainPage__">
-        <NavBar/>
+        <NavBar deliAddr={deliAddr} setDeliAddr={setDeliAddr}/>
         <div style={{height:"105px"}}/>
         <div className = "mainPage__title">Food Categories</div>
         <ul className = "mainPage__cat-list">

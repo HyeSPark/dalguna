@@ -152,8 +152,8 @@ function CheckOut() {
             <div className="checkout_info_block">
                 <div className="checkout_info">
                     <div className="checkout_info-eta">
-                        <span className="estimated_time_arrival checkout_info_heading">{deliInfo.expDeliTime} 도착 예정</span>
-                        <span className="estimated_time_arrival checkout_info_content">{deliInfo.time} 분 후</span>
+                        <span className="estimated_time_arrival checkout_info_heading">지금 시키면 {deliInfo.expDeliTime} 도착 예정</span>
+                        <span className="estimated_time_arrival checkout_info_content">배달시간: {deliInfo.time} 분</span>
                     </div>
                 </div>
                 <br/>

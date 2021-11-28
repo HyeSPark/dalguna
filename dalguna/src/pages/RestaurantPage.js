@@ -42,7 +42,7 @@ function RestaurantPage() {
     if (document.getElementsByClassName("restPage")[0].previousSibling !== null 
       && document.getElementsByClassName("restPage")[0].previousSibling.className === "CartModal__") {
       setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
-            roomList={roomList} roomLength={roomInfo.length} 
+            roomList={roomList} /*roomLength={roomInfo.length}*/ roomInfo={roomInfo}
             roomIdUserJoining={roomIdUserJoining} deliAddr={deliAddr}></CartModal>)
     }
       
@@ -54,7 +54,7 @@ function RestaurantPage() {
   
   function openCartModal() {
     setModal(<CartModal restName={restInfo.name} menuList={cartItem} setMenuList={setCartItem} setModal={setModal} 
-          roomList={roomList} roomLength={roomInfo.length} 
+          roomList={roomList} /*roomLength={roomInfo.length}*/ roomInfo={roomInfo}
           roomIdUserJoining={roomIdUserJoining} deliAddr={deliAddr}></CartModal>)
   }
 
@@ -83,10 +83,10 @@ function RestaurantPage() {
       if (user.data().curRoomId !== "") {
         setRoomIdUserJoining(user.data().curRoomId)
         getDoc(doc(db, "rooms", user.data().curRoomId)).then((room) => {
-          const { restName, deliInfo, ordStat, parti, endTime } = room.data();
+          const { restName, addr, ordStat, parti, endTime } = room.data();
           setRoomInfo([{
             'roomId': user.data().curRoomId, 'restName': restName,
-            'deliInfo': deliInfo, 'ordStat': ordStat,
+            'addr': addr, 'ordStat': ordStat,
             'parti': parti, 'endTime': endTime,
             'timeLeft': parseInt((endTime.seconds - new Date().getTime() / 1000) / 60),
             'rest': restInfo,
@@ -97,9 +97,9 @@ function RestaurantPage() {
         onSnapshot(collection(db, "rooms"), (snapshot) => {
           const tmp = [];
           snapshot.forEach((doc) => tmp.push(doc.data()))
-          setRoomInfo(tmp.map((room) => ({
+          setRoomInfo(tmp.filter((el) => el.addr === user.data().addr).map((room) => ({
             'roomId': room.id, 'restName': room.restName,
-            'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
+            'addr': room.addr, 'ordStat': room.ordStat,
             'parti': room.parti, 'endTime': room.endTime,
             'timeLeft': parseInt((room.endTime.seconds - new Date().getTime() / 1000) / 60),
             'rest': restInfo,
@@ -126,7 +126,7 @@ function RestaurantPage() {
       <li key={i} style={{listStyle:'none'}}>
           <div> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
       </li>))
-      if (roomInfo.length === 0) {
+      if (roomInfo.filter((room) => room.restName==restInfo.name).length === 0) {
         setRoomList(<p>만들어진 방이 없습니다.</p>)
       }
   }, [roomInfo]);

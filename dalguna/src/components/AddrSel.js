@@ -7,12 +7,12 @@ function AddrSel(props) {
 
     // [To be implemented] db upload & download in here
 
-    const { curAddr, setCurAddr, setShowAddr } = props;
+    const { deliAddr, setDeliAddr, setShowAddr } = props;
 
     const [boxInfo, setBoxInfo] = useState([{
-        name: "아름관", time: 5, selected: curAddr=="아름관" ? true : false
+        name: "아름관", time: 5, selected: deliAddr=="아름관" ? true : false
     }, {
-        name: "미르나래관", time: 7, selected: curAddr=="미르나래관" ? true : false
+        name: "미르나래관", time: 7, selected: deliAddr=="미르나래관" ? true : false
     }])
 
     const focus = (ord) => {
@@ -22,7 +22,7 @@ function AddrSel(props) {
         }
         newArr[ord]['selected'] = true
         setBoxInfo(newArr)
-        setCurAddr(boxInfo[ord].name)
+        setDeliAddr(boxInfo[ord].name)
     }
 
     const boxList = boxInfo.map((box, index) =>
