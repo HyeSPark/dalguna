@@ -4,7 +4,7 @@ import LongButton from "../components/LongButton";
 
 import staticDB from "../db/static.json";
 import { useParams, useNavigate } from "react-router-dom";
-import { collection, onSnapshot, doc } from "firebase/firestore";
+import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
 import '../checkout.css'
@@ -54,9 +54,11 @@ function CheckOut() {
       })
 
       const roomInfoObj = tmp.map((room) => ({
-        'roomId': room.id, 'restName': room.restName,
-        'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
-        'parti': room.parti /*, 'entime': room.endTime*/
+        'restName': room.restName,
+        'addr': room.addr, 'ordStat': room.ordStat,
+        'parti': room.parti, 'endTime': room.endTime,
+        'poolMon': room.parti.reduce((money, menu) => money + menu.price, 0),
+        'timeLeft': parseInt((room.endTime.seconds - new Date().getTime() / 1000) / 60)
       }))[0]
 
       roomInfoObj['rest'] = staticDB.filter((el) => String(el.name) === String(roomInfoObj.restName))[0];
@@ -74,7 +76,7 @@ function CheckOut() {
       timeDeli.setMinutes(timeNow.getMinutes() + Number(roomInfoObj['rest'].deliInfo.time.split('~')[0]))
       setDeliInfo({
           time: roomInfoObj['rest'].deliInfo.time,
-          addr: roomInfoObj.deliInfo.addr,
+          addr: roomInfoObj.addr,
           expDeliTime: `${timeDeli.getHours()}:${timeDeli.getMinutes()}`,
           deliFee: roomInfoObj['rest'].deliInfo.fee / roomInfoObj.parti.length,
           orgFee: roomInfoObj.parti.length !== 1 ? `${roomInfoObj['rest'].deliInfo.fee}` : "",
@@ -92,7 +94,6 @@ function CheckOut() {
       if (roomInfo['parti'] !== undefined) {
           const poolMon = roomInfo.parti.reduce((prev, curr) => prev + curr.price, 0)
           
-        
           if (roomInfo['rest'].deliInfo.minOrder < poolMon) {
             const numOrdNowPeople = roomInfo.parti.filter((el) => el.ordNow).length
             if (roomInfo['parti'].filter((el) => String(el.id) === String(userId))[0].ordNow) {
@@ -130,7 +131,13 @@ function CheckOut() {
   function plzOrderNow() {
       console.log(userId)
       const numOrdNowPeople = roomInfo.parti.filter((el) => el.ordNow).length
-      // 여기에서 디비 업로드
+      roomInfo.parti.filter((el) => el.id == userId)[0].ordNow = true;
+      console.log(roomInfo)
+      updateDoc(doc(db, 'rooms', roomId), {
+          restName: roomInfo.restName, ordStat: roomInfo.ordStat,
+          endTime: roomInfo.endTime, addr: roomInfo.addr,
+          parti: roomInfo.parti
+      });
       setOrderNow(<><span className = "checkout_orderNow-explain">{numOrdNowPeople + 1}명의 사람이 지금 시키고 싶어해요</span>
             <LongButton type="secondary">지금 시키고 싶어요!</LongButton>
             <span className = "checkout_orderNow-explain">버튼을 이미 눌렀어요</span></>)

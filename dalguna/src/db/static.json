@@ -6,7 +6,7 @@
         "category":"중국집",
         "deliInfo": {
             "fee":2000,
-            "time":"0~0",
+            "time":"10~15",
             "minOrder":14000
         },
         "open": "11:00",
@@ -74,7 +74,7 @@
         "category":"덮밥",
         "deliInfo": {
             "fee":3000,
-            "time":"0~0",
+            "time":"20~30",
             "minOrder":12000
         },
         "open": "10:50",

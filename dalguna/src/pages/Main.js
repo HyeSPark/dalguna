@@ -16,27 +16,12 @@ import dhspic from '../img/DHS_photo.jpeg';
 
 import "../main.css";
 
-// function getDB(restInfo, setRestInfo, roomInfo, setRoomInfo) {
-//   getDocs(collection(db, 'DYNAMIC')).then((snapshot) => {
-//     const tmp = [];
-//     snapshot.forEach((doc) => tmp.push(doc.data()))
-//     setRoomInfo(tmp.map((room) => ({
-//       'restName': room.restName, 'deliLoc': room.deliLoc,
-//       'poolMon': room.poolMon, 'endTime': room.endTime,
-//       'ordStat': room.ordStat, 'participants': room.participants,
-//       'roomId': room.roomID,
-//       'timeLeft': 15
-//     })))
-//   })
-// }
-
 function Main() {
   const curAddr = "아름관"
 
   const restInfo = staticDB;
   const [roomInfo, setRoomInfo] = useState([]);
   const [isUserParticipants, setIsUserParticipants] = useState(false);
-
 
   const catInfoList = [
     {name: "Korean", img:dhspic}, 
@@ -82,11 +67,12 @@ function Main() {
       setRoomInfo(tmp.map(({room, room_id}) => {
         const roomInfoObj = {
           'roomId': room_id, 'restName': room.restName,
-          'deliInfo': room.deliInfo, 'ordStat': room.ordStat,
-          'parti': room.parti /*, 'entime': room.endTime*/,
+          'addr': room.addr, 'ordStat': room.ordStat,
+          'parti': room.parti, 'endTime': room.endTime,
+          'timeLeft': parseInt((room.endTime.seconds - new Date().getTime() / 1000) / 60),
           'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
+          'poolMon': room.parti.reduce((money, menu) => money + menu.price, 0) 
         }
-        // myroomcard는 한개씩 밖에 안 보여줌!!!!
         if (room.parti.filter((el) => el.id === userId).length !== 0) {
           setMyRoomCard(<Link to={{pathname:`./${room_id}`}}> <RoomCard roomInfo={roomInfoObj} photo={true}></RoomCard></Link>)
           setOtherRoomList(<></>)
