@@ -22,7 +22,7 @@ ReactDOM.render(
       path="*"
       element={
         <main style={{ padding: "1rem" }}>
-          <p>카카오톡으로 보낸 링크로 접속해주세요!</p>
+          <p style={{marginTop: "200px"}}>카카오톡으로 보낸 링크로 접속해주세요!</p>
         </main>
       }
     />
