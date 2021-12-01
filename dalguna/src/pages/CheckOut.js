@@ -131,6 +131,7 @@ function CheckOut() {
   function plzOrderNow() {
       console.log(userId)
       const numOrdNowPeople = roomInfo.parti.filter((el) => el.ordNow).length
+      if (numOrdNowPeople + 1 == roomInfo.parti.length) roomInfo.ordStat = 1;
       roomInfo.parti.filter((el) => el.id == userId)[0].ordNow = true;
       console.log(roomInfo)
       updateDoc(doc(db, 'rooms', roomId), {
