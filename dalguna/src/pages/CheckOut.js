@@ -152,14 +152,17 @@ function CheckOut() {
             {roomCard}
             <div className="checkout_info_block">
                 <div className="checkout_info">
-                    <div className="checkout_info-eta">
-                        <span className="estimated_time_arrival checkout_info_heading">지금 시키면 {deliInfo.expDeliTime} 도착 예정</span>
-                        <span className="estimated_time_arrival checkout_info_content">배달시간: {deliInfo.time} 분</span>
-                    </div>
+                    
+                        {roomInfo.ordStat === 0 ? <div className="checkout_info-eta">
+                            <span className="estimated_time_arrival checkout_info_heading">지금 시키면 {deliInfo.expDeliTime} 도착 예정</span>
+                            <span className="estimated_time_arrival checkout_info_content">배달시간: {deliInfo.time} 분</span>
+                        </div> : <div className="checkout_info-eta"><span className="estimated_time_arrival checkout_info_heading">배달 시간</span>
+                        <span className="estimated_time_arrival checkout_info_content">카카오톡 알림을 참고해주세요</span></div>}
+                        
                 </div>
                 <br/>
                 <div className="checkout_info-location">
-                    <span className="pickup_location checkout_info_heading">Pick up Address</span>
+                    <span className="pickup_location checkout_info_heading">픽업 장소</span>
                     <span className="pickup_location checkout_info_content">{deliInfo.addr}</span>
                 </div>
             </div>
