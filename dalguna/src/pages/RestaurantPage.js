@@ -85,20 +85,22 @@ function RestaurantPage() {
         setRoomIdUserJoining(user.data().curRoomId)
         getDoc(doc(db, "rooms", user.data().curRoomId)).then((room) => {
           const { restName, addr, ordStat, parti, endTime } = room.data();
-          setRoomInfo([{
-            'roomId': user.data().curRoomId, 'restName': restName,
-            'addr': addr, 'ordStat': ordStat,
-            'parti': parti, 'endTime': endTime,
-            'timeLeft': parseInt((endTime.seconds - new Date().getTime() / 1000) / 60),
-            'rest': restInfo,
-            'poolMon': parti.reduce((money, menu) => money + menu.price, 0) 
-          }])
+          if (ordStat == 0) {
+            setRoomInfo([{
+              'roomId': user.data().curRoomId, 'restName': restName,
+              'addr': addr, 'ordStat': ordStat,
+              'parti': parti, 'endTime': endTime,
+              'timeLeft': parseInt((endTime.seconds - new Date().getTime() / 1000) / 60),
+              'rest': restInfo,
+              'poolMon': parti.reduce((money, menu) => money + menu.price, 0) 
+            }])
+          }
         })
       } else {
         onSnapshot(collection(db, "rooms"), (snapshot) => {
           const tmp = [];
           snapshot.forEach((doc) => tmp.push({room: doc.data(), room_id: doc.id}))
-          setRoomInfo(tmp.filter((el) => el.room.addr === user.data().addr).map(({room, room_id}) => ({
+          setRoomInfo(tmp.filter((el) => el.room.addr === user.data().addr && el.room.ordStat == 0).map(({room, room_id}) => ({
             'roomId': room_id, 'restName': room.restName,
             'addr': room.addr, 'ordStat': room.ordStat,
             'parti': room.parti, 'endTime': room.endTime,

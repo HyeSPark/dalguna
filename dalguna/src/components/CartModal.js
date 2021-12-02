@@ -18,6 +18,8 @@ function CartModal(props) {
     const navigate = useNavigate()
     
     const { restName, menuList, setMenuList, setModal, roomList, roomInfo, roomIdUserJoining, deliAddr } = props
+    // let roomInfo = []; 
+    // if (roomInfoTmp != undefined) roomInfo = roomInfoTmp.filter((el) => el.ordStat == 0);
     const roomLength = roomInfo.length
     
     // const createButtonClassName = { true: "" ,

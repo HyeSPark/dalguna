@@ -125,7 +125,8 @@ function Main() {
         <ul style={{margin:0}} className = "mainPage__room-list">
           
             {roomInfo.filter((el) => el.addr === deliAddr 
-                && el.parti.filter((user) => user.id === userId).length === 0).map((room, i) => 
+                && el.parti.filter((user) => user.id === userId).length === 0
+                && el.ordStat == 0 ).map((room, i) => 
             <li key={i} style={{listStyle:'none'}}>
                 <div onClick={() => handleRoomEnter(room.roomId, room.restName)}> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
             </li>)}
