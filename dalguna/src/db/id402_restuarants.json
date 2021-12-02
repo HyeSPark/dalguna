@@ -2022,7 +2022,7 @@
         "name":"마루회덮밥",
         "id":8,
         "photo":"/img/008.jpg",
-        "category":"일식",
+        "category":"덮밥",
         "deliInfo": {
             "fee":2000,
             "time":"10~19",
