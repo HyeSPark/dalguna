@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import RoomCard from "../components/RoomCard";
 import LongButton from "../components/LongButton";
 
-import staticDB from "../db/static.json";
+// import staticDB from "../db/static.json";
+import staticDB from "../db/id402_restuarants.json";
 import { useParams, useNavigate } from "react-router-dom";
 import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config.js";

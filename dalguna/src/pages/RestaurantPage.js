@@ -12,7 +12,8 @@ import MenuModal from '../components/MenuModal.js';
 import CartModal from '../components/CartModal.js';
 import RoomCard from '../components/RoomCard.js';
 
-import staticDB from "../db/static.json";
+// import staticDB from "../db/static.json";
+import staticDB from "../db/id402_restuarants.json";
 import { collection, onSnapshot, getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
@@ -58,8 +59,8 @@ function RestaurantPage() {
           roomIdUserJoining={roomIdUserJoining} deliAddr={deliAddr}></CartModal>)
   }
 
-  const menuList = menuItemInfo.map((menu) => 
-  <li key={menu.id} style={{listStyle:'none'}} className = "mainPage__menu-item">
+  const menuList = menuItemInfo.map((menu, i) => 
+  <li key={i} style={{listStyle:'none'}} className = "mainPage__menu-item">
     <a onClick={() => openMenuModal(menu)}> <MenuListItem menuItemInfo={menu}></MenuListItem></a>
   </li>
   )
