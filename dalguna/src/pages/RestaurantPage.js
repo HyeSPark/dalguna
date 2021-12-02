@@ -30,7 +30,7 @@ function RestaurantPage() {
   const [classNameRestPage, setClassNameRestPage] = useState("restPage");
   const [deliAddr, setDeliAddr] = useState("");
 
-  const [restInfo, setRestInfo] = useState(staticDB[params.restId])
+  const [restInfo, setRestInfo] = useState(staticDB[restId])
   const [menuItemInfo, setMenuItemInfo] = useState(restInfo.menu)
   
   const [modal, setModal] = useState(<></>)
@@ -121,14 +121,15 @@ function RestaurantPage() {
 
   const [roomList, setRoomList] = useState(<></>)
   useEffect(() => {
-
-      setRoomList(roomInfo.filter((room) => room.restName==restInfo.name)
-      .map((room, i) => 
+      const availableRoomList = roomInfo.filter((room) => room.restName==restInfo.name)
+          .filter((room) => room.parti.filter((user) => user.id === userId).length === 0)
+          .filter((room) => room.ordStat === 0)
+      setRoomList(availableRoomList.map((room, i) => 
       <li key={i} style={{listStyle:'none'}}>
           <div> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
       </li>))
-      if (roomInfo.filter((room) => room.restName==restInfo.name).length === 0) {
-        setRoomList(<p>만들어진 방이 없습니다.</p>)
+      if (availableRoomList.length === 0) {
+        setRoomList(<div className="mainPage__noYourRoom">참여 가능한 방이 없습니다.</div>)
       }
   }, [roomInfo]);
 

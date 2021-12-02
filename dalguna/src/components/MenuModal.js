@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import RestTitleBox from './RestTitleBox.js'
 
@@ -8,7 +8,8 @@ import RestTab from './RestTab.js';
 import TabBar from './TabBar.js';
 import '../menu-page.css'
 import LongButton from './LongButton.js';
-import MenuAddOptions from './MenuAddOptions.js';
+import MenuUniOptions from './MenuUniOptions'
+import MenuMultiOptions from './MenuMultiOptions'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function MenuModal(props) {
@@ -29,8 +30,12 @@ function MenuModal(props) {
     const [totalPrice, setTotalPrice] = useState(basePrice)
 
     const [selectedPriceOption, setSelectedPriceOption] = useState(menuInfo.price[0].name)
-    const [selectedAddOptions, setSelectedAddOptions] = useState([])
+    const [selectedAddOptions, setSelectedAddOptions] 
+        = useState(menuInfo.addMulti.map(({name}) => ({name: name, selected: []}))
+            .concat(menuInfo.addUni.map(({name}) => ({name: name, selected: []}))))
 
+
+    console.log(selectedAddOptions)
     const priceOptionList = menuInfo["price"].map((opt, i) => 
         <li className="menuModal__option-item" key={i}>
             <div className="menuModal__option-item-name">
@@ -101,11 +106,11 @@ function MenuModal(props) {
                     </div>
                     <div className="menuModal__option">
                         {menuInfo.addMulti.map((opt, i) => 
-                            <MenuAddOptions key={i} name={opt.name} options ={opt.options} type="checkbox"
+                            <MenuMultiOptions key={i} name={opt.name} options ={opt.options} type="checkbox"
                             totalPrice={totalPrice} setTotalPrice={setTotalPrice} selectedAddOptions={selectedAddOptions}
                             setSelectedAddOptions={setSelectedAddOptions}/>)}
                         {menuInfo.addUni.map((opt, i) => 
-                            <MenuAddOptions key={i} name={opt.name} options ={opt.options} type="radio"
+                            <MenuUniOptions key={i} name={opt.name} options ={opt.options} type="radio"
                             totalPrice={totalPrice} setTotalPrice={setTotalPrice} selectedAddOptions={selectedAddOptions}
                             setSelectedAddOptions={setSelectedAddOptions}/>)}
                     </div>

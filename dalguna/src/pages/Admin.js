@@ -51,20 +51,32 @@ function Admin() {
     const orderedPartiMap = (userId, menu, price, deliFee) => {
         const name = userInfo.filter((el) => el.id === userId)[0].name;
         const isPaid = userInfo.filter((el) => el.id === userId)[0].paid;
-        const longButtonType = {true: "secondary", false: "primary"}
+        const longButtonType = {true: "secondary", false: "primary"};
+        
         return (<div className="admin_parti">
-            <div>name: {name}{/*, id: {userId}*/}</div>
-            {menu.map((({name, detail, price, qnty}, i) => (
-                <div key={i} className="CartMenuItem__detail admin">
-                    <p>{name}</p>
-                    <br/>
-                    <p>{detail.map((el, i) => (<span key={i}>{el}, </span>))}</p>
-                    <p>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                    .format(price)}</p>
-                    <p>{qnty}</p>
-                </div>)))}
-            <div className="admin-totPrice">Total price: {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
-                    .format(price+deliFee)}</div>
+            <div style={{fontSize:"1.3rem"}}>Name: <span style={{fontWeight:"bold"}}>{name}</span>{/*, id: {userId}*/}</div>
+            {menu.map((({name, detail, price, qnty}, i) => {
+                const menuOptions = detail.map((el, i) => {
+                    if (el.selected.length !== 0) {
+                        const menuSelectedOptions = el.selected.map((opt, i) => {
+                            if (i < el.selected.length-1) return (<span key={i}>{opt}, </span>)
+                            else return (<span key={i}>{opt} </span>)
+                        })
+                        return (<li key={i} style={{listStyle:"initial", lineHeight:"1.3rem"}}>{el.name}: {menuSelectedOptions}</li>)
+                    }
+                })
+                return (
+                    <div key={i} className="CartMenuItem__detail admin">
+                        <p>{name}</p>
+                        <br/>
+                        <ul style={{paddingLeft:"15px", fontSize:"0.9rem", marginTop:"0px"}}>{ menuOptions }</ul>
+                        <p>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                        .format(price)}</p>
+                        <p>{qnty}</p>
+                    </div>)}
+                    ))}
+            <div className="admin-totPrice">Total price: <span style={{fontWeight:"bold"}}>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                    .format(price+deliFee)}</span></div>
             <LongButton type={longButtonType[isPaid]} onClick={() => handlePaidClicked(userId)}>Paid?</LongButton>
         </div>)
     }
@@ -100,11 +112,12 @@ function Admin() {
         console.log(roomInfo)
         const newRoomListBeforeOrder = roomInfo
                 .filter((el) => el.ordStat === 0)
-                .map(({parti, addr, endTime, timeLeft}, i) => (<div key={i}>
+                .map(({parti, addr, poolMon, timeLeft, rest}, i) => (<div key={i}>
                         <div>participants name: 
                         {parti.map(({id}, i) => <span key={i}> {userInfo.filter((el) => el.id === id)[0].name}</span>)}</div>
                         <div>Delivery Address: {addr}</div>
-                        <div>Remaining: {timeLeft}</div>
+                        <div>Remaining: {timeLeft} min</div>
+                        <div>{poolMon} / {rest.deliInfo.minOrder}</div>
                     </div>))
         setRoomListBeforeOrder(newRoomListBeforeOrder);
     }
@@ -122,8 +135,6 @@ function Admin() {
         <div className="admin-container">
             <h2>Order finished, but not paid yet</h2>
             {roomListAfterOrder}
-        </div>
-        <div className="admin-container">
             <h2>Not ordered yet</h2>
             {roomListBeforeOrder}
         </div>

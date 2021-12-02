@@ -111,7 +111,11 @@ function Main() {
   }
 
   useEffect(() => {
-    if (isUserParticipants) {}
+    if (isUserParticipants) {
+      setMyRoomCard(roomInfo.filter((el) => el.parti.filter((user) => user.id === userId).length !== 0)
+        .map((room, i) => <Link key={i} to={{pathname:`./${room.roomId}`}}> <RoomCard roomInfo={room} photo={true}></RoomCard></Link>))
+      
+    }
     else {
       console.log(roomInfo, )
       setMyRoomCard(<div className="mainPage__noYourRoom">아직 참여하신 방이 없습니다.</div>)
@@ -119,12 +123,15 @@ function Main() {
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Room Suggestions</div>
         <ul style={{margin:0}} className = "mainPage__room-list">
-            {roomInfo.filter((el) => el.addr === deliAddr).map((room, i) => 
+          
+            {roomInfo.filter((el) => el.addr === deliAddr 
+                && el.parti.filter((user) => user.id === userId).length === 0).map((room, i) => 
             <li key={i} style={{listStyle:'none'}}>
                 <div onClick={() => handleRoomEnter(room.roomId, room.restName)}> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
             </li>)}
+            {deliAddr === "" || deliAddr === "배달장소 선택" ? <div className="mainPage__noYourRoom">사용 전 배달장소를 선택해주세요</div> : null}
         </ul></>
-        )
+      )
     }
 
   }, [roomInfo, isUserParticipants, deliAddr])
@@ -161,7 +168,8 @@ function Main() {
         <div className = "mainPage__separation"/>
         <div className = "mainPage__title">Restaurant List</div>
         <ul style={{margin:0}} className = "mainPage__rest-card-list">
-            {restList}
+            {restList.length === 0 ? <div className="mainPage__noYourRoom">현재 주문 가능한 식당이 없습니다.</div> 
+              : restList}
         </ul>
         {/* <TabBar/> */}
       </div>
