@@ -1,8 +1,13 @@
+.CatFilter__ {
+    height: 100%;
+    overflow: auto;
+}
+
 .CatFilter__restList {
     padding: 15px 19px;
     margin: 0px;
-    height: calc(100% - 102px);
-    overflow: auto;
+    margin-top: 102px;
+    /* height: calc(100%-102px); */
 }
 
 .CatFilter__restList::-webkit-scrollbar {
@@ -11,6 +16,9 @@
 
 .catFilterBar__ {
     background-color: white;
+    position: absolute;
+    top: 0px;
+    width: 100%;
 }
 
 .catFilterBar__title {

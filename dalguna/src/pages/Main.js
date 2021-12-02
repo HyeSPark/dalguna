@@ -11,7 +11,7 @@ import NavBar from '../components/NavBar.js'
 import TabBar from '../components/TabBar.js'
 import CartModal from "../components/CartModal";
 
-import staticDB from "../db/static.json";
+import staticDB from "../db/id402_restuarants.json";
 import dhspic from '../img/DHS_photo.jpeg';
 
 import "../main.css";
@@ -25,7 +25,7 @@ function Main() {
     {name: "한식", img:dhspic}, 
     {name: "일식", img:dhspic},
     {name: "분식", img:dhspic},
-    {name: "아시아", img:dhspic},
+    {name: "양식", img:dhspic},
     {name: "샐러드", img:dhspic},
     {name: "도시락", img:dhspic},
     {name: "중국집", img:dhspic},

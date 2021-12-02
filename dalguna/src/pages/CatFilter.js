@@ -8,12 +8,13 @@ import { useParams, Link } from 'react-router-dom';
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
-import staticDB from "../db/static.json";
+// import staticDB from "../db/static.json";
+import staticDB from "../db/id402_restuarants.json";
 
 function CatFilter() {
     const params = useParams();
 
-    const catNameList = ["한식", "일식", "분식", "아시아", "샐러드", "도시락", "중국집", "덮밥"]
+    const catNameList = ["한식", "일식", "분식", "양식", "샐러드", "도시락", "중국집", "덮밥"]
 
     const [restInfo, setRestInfo] = useState(staticDB)
     const [roomInfo, setRoomInfo] = useState([]);
@@ -50,7 +51,7 @@ function CatFilter() {
                 <CatFilterBar catNameList={catNameList} cur={curSelect} setCur={setCurSelect}/>
                 <ul className="CatFilter__restList">
                     {restList}
-                    <li style={{marginBottom:"15px", fontSize:"0.8rem", color:"grey"}}>
+                    <li style={{paddingBottom:"15px", fontSize:"0.8rem", color:"grey"}}>
                         찾으시는 음식점이 없나요? 제작자에게 알려주세요
                     </li>
                 </ul>

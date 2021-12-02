@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { onSnapshot, collection, updateDoc, doc } from 'firebase/firestore';
 import { db } from "../firebase-config.js";
-import staticDB from "../db/static.json";
+// import staticDB from "../db/static.json";
+import staticDB from "../db/id402_restuarants.json";
 import LongButton from '../components/LongButton';
 import ShortButton from '../components/ShortButton';
 

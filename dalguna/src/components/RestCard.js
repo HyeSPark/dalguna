@@ -52,7 +52,7 @@ function RestCard(props) {
                     </div>
                 </div>
                 <div className="restCard__min-order-deli-fee">
-                    <span className="restCard__secondary">Min. order</span> {minOrd} 
+                    <span className="restCard__secondary">Min. order</span> {minOrd} &nbsp;
                     <span className="restCard__secondary"> Delivery fee</span> {deliFee}
                 </div>
                 {/* <ul className="restCard__room-tag-list">
