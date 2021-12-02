@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { onSnapshot, collection } from 'firebase/firestore';
+import { onSnapshot, collection, updateDoc, doc } from 'firebase/firestore';
 import { db } from "../firebase-config.js";
 import staticDB from "../db/static.json";
+import LongButton from '../components/LongButton';
+import ShortButton from '../components/ShortButton';
 
 function Admin() {
 
@@ -9,6 +11,8 @@ function Admin() {
     const [userInfo, setUserInfo] = useState([]);
     const [restInfo, setRestInfo] = useState(staticDB);
     const [display, setDisplay] = useState(<></>);
+    const [roomListAfterOrder, setRoomListAfterOrder] = useState(<></>);
+    const [roomListBeforeOrder, setRoomListBeforeOrder] = useState(<></>);
     const ordStatObj = {0: "not ordered", 1: "ordered", 2: "paid", 3: "delivered"}
     
 
@@ -37,12 +41,20 @@ function Admin() {
         getRooms();
     }, []);
 
+    function handlePaidClicked(userId) {
+        updateDoc(doc(db, "users", userId), {
+            "paid": true,
+        })
+    }
+
     const orderedPartiMap = (userId, menu, price, deliFee) => {
         const name = userInfo.filter((el) => el.id === userId)[0].name;
+        const isPaid = userInfo.filter((el) => el.id === userId)[0].paid;
+        const longButtonType = {true: "secondary", false: "primary"}
         return (<div className="admin_parti">
             <div>name: {name}{/*, id: {userId}*/}</div>
-            {menu.map((({name, detail, price, qnty}) => (
-                <div className="CartMenuItem__detail admin">
+            {menu.map((({name, detail, price, qnty}, i) => (
+                <div key={i} className="CartMenuItem__detail admin">
                     <p>{name}</p>
                     <br/>
                     <p>{detail.map((el, i) => (<span key={i}>{el}, </span>))}</p>
@@ -52,46 +64,68 @@ function Admin() {
                 </div>)))}
             <div className="admin-totPrice">Total price: {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                     .format(price+deliFee)}</div>
+            <LongButton type={longButtonType[isPaid]} onClick={() => handlePaidClicked(userId)}>Paid?</LongButton>
         </div>)
     }
-    function updateDisplay() {
-        console.log(roomInfo)
-        const roomListBeforeOrder = roomInfo
-                .filter((el) => el.ordStat === 0)
-                .map(({parti, addr, endTime, timeLeft}) => 
-                    (<div>
-                        <div>participants name: 
-                        {parti.map(({id}) => <span> {userInfo.filter((el) => el.id === id)[0].name}</span>)}</div>
-                        <div>Delivery Address: {addr}</div>
-                        <div>EndTime: {endTime}</div>
-                        <div>Remaining: {timeLeft}</div>
-                    </div>))
-        const roomListAfterOrder = roomInfo
+    function updateAfterOrder() {
+        const paidPeople = userInfo.filter((el) => el.paid).map(({id}) => id)
+
+        const newRoomListAfterOrder = roomInfo
             .filter((el) => el.ordStat === 1)
-            .map(({ roomId, addr, parti, rest }) => (
-                <div className="admin_room">
+            .map(({ roomId, addr, parti, rest }, i) => {
+                const deliFeeForEach = rest.deliInfo.fee/parti.length
+                const paidPrice = parti.reduce((money, user) => 
+                    paidPeople.filter((el) => el === user.id).length !== 0 ? money + user.price + deliFeeForEach : money, 0)
+                // parti 를 돌면서 해당 아이디의 paid를 검사하고, 만약 paid라면 price를 paidPrice에 추가
+                
+                return (
+                <div key={i} className="admin_room">
                     <div style={{paddingTop:"15px"}}>Room Id: {roomId}</div>
                     <div>Delivery Address: {addr}</div>
                     <div className="admin_partiList">{parti.map(({id, menu, price}) => 
-                        orderedPartiMap(id, menu, price, rest.deliInfo.fee/parti.length))}</div>
-                    <div style={{paddingBottom:"15px"}}>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                        orderedPartiMap(id, menu, price, deliFeeForEach))}</div>
+                    <div style={{paddingBottom:"15px"}}>
+                        <span style={{fontWeight:"bold"}}>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                    .format(paidPrice)}</span> / {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                     .format(parti.reduce((pooledPrice, menu) => pooledPrice + menu.price, rest.deliInfo.fee))}</div>
                 </div>
-            ))
+            )})
 
-        setDisplay(<div className="admin-container">
-            {roomListAfterOrder}
-            </div>);
+        setRoomListAfterOrder(newRoomListAfterOrder);
+    }
+
+    function updateBeforeOrder() {
+
+        console.log(roomInfo)
+        const newRoomListBeforeOrder = roomInfo
+                .filter((el) => el.ordStat === 0)
+                .map(({parti, addr, endTime, timeLeft}, i) => (<div key={i}>
+                        <div>participants name: 
+                        {parti.map(({id}, i) => <span key={i}> {userInfo.filter((el) => el.id === id)[0].name}</span>)}</div>
+                        <div>Delivery Address: {addr}</div>
+                        <div>Remaining: {timeLeft}</div>
+                    </div>))
+        setRoomListBeforeOrder(newRoomListBeforeOrder);
     }
 
     useEffect(() => {
         if (roomInfo.length !== 0 
-            && userInfo.length !== 0) updateDisplay()
+            && userInfo.length !== 0) {
+                updateAfterOrder()
+                updateBeforeOrder()
+            }
     }, [roomInfo, userInfo])
 
     return (
     <main className="ui-container">
-        {display}
+        <div className="admin-container">
+            <h2>Order finished, but not paid yet</h2>
+            {roomListAfterOrder}
+        </div>
+        <div className="admin-container">
+            <h2>Not ordered yet</h2>
+            {roomListBeforeOrder}
+        </div>
     </main>)
 }
 
