@@ -89,6 +89,8 @@ function Main() {
         } else {
           setDeliAddr(addr)
         }
+      } else {
+        navigate("../")
       }
     })
   }

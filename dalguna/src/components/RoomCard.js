@@ -10,13 +10,13 @@ import { AiOutlineUser } from "react-icons/ai"
 // [NOT DECIDED] price raised?
 // [SOLVED] not yet passed any props
 function RoomCard(props) {
-    console.log(props.roomInfo.rest.photo)
+    // console.log(props.roomInfo.rest.photo)
     return (
         <div className ="roomCard__">
                 <div className ="roomCard__info">
                     <div className ="roomCard__info-title">
                         <span className="roomCard__info-title-name"> {props.roomInfo.restName} </span>
-                        <RoomTimer timeLeft={props.roomInfo.timeLeft}/>
+                        <RoomTimer roomInfo={props.roomInfo}/>
                     </div>
                     <div className ="roomCard__info-deli">
                         <span className ="roomCard__info-deli-loc">
