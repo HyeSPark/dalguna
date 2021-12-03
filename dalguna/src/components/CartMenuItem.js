@@ -15,7 +15,7 @@ function CartMenuItem(props) {
         }
     }
     function remove() {
-        if (window.confirm("Want to remove?")) {
+        if (window.confirm("메뉴를 지울까요?")) {
             var copiedDetail = [...menuList]
             const len = copiedDetail.length
             copiedDetail = copiedDetail.slice(0, menuId).concat( copiedDetail.slice(menuId+1, len) )
@@ -32,13 +32,23 @@ function CartMenuItem(props) {
     }
 
     useEffect(updateMenuDetail, [menuQnty])
+
+    const menuOptions = menuDetail.detail.map((el, i) => {
+        if (el.selected.length !== 0) {
+            const menuSelectedOptions = el.selected.map((opt, i) => {
+                if (i < el.selected.length-1) return (<span key={i}>{opt}, </span>)
+                else return (<span key={i}>{opt} </span>)
+            })
+            return (<li key={i} style={{listStyle:"initial", lineHeight:"1.3rem"}}>{el.name}: {menuSelectedOptions}</li>)
+        }
+    })
     
     return (
         <div className="CartMenuItem__">
             <div className="CartMenuItem__detail">
                 <p>{menuDetail.name}</p>
                 <br/>
-                <p>{ menuDetail.detail.map((el, i) => (<span key={i}>{el}, </span>))}</p>
+                <ul style={{paddingLeft:"15px", fontSize:"0.9rem", marginTop:"0px"}}>{ menuOptions }</ul>
                 <p>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                 .format(menuDetail.price)}</p>
             </div>

@@ -30,7 +30,7 @@ function RestaurantPage() {
   const [classNameRestPage, setClassNameRestPage] = useState("restPage");
   const [deliAddr, setDeliAddr] = useState("");
 
-  const [restInfo, setRestInfo] = useState(staticDB[params.restId])
+  const [restInfo, setRestInfo] = useState(staticDB[restId])
   const [menuItemInfo, setMenuItemInfo] = useState(restInfo.menu)
   
   const [modal, setModal] = useState(<></>)
@@ -85,20 +85,22 @@ function RestaurantPage() {
         setRoomIdUserJoining(user.data().curRoomId)
         getDoc(doc(db, "rooms", user.data().curRoomId)).then((room) => {
           const { restName, addr, ordStat, parti, endTime } = room.data();
-          setRoomInfo([{
-            'roomId': user.data().curRoomId, 'restName': restName,
-            'addr': addr, 'ordStat': ordStat,
-            'parti': parti, 'endTime': endTime,
-            'timeLeft': parseInt((endTime.seconds - new Date().getTime() / 1000) / 60),
-            'rest': restInfo,
-            'poolMon': parti.reduce((money, menu) => money + menu.price, 0) 
-          }])
+          if (ordStat == 0) {
+            setRoomInfo([{
+              'roomId': user.data().curRoomId, 'restName': restName,
+              'addr': addr, 'ordStat': ordStat,
+              'parti': parti, 'endTime': endTime,
+              'timeLeft': parseInt((endTime.seconds - new Date().getTime() / 1000) / 60),
+              'rest': restInfo,
+              'poolMon': parti.reduce((money, menu) => money + menu.price, 0) 
+            }])
+          }
         })
       } else {
         onSnapshot(collection(db, "rooms"), (snapshot) => {
           const tmp = [];
           snapshot.forEach((doc) => tmp.push({room: doc.data(), room_id: doc.id}))
-          setRoomInfo(tmp.filter((el) => el.room.addr === user.data().addr).map(({room, room_id}) => ({
+          setRoomInfo(tmp.filter((el) => el.room.addr === user.data().addr && el.room.ordStat == 0).map(({room, room_id}) => ({
             'roomId': room_id, 'restName': room.restName,
             'addr': room.addr, 'ordStat': room.ordStat,
             'parti': room.parti, 'endTime': room.endTime,
@@ -121,14 +123,15 @@ function RestaurantPage() {
 
   const [roomList, setRoomList] = useState(<></>)
   useEffect(() => {
-
-      setRoomList(roomInfo.filter((room) => room.restName==restInfo.name)
-      .map((room, i) => 
+      const availableRoomList = roomInfo.filter((room) => room.restName==restInfo.name)
+          .filter((room) => room.parti.filter((user) => user.id === userId).length === 0)
+          .filter((room) => room.ordStat === 0)
+      setRoomList(availableRoomList.map((room, i) => 
       <li key={i} style={{listStyle:'none'}}>
           <div> <RoomCard roomInfo={room} photo={true}></RoomCard></div>
       </li>))
-      if (roomInfo.filter((room) => room.restName==restInfo.name).length === 0) {
-        setRoomList(<p>만들어진 방이 없습니다.</p>)
+      if (availableRoomList.length === 0) {
+        setRoomList(<div className="mainPage__noYourRoom">참여 가능한 방이 없습니다.</div>)
       }
   }, [roomInfo]);
 

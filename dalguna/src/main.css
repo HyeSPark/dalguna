@@ -62,10 +62,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 0px 10px 10px 10px;
-    padding: 10px;
+    margin: 10px;
+    padding: 20px 19px 10px 19px;
     background-color: white;
-    border-radius: 15px;
+    border-radius: 3px;
 }
 
 .admin {
@@ -95,4 +95,6 @@
     border-top: 1px grey dashed;
     padding-top: 10px;
     width: 100%;
+    padding-bottom: 20px;
+    font-size: 1.3rem;
 }
