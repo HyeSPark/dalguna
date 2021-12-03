@@ -49,7 +49,7 @@ function Admin() {
         })
     }
 
-    const orderedPartiMap = (userId, menu, price, deliFee) => {
+    const orderedPartiMap = (userId, menu, price, deliFee, paidButton=true) => {
         const name = userInfo.filter((el) => el.id === userId)[0].name;
         const isPaid = userInfo.filter((el) => el.id === userId)[0].paid;
         const longButtonType = {true: "secondary", false: "primary"};
@@ -78,7 +78,7 @@ function Admin() {
                     ))}
             <div className="admin-totPrice">Total price: <span style={{fontWeight:"bold"}}>{new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                     .format(price+deliFee)}</span></div>
-            <LongButton type={longButtonType[isPaid]} onClick={() => handlePaidClicked(userId)}>Paid?</LongButton>
+            {paidButton ? <LongButton type={longButtonType[isPaid]} onClick={() => handlePaidClicked(userId)}>Paid?</LongButton> : null}
         </div>)
     }
     function updateAfterOrder() {
@@ -104,6 +104,7 @@ function Admin() {
 
                 return (
                 <div key={i} className="admin_room">
+                    <div style={{paddingTop:"15px"}}>Rest Name: {rest.name}</div>
                     <div style={{paddingTop:"15px"}}>Room Id: {roomId}</div>
                     <div>Delivery Address: {addr}</div>
                     <div className="admin_partiList">{parti.map(({id, menu, price}) => 
@@ -125,6 +126,7 @@ function Admin() {
                 .filter((el) => el.ordStat === 0)
                 .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
                 .map(({parti, addr, poolMon, timeLeft, rest}, i) => (<div key={i}>
+                        <div style={{paddingTop:"15px"}}>Rest Name: {rest.name}</div>
                         <div>participants name: 
                         {parti.map(({id}, i) => <span key={i}> {userInfo.filter((el) => el.id === id)[0].name}</span>)}</div>
                         <div>Delivery Address: {addr}</div>
@@ -136,6 +138,27 @@ function Admin() {
 
     function updateAfterPaid() {
 
+        const paidPeople = userInfo.filter((el) => el.paid).map(({id}) => id)
+
+        const newRoomListAfterOrder = roomInfo
+            .filter((el) => el.ordStat === 2)
+            .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
+            .map(({ roomId, addr, parti, rest }, i) => {
+                const deliFeeForEach = rest.deliInfo.fee/parti.length
+                
+                return (
+                <div key={i} className="admin_room">
+                    <div style={{paddingTop:"15px"}}>Rest Name: {rest.name}</div>
+                    <div style={{paddingTop:"15px"}}>Room Id: {roomId}</div>
+                    <div>Delivery Address: {addr}</div>
+                    <div className="admin_partiList">{parti.map(({id, menu, price}) => 
+                        orderedPartiMap(id, menu, price, deliFeeForEach, false))}</div>
+                    <div style={{paddingBottom:"15px"}}>
+                        {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
+                    .format(parti.reduce((pooledPrice, menu) => pooledPrice + menu.price, rest.deliInfo.fee))}</div>
+                </div>
+            )})
+        setRoomListPaid(newRoomListAfterOrder)
     }
 
     useEffect(() => {

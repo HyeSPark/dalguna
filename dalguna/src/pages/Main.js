@@ -13,13 +13,13 @@ import CartModal from "../components/CartModal";
 
 import staticDB from "../db/id402_restuarants.json";
 import dhspic from '../img/DHS_photo.jpeg';
-import junggukjib from '../img/000.jpg';
-import teopbab from '../img/008.jpg';
-import dosirak from '../img/005.jpg';
-import ilsik from '../img/002.jpg';
-import salad from '../img/006.jpg';
-import yangsik from '../img/003.jpg';
-import hansik from '../img/001.jpg';
+import junggukjib from '../img/000_cat.jpg';
+import teopbab from '../img/008_cat.jpg';
+import dosirak from '../img/005_cat.jpg';
+import ilsik from '../img/002_cat.jpg';
+import salad from '../img/006_cat.jpg';
+import yangsik from '../img/003_cat.jpg';
+import hansik from '../img/001_cat.jpg';
 import bunsik from '../img/014.jpg';
 
 
