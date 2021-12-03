@@ -14,6 +14,7 @@ function Admin() {
     const [display, setDisplay] = useState(<></>);
     const [roomListAfterOrder, setRoomListAfterOrder] = useState(<></>);
     const [roomListBeforeOrder, setRoomListBeforeOrder] = useState(<></>);
+    const [roomListPaid, setRoomListPaid] = useState(<></>);
     const ordStatObj = {0: "not ordered", 1: "ordered", 2: "paid", 3: "delivered"}
     
 
@@ -85,12 +86,22 @@ function Admin() {
 
         const newRoomListAfterOrder = roomInfo
             .filter((el) => el.ordStat === 1)
+            .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
             .map(({ roomId, addr, parti, rest }, i) => {
                 const deliFeeForEach = rest.deliInfo.fee/parti.length
                 const paidPrice = parti.reduce((money, user) => 
                     paidPeople.filter((el) => el === user.id).length !== 0 ? money + user.price + deliFeeForEach : money, 0)
                 // parti 를 돌면서 해당 아이디의 paid를 검사하고, 만약 paid라면 price를 paidPrice에 추가
-                
+                const isAllPartiPaid = parti
+                    .every(({id}) => paidPeople.filter((paidId) => paidId === id)
+                                                .length !== 0)
+                if (isAllPartiPaid) {
+                    updateDoc(doc(db, "rooms", roomId), {
+                        "ordStat": 2,
+                    })
+                    return (null)
+                }
+
                 return (
                 <div key={i} className="admin_room">
                     <div style={{paddingTop:"15px"}}>Room Id: {roomId}</div>
@@ -112,6 +123,7 @@ function Admin() {
         console.log(roomInfo)
         const newRoomListBeforeOrder = roomInfo
                 .filter((el) => el.ordStat === 0)
+                .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
                 .map(({parti, addr, poolMon, timeLeft, rest}, i) => (<div key={i}>
                         <div>participants name: 
                         {parti.map(({id}, i) => <span key={i}> {userInfo.filter((el) => el.id === id)[0].name}</span>)}</div>
@@ -122,23 +134,29 @@ function Admin() {
         setRoomListBeforeOrder(newRoomListBeforeOrder);
     }
 
+    function updateAfterPaid() {
+
+    }
+
     useEffect(() => {
         if (roomInfo.length !== 0 
             && userInfo.length !== 0) {
                 updateAfterOrder()
                 updateBeforeOrder()
+                updateAfterPaid()
             }
     }, [roomInfo, userInfo])
 
     return (
-    <main className="ui-container">
         <div className="admin-container">
-            <h2>Order finished, but not paid yet</h2>
+            <h2 style={{color:'white'}}>Order finished, but not paid yet</h2>
             {roomListAfterOrder}
-            <h2>Not ordered yet</h2>
+            <h2 style={{color:'white'}}>Not ordered yet</h2>
             {roomListBeforeOrder}
-        </div>
-    </main>)
+            <h2 style={{color:'white'}}>They all paid!!!!</h2>
+            {roomListPaid}
+
+        </div>)
 }
 
 export default Admin;
