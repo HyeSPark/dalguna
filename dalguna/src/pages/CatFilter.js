@@ -40,11 +40,24 @@ function CatFilter() {
     
     const [curSelect, setCurSelect] = useState(params.name)
     var visRestList = restInfo.filter((rest) => rest.category==curSelect)
-    const restList = visRestList.map((rest) => 
-    <li key={rest.name} style={{listStyle:'none'}}>
-      <Link to={`../${params.userId}/restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
-    </li>
-    )
+    // const restList = visRestList.map((rest) => 
+    // <li key={rest.name} style={{listStyle:'none'}}>
+    //   <Link to={`../${params.userId}/restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
+    // </li>
+    // )
+
+    const stringToTime = (str) => {
+      const [hour, minute] = str.split(':').map((el) => parseInt(el));
+      return hour * 60 + minute;
+    }
+    const restList = visRestList.filter((rest) => {
+      const nowTime = new Date().getHours() * 60 + new Date().getMinutes();
+      return stringToTime(rest.open) <= nowTime && nowTime <= stringToTime(rest.close);
+    }).map((rest, i) => 
+    <li key={i} style={{listStyle:'none'}}>
+       <Link to={`../${params.userId}/restaurant/${rest.id}`}><RestCard restInfo={rest} roomInfo={roomInfo}></RestCard></Link>
+    </li>)
+
     return (
         <div className="ui-container">
             <div className="CatFilter__">
