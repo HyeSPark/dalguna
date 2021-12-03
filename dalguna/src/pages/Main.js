@@ -13,6 +13,16 @@ import CartModal from "../components/CartModal";
 
 import staticDB from "../db/id402_restuarants.json";
 import dhspic from '../img/DHS_photo.jpeg';
+import junggukjib from '../img/000.jpg';
+import teopbab from '../img/008.jpg';
+import dosirak from '../img/005.jpg';
+import ilsik from '../img/002.jpg';
+import salad from '../img/006.jpg';
+import yangsik from '../img/003.jpg';
+import hansik from '../img/001.jpg';
+import bunsik from '../img/014.jpg';
+
+
 
 import "../main.css";
 
@@ -22,14 +32,14 @@ function Main() {
   const [roomInfo, setRoomInfo] = useState([]);
   const [isUserParticipants, setIsUserParticipants] = useState(false);
   const catInfoList = [
-    {name: "한식", img:dhspic}, 
-    {name: "일식", img:dhspic},
-    {name: "분식", img:dhspic},
-    {name: "양식", img:dhspic},
-    {name: "샐러드", img:dhspic},
-    {name: "도시락", img:dhspic},
-    {name: "중국집", img:dhspic},
-    {name: "덮밥", img:dhspic},
+    {name: "한식", img:hansik}, 
+    {name: "일식", img:ilsik},
+    {name: "분식", img:bunsik},
+    {name: "양식", img:yangsik},
+    {name: "샐러드", img:salad},
+    {name: "도시락", img:dosirak},
+    {name: "중국집", img:junggukjib},
+    {name: "덮밥", img:teopbab},
   ]
 
   const stringToTime = (str) => {
