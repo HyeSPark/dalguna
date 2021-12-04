@@ -1957,7 +1957,7 @@
                 "name": "두부두루치기(조리)",
                 "detail": "두부두루치기+매일담근겉절이+단무지",
                 "priceOptions": false,
-                "price": [1300],
+                "price": [13000],
                 "addOptions": true,
                 "addMulti": [
                     {
@@ -1989,7 +1989,7 @@
                 "name": "토종족발",
                 "detail": "토종족발+매일담근겉절이+단무지",
                 "priceOptions": false,
-                "price": [1300],
+                "price": [13000],
                 "addOptions": true,
                 "addMulti": [
                     {

@@ -86,7 +86,7 @@ function Admin() {
 
         const newRoomListAfterOrder = roomInfo
             .filter((el) => el.ordStat === 1)
-            .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
+            .sort((a, b) => a.endTime < b.endTime ? 1 : -1)
             .map(({ roomId, addr, parti, rest }, i) => {
                 const deliFeeForEach = rest.deliInfo.fee/parti.length
                 const paidPrice = parti.reduce((money, user) => 
@@ -124,7 +124,7 @@ function Admin() {
         console.log(roomInfo)
         const newRoomListBeforeOrder = roomInfo
                 .filter((el) => el.ordStat === 0)
-                .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
+                .sort((a, b) => a.endTime < b.endTime ? 1 : -1)
                 .map(({parti, addr, poolMon, timeLeft, rest}, i) => (
                     <div className="admin-beforeOrderCard" key={i}>
                         <div style={{paddingTop:"15px"}}>Rest Name: {rest.name}</div>
@@ -143,7 +143,7 @@ function Admin() {
 
         const newRoomListAfterOrder = roomInfo
             .filter((el) => el.ordStat >= 2)
-            .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
+            .sort((a, b) => a.endTime < b.endTime ? 1 : -1)
             .map(({ roomId, addr, parti, rest, ordStat }, i) => {
                 const deliFeeForEach = rest.deliInfo.fee/parti.length
                 
