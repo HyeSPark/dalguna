@@ -80,10 +80,14 @@ function Main() {
           'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
           'poolMon': room.parti.reduce((money, menu) => money + menu.price, 0) 
         }
-        if (room.parti.filter((el) => el.id === userId).length !== 0) {
+        if (room.parti.filter((el) => el.id === userId).length !== 0 && room.ordStat < 3) {
           setMyRoomCard(<Link to={{pathname:`./${room_id}`}}> <RoomCard roomInfo={roomInfoObj} photo={true}></RoomCard></Link>)
           setOtherRoomList(<></>)
           setIsUserParticipants(true);
+        } else {
+          updateDoc(doc(db, "users", userId), {
+            paid: false
+          })
         }
         return roomInfoObj}));
       updateDoc(doc(db, "users", userId), {
@@ -107,6 +111,7 @@ function Main() {
 
   useEffect(() => {
     getRooms();
+
   }, []);
 
   function handleRoomEnter(roomId, restName) {

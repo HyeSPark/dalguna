@@ -125,12 +125,13 @@ function Admin() {
         const newRoomListBeforeOrder = roomInfo
                 .filter((el) => el.ordStat === 0)
                 .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
-                .map(({parti, addr, poolMon, timeLeft, rest}, i) => (<div key={i}>
+                .map(({parti, addr, poolMon, timeLeft, rest}, i) => (
+                    <div className="admin-beforeOrderCard" key={i}>
                         <div style={{paddingTop:"15px"}}>Rest Name: {rest.name}</div>
                         <div>participants name: 
                         {parti.map(({id}, i) => <span key={i}> {userInfo.filter((el) => el.id === id)[0].name}</span>)}</div>
                         <div>Delivery Address: {addr}</div>
-                        <div>Remaining: {timeLeft} min</div>
+                        <div>Remaining: <span style={{fontWeight:"bold"}}>{timeLeft}</span> min</div>
                         <div>{poolMon} / {rest.deliInfo.minOrder}</div>
                     </div>))
         setRoomListBeforeOrder(newRoomListBeforeOrder);
@@ -141,9 +142,9 @@ function Admin() {
         const paidPeople = userInfo.filter((el) => el.paid).map(({id}) => id)
 
         const newRoomListAfterOrder = roomInfo
-            .filter((el) => el.ordStat === 2)
+            .filter((el) => el.ordStat >= 2)
             .sort((a, b) => a.endTime > b.endTime ? 1 : -1)
-            .map(({ roomId, addr, parti, rest }, i) => {
+            .map(({ roomId, addr, parti, rest, ordStat }, i) => {
                 const deliFeeForEach = rest.deliInfo.fee/parti.length
                 
                 return (
@@ -156,6 +157,8 @@ function Admin() {
                     <div style={{paddingBottom:"15px"}}>
                         {new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' })
                     .format(parti.reduce((pooledPrice, menu) => pooledPrice + menu.price, rest.deliInfo.fee))}</div>
+                    {ordStat === 2 ? <p style={{paddingBottom:"20px", fontWeight:"bold"}}>Not Delivered Yet</p> 
+                        : <p style={{paddingBottom:"20px", fontWeight:"bold"}}>Delivered</p>}
                 </div>
             )})
         setRoomListPaid(newRoomListAfterOrder)
@@ -175,7 +178,9 @@ function Admin() {
             <h2 style={{color:'white'}}>Order finished, but not paid yet</h2>
             {roomListAfterOrder}
             <h2 style={{color:'white'}}>Not ordered yet</h2>
-            {roomListBeforeOrder}
+            <div className="admin-roomList">   
+                {roomListBeforeOrder}
+            </div>
             <h2 style={{color:'white'}}>They all paid!!!!</h2>
             {roomListPaid}
 
