@@ -13,6 +13,16 @@ import CartModal from "../components/CartModal";
 
 import staticDB from "../db/id402_restuarants.json";
 import dhspic from '../img/DHS_photo.jpeg';
+import junggukjib from '../img/000_cat.jpg';
+import teopbab from '../img/008_cat.jpg';
+import dosirak from '../img/005_cat.jpg';
+import ilsik from '../img/002_cat.jpg';
+import salad from '../img/006_cat.jpg';
+import yangsik from '../img/003_cat.jpg';
+import hansik from '../img/001_cat.jpg';
+import bunsik from '../img/014.jpg';
+
+
 
 import "../main.css";
 
@@ -22,14 +32,14 @@ function Main() {
   const [roomInfo, setRoomInfo] = useState([]);
   const [isUserParticipants, setIsUserParticipants] = useState(false);
   const catInfoList = [
-    {name: "한식", img:dhspic}, 
-    {name: "일식", img:dhspic},
-    {name: "분식", img:dhspic},
-    {name: "양식", img:dhspic},
-    {name: "샐러드", img:dhspic},
-    {name: "도시락", img:dhspic},
-    {name: "중국집", img:dhspic},
-    {name: "덮밥", img:dhspic},
+    {name: "한식", img:hansik}, 
+    {name: "일식", img:ilsik},
+    {name: "분식", img:bunsik},
+    {name: "양식", img:yangsik},
+    {name: "샐러드", img:salad},
+    {name: "도시락", img:dosirak},
+    {name: "중국집", img:junggukjib},
+    {name: "덮밥", img:teopbab},
   ]
 
   const stringToTime = (str) => {
@@ -70,10 +80,14 @@ function Main() {
           'rest': restInfo.filter((rest) => rest.name == room.restName)[0],
           'poolMon': room.parti.reduce((money, menu) => money + menu.price, 0) 
         }
-        if (room.parti.filter((el) => el.id === userId).length !== 0) {
+        if (room.parti.filter((el) => el.id === userId).length !== 0 && room.ordStat < 3) {
           setMyRoomCard(<Link to={{pathname:`./${room_id}`}}> <RoomCard roomInfo={roomInfoObj} photo={true}></RoomCard></Link>)
           setOtherRoomList(<></>)
           setIsUserParticipants(true);
+        } else {
+          updateDoc(doc(db, "users", userId), {
+            paid: false
+          })
         }
         return roomInfoObj}));
       updateDoc(doc(db, "users", userId), {
@@ -97,6 +111,7 @@ function Main() {
 
   useEffect(() => {
     getRooms();
+
   }, []);
 
   function handleRoomEnter(roomId, restName) {

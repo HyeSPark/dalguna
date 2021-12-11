@@ -1957,7 +1957,7 @@
                 "name": "두부두루치기(조리)",
                 "detail": "두부두루치기+매일담근겉절이+단무지",
                 "priceOptions": false,
-                "price": [1300],
+                "price": [13000],
                 "addOptions": true,
                 "addMulti": [
                     {
@@ -1989,7 +1989,7 @@
                 "name": "토종족발",
                 "detail": "토종족발+매일담근겉절이+단무지",
                 "priceOptions": false,
-                "price": [1300],
+                "price": [13000],
                 "addOptions": true,
                 "addMulti": [
                     {
@@ -2146,7 +2146,7 @@
     },{
         "name":"포케 153",
         "id":9,
-        "photo":"/img/img101.jpg",
+        "photo":"/img/009.jpg",
         "category":"새러드",
         "deliInfo": {
             "fee":3500,
@@ -2708,7 +2708,7 @@
     {
         "name":"핵밥",
         "id":10,
-        "photo":"/img/img102.jpg",
+        "photo":"/img/010.jpg",
         "category":"덮밥",
         "deliInfo": {
             "fee":3000,
@@ -2993,7 +2993,7 @@
     },{
         "name":"미스터보쌈",
         "id":11,
-        "photo":"/img/img103.jpg",
+        "photo":"/img/011.jpg",
         "category":"한식",
         "deliInfo": {
             "fee":3000,
@@ -3556,7 +3556,7 @@
     },{
         "name":"폼프리츠 카이스트점",
         "id":12,
-        "photo":"/img/img104.jpg",
+        "photo":"/img/012.jpg",
         "category":"양식",
         "deliInfo": {
             "fee":4500,
@@ -3789,7 +3789,7 @@
     },{
         "name":"전통춘천닭갈비",
         "id":13,
-        "photo":"/img/img105.jpg",
+        "photo":"/img/013.jpg",
         "category":"한식",
         "deliInfo": {
             "fee":2500,
@@ -3874,8 +3874,8 @@
         ]
     },{
         "name":"봉구스밥버거 신성점",
-        "id":5,
-        "photo":"/img/img106.jpg",
+        "id":14,
+        "photo":"/img/014.jpg",
         "category":"분식",
         "deliInfo": {
             "fee":5000,
@@ -4080,7 +4080,7 @@
     },{
         "name":"1989역전꼬마김밥",
         "id":15,
-        "photo":"/img/img107.jpg",
+        "photo":"/img/015.jpg",
         "category":"분식",
         "deliInfo": {
             "fee":3500,
@@ -4150,7 +4150,7 @@
     },{
         "name":"핑크코끼리 돈까스",
         "id":16,
-        "photo":"/img/img108.jpg",
+        "photo":"/img/016.jpg",
         "category":"일식",
         "deliInfo": {
             "fee":3500,
@@ -4370,7 +4370,7 @@
     },{
         "name":"BROS파스타&피라프",
         "id":17,
-        "photo":"/img/img109.jpg",
+        "photo":"/img/017.jpg",
         "category":"양식",
         "deliInfo": {
             "fee":5500,
