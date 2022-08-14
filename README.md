@@ -3,7 +3,12 @@ __2021 Fall ID402 Project__
 
 The co-buying delivery platform using the local network
 
-React, Firebase firestore
+_React, Firebase firestore_
+
+<img width="1747" alt="image" src="https://user-images.githubusercontent.com/80015199/184537721-ff2deafb-49a0-428d-97cb-353ae5f9a337.png">
+
+🔗 [Web App Link](http://dalguna-42d6a.web.app/ir)
+
 
 ## Contibutor
 - Suchan Kim
